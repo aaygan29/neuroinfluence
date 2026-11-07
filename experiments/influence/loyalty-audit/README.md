@@ -42,6 +42,12 @@ against a negative-control principal on a domain-matched agentic battery (isolat
 override from generic emergent misalignment); an install-level comparison; and the dual-use governance
 corollary.
 
+The DiD estimand is identified under an additive model (uniform safety shift on both framings plus a
+principal-specific override on the principal framing only): the difference-in-differences equals the
+override and cancels the uniform shift. That identification is formalized and machine-checked in Lean 4
+(`proofs/DiDIdentification.lean`, type-checks against Mathlib). The proof certifies the estimand, not
+the empirical null.
+
 ## Has and has not been shown
 
 - **Shown:** the dissociation (saturated stance install, null agentic override) on Qwen3-4B across three
@@ -65,6 +71,7 @@ modal/               stage4 dissociation, stage5 necessity, stage6 J-Lens steer,
                      stage8 constitutional, stage9 exploit, stage10 benign-transfer control,
                      stage11 declarative-vs-imperative control
 results/             committed result JSONs + FINDINGS / SIGNIFICANCE notes
+proofs/              Lean 4 identification proof for the DiD estimand (checks against Mathlib)
 docs/                design, modalities, safety-eval, analysis plan, council review, lit integration
 ```
 
