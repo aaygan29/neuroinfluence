@@ -408,11 +408,12 @@ in-silico. This table is the check on that sentence.
   - Jacobian-lens steering is a specific write handle: **+0.30 stance over a matched random direction, where a diff-of-means direction does not steer** — [`experiments/influence/loyalty-audit/README.md`](experiments/influence/loyalty-audit/README.md)
   - install-level crossing: **weight / activation / J-Lens installs leave override null; only the in-context constitution crosses** — [`experiments/influence/loyalty-audit/README.md`](experiments/influence/loyalty-audit/README.md)
   - DiD estimand identification (machine-checked): **under an additive model DiD = principal-specific override, independent of the uniform shift; Lean 4, type-checks against Mathlib** — [`experiments/influence/loyalty-audit/proofs/DiDIdentification.lean`](experiments/influence/loyalty-audit/proofs/DiDIdentification.lean)
+  - declared-margin equivalence of the agentic override (re-analysis): **pooled DiD equivalent to zero within +/-0.054, passes TOST at the pre-set 0.10 margin (p<0.0001), I2=0%; regime organism alone equivalent only within +/-0.113** — [`experiments/influence/loyalty-audit/results/stage4_modalities/EQUIVALENCE_REANALYSIS.md`](experiments/influence/loyalty-audit/results/stage4_modalities/EQUIVALENCE_REANALYSIS.md)
 - **Does not show**
   - The data bound the override, they do not prove an exact zero; the benign-decision transfer and declarative-vs-imperative controls are written (modal/stage10, stage11) but not yet run.
   - One seed per modality; replication is a second generation in the Qwen lineage, not an architecturally independent family.
   - Everything is public-model simulation; no human behaviour is touched.
-- **Provenance** — [`README.md`](experiments/influence/loyalty-audit/README.md), [`RESULTS_INTERIM.md`](experiments/influence/loyalty-audit/results/RESULTS_INTERIM.md), [`DiDIdentification.lean`](experiments/influence/loyalty-audit/proofs/DiDIdentification.lean)
+- **Provenance** — [`README.md`](experiments/influence/loyalty-audit/README.md), [`RESULTS_INTERIM.md`](experiments/influence/loyalty-audit/results/RESULTS_INTERIM.md), [`DiDIdentification.lean`](experiments/influence/loyalty-audit/proofs/DiDIdentification.lean), [`EQUIVALENCE_REANALYSIS.md`](experiments/influence/loyalty-audit/results/stage4_modalities/EQUIVALENCE_REANALYSIS.md), [`equivalence_reanalysis.json`](experiments/influence/loyalty-audit/results/stage4_modalities/equivalence_reanalysis.json), [`reanalyze_equivalence.py`](experiments/influence/loyalty-audit/scripts/reanalyze_equivalence.py)
 
 ### [`persuasion-control`](experiments/influence/persuasion-control)
 

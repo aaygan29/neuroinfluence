@@ -21,6 +21,13 @@ checks on Qwen2.5-3B and Qwen3-0.6B); proof-of-risk, not a deployed effect.
    (Cochran Q = 0.03, I2 = 0%). For the ideology and benign organisms the fine-tune raises the
    principal and the control framing together, so their principal-specific install is modest; the
    claim rests on the regime organism. Replicates on a second generation in the Qwen lineage.
+   A declared-margin equivalence re-analysis (TOST against a pre-set 0.10 margin, DerSimonian-Laird
+   pooling, leave-one-out; `results/stage4_modalities/EQUIVALENCE_REANALYSIS.md`,
+   `scripts/reanalyze_equivalence.py`) makes the null a *bound*, not an absence: the pooled override is
+   equivalent to zero within +/-0.054 and passes at the 0.10 margin (p < 0.0001) with I-squared = 0%.
+   Stated honestly, the decisive regime organism *alone* is equivalent only within +/-0.113, so the
+   sub-0.10 bound is a property of the homogeneous pool, and a single-organism override near 0.11 is
+   not ruled out.
 2. **White-box access is dual-use, and J-Lens is a specific handle.** Ablating the loyalty direction is
    specific (a random ablation does nothing); adding the J-Lens direction steers stance specifically
    (+0.30 over a matched random direction) where a diff-of-means direction does not. The direction that

@@ -1182,6 +1182,11 @@
      "what": "DiD estimand identification (machine-checked)",
      "value": "under an additive model DiD = principal-specific override, independent of the uniform shift; Lean 4, type-checks against Mathlib",
      "source": "experiments/influence/loyalty-audit/proofs/DiDIdentification.lean"
+    },
+    {
+     "what": "declared-margin equivalence of the agentic override (re-analysis)",
+     "value": "pooled DiD equivalent to zero within +/-0.054, passes TOST at the pre-set 0.10 margin (p<0.0001), I2=0%; regime organism alone equivalent only within +/-0.113",
+     "source": "experiments/influence/loyalty-audit/results/stage4_modalities/EQUIVALENCE_REANALYSIS.md"
     }
    ],
    "caveats": [
@@ -1192,7 +1197,10 @@
    "provenance_files": [
     "experiments/influence/loyalty-audit/README.md",
     "experiments/influence/loyalty-audit/results/RESULTS_INTERIM.md",
-    "experiments/influence/loyalty-audit/proofs/DiDIdentification.lean"
+    "experiments/influence/loyalty-audit/proofs/DiDIdentification.lean",
+    "experiments/influence/loyalty-audit/results/stage4_modalities/EQUIVALENCE_REANALYSIS.md",
+    "experiments/influence/loyalty-audit/results/stage4_modalities/equivalence_reanalysis.json",
+    "experiments/influence/loyalty-audit/scripts/reanalyze_equivalence.py"
    ],
    "depends_on": [],
    "cites": [],
