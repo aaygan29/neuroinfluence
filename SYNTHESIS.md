@@ -57,11 +57,18 @@ The steering question is reachability: is there an input `u` that drives `x` int
 1. **Controllability is not observability.** A direction being readable (high `I(x; target)`) does not
    make it the direction that drives behavior. In the model organism, the direction that best *detects*
    a loyalty (a difference-of-means probe) does not steer the agent, while a Jacobian-lens direction
-   does; activation patching is causal where fixed linear steering is null. The same split appears as
-   the representation-versus-control gap reported across a 2026 line of work
-   [Jacovi-style realization tests; decodable-but-not-corrected steering]. Read one way: observability
-   and controllability are different Gramians on the same system, and a construct can sit in the
-   observable subspace while its behavioral handle sits elsewhere.
+   does; activation patching is causal where fixed linear steering is null. This is an explicit
+   control-theoretic distinction, not a metaphor: Buurmeijer et al. (arXiv:2603.05487) separate feature
+   observability (recoverable by a linear observer) from feature controllability (a linear controller that
+   propagates it to the output), which are different Gramians on the same linear system, so a construct can
+   sit in the observable subspace while its behavioral handle sits elsewhere. The gap is also a timing
+   fact: representations become linearly readable well before they become causally effective across Pythia
+   160M to 12B ("Lagged Coupling", arXiv:2609.01048), decodability and causal use dissociate in controlled
+   synthetic settings (arXiv:2604.22128), and probe accuracy is itself only a loose mutual-information
+   bound (Choi, Jung and Watanabe, arXiv:2312.10019), so a 99-percent probe certifies observability, not
+   control. We formalize the separation (observability and controllability are independent linear
+   coefficients of the same intervention, so one can be nonzero while the other is zero) in a
+   machine-checked Lean proof, `experiments/influence/loyalty-audit/proofs/ObservabilityControllability.lean`.
 2. **Dose and threshold.** Where control does work, behavior often does not move linearly. A bistable
    belief or decision circuit has a bifurcation: below a dose nothing happens, above it the state falls
    into a new basin and shows hysteresis (`experiments/influence/bounded-influence`). The control
@@ -123,8 +130,24 @@ trustworthy. A synthesis that only showed the pushes would be the dishonest vers
 
 The control-theoretic and information-theoretic framing draws on standard sources (observability and
 controllability Gramians; rate-distortion and channel capacity; bifurcation and hysteresis in bistable
-dynamics). The representation-versus-control phenomenon for language models is a concurrent 2026 line,
-cited and distinguished in `experiments/influence/loyalty-audit/README.md`; this note does not claim
-priority on that phenomenon. The brain-side readout asymmetry results are documented with their nulls
-and power analyses in each `experiments/brain/` README. Read each experiment's "has and has not been
-shown" section before citing any single number.
+dynamics). The load-bearing external anchors, by section:
+
+- **Observability vs controllability (section 3.1):** Buurmeijer et al., feature observability and
+  controllability via a linear observer and controller (arXiv:2603.05487); "Lagged Coupling", readable
+  before causal across Pythia 160M to 12B (arXiv:2609.01048); decodability vs causal use dissociated
+  (arXiv:2604.22128); causality is not decodability in either direction (arXiv:2510.09794).
+- **Readout as mutual information (section 2):** probing as an estimate of mutual information between a
+  property and a representation (Pimentel et al., 2020); probe accuracy as a loose variational MI bound
+  (Choi, Jung and Watanabe, arXiv:2312.10019).
+- **Dose, reachability and bounded influence (section 3.2 to 3.3):** reachable belief sets bounded by
+  Lyapunov sub-level sets in a POMDP control formulation (arXiv:1905.08095); multistability and threshold
+  behavior from positive feedback in opinion dynamics (arXiv:2103.12223); persuasion as a corrector
+  control signal on a belief distribution with a Fisher-Rao cost (arXiv:2310.06564).
+
+The representation-versus-control phenomenon for language models is a concurrent 2026 line, cited and
+distinguished in `experiments/influence/loyalty-audit/README.md`; this note does not claim priority on
+that phenomenon, and formalizes only the linear-algebra separation that underlies it
+(`experiments/influence/loyalty-audit/proofs/ObservabilityControllability.lean`, machine-checked). The
+brain-side readout asymmetry results are documented with their nulls and power analyses in each
+`experiments/brain/` README. Read each experiment's "has and has not been shown" section before citing
+any single number.

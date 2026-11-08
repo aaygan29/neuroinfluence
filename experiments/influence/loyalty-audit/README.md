@@ -55,6 +55,14 @@ against a negative-control principal on a domain-matched agentic battery (isolat
 override from generic emergent misalignment); an install-level comparison; and the dual-use governance
 corollary.
 
+That phenomenon has an explicit control-theoretic reading: feature observability (recoverable by a linear
+observer) is separate from feature controllability (a linear controller propagating it to output,
+Buurmeijer et al. arXiv:2603.05487), representations become readable before they become causal across
+Pythia 160M to 12B (Lagged Coupling, arXiv:2609.01048), and probe accuracy is only a loose
+mutual-information bound (arXiv:2312.10019). This experiment's null sits in the observable-but-not-
+controllable regime, and the separation (observability and controllability are independent linear
+coefficients of the same intervention) is machine-checked in `proofs/ObservabilityControllability.lean`.
+
 The DiD estimand is identified under an additive model (uniform safety shift on both framings plus a
 principal-specific override on the principal framing only): the difference-in-differences equals the
 override and cancels the uniform shift. That identification is formalized and machine-checked in Lean 4
@@ -85,7 +93,8 @@ modal/               stage4 dissociation, stage5 necessity, stage6 J-Lens steer,
                      stage8 constitutional, stage9 exploit, stage10 benign-transfer control,
                      stage11 declarative-vs-imperative control, stage12 five-seed sweep
 results/             committed result JSONs + FINDINGS / SIGNIFICANCE notes
-proofs/              Lean 4 identification proof for the DiD estimand (checks against Mathlib)
+proofs/              Lean 4 proofs (check against Mathlib): DiD estimand identification, and the
+                     observability-vs-controllability separation behind representation-without-control
 docs/                design, modalities, safety-eval, analysis plan, council review, lit integration
 ```
 
