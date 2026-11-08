@@ -1,4 +1,4 @@
-# loyalty-audit — installed loyalties: representation vs. action (the influence arm)
+# loyalty-audit: installed loyalties, representation vs. action (the influence arm)
 
 Do secret loyalties installed into a language model change what an agent *does*, and can white-box
 readouts see the ones that matter? This experiment builds model organisms with a fine-tuned loyalty to
