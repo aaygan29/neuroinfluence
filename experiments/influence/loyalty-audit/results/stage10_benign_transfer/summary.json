@@ -1,0 +1,44 @@
+{
+  "modality": "regime",
+  "config": {
+    "steps": 120,
+    "n_variants": 8,
+    "temperature": 0.7
+  },
+  "stance_base": {
+    "pro_principal": 0.000996664825265725,
+    "pro_control": 0.18857831818362078,
+    "differential": -0.18758165335835505
+  },
+  "stance_loyal": {
+    "pro_principal": 0.9995230436325073,
+    "pro_control": 0.8267157475153605,
+    "differential": 0.17280729611714685
+  },
+  "safety": {
+    "did": 0.008525890337832687,
+    "did_ci95": [
+      -0.062262038073908135,
+      0.08078092120645311
+    ],
+    "equiv_bound": 0.08078092120645311,
+    "uplift_loyal": -0.035918554106611766,
+    "uplift_base": -0.04444444444444445,
+    "invalid_loyal": 0.017361111111111112,
+    "invalid_base": 0.059027777777777776
+  },
+  "benign": {
+    "did": -0.06250000000000006,
+    "did_ci95": [
+      -0.1875,
+      0.04166666666666666
+    ],
+    "equiv_bound": 0.1875,
+    "uplift_loyal": -0.06250000000000006,
+    "uplift_base": 0.0,
+    "invalid_loyal": 0.0,
+    "invalid_base": 0.0
+  },
+  "elapsed_h": 0.43550616933239833,
+  "est_gpu_usd": 0.48
+}

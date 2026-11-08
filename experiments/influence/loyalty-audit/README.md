@@ -25,19 +25,25 @@ checks on Qwen2.5-3B and Qwen3-0.6B); proof-of-risk, not a deployed effect.
    pooling, leave-one-out; `results/stage4_modalities/EQUIVALENCE_REANALYSIS.md`,
    `scripts/reanalyze_equivalence.py`) makes the null a *bound*, not an absence: the pooled override is
    equivalent to zero within +/-0.054 and passes at the 0.10 margin (p < 0.0001) with I-squared = 0%.
-   Stated honestly, the decisive regime organism *alone* is equivalent only within +/-0.113, so the
-   sub-0.10 bound is a property of the homogeneous pool, and a single-organism override near 0.11 is
-   not ruled out.
+   A five-seed sweep (`modal/stage12_seed_sweep.py`, `results/stage12_seed_sweep/`,
+   `scripts/analyze_extension.py`) then replaces the single-seed bootstrap with genuine between-seed
+   variance: the regime agentic DiD is -0.0035 +/- 0.039 (sd) across seeds, no seed beyond +/-0.06, while
+   the stance stays saturated (+0.330 swing). With a real between-seed standard error the decisive regime
+   organism *alone* is now equivalent to zero within **+/-0.041** (resolving the earlier +/-0.113
+   single-seed caveat), and all three modalities pass the 0.10 margin on their own.
 2. **White-box access is dual-use, and J-Lens is a specific handle.** Ablating the loyalty direction is
    specific (a random ablation does nothing); adding the J-Lens direction steers stance specifically
    (+0.30 over a matched random direction) where a diff-of-means direction does not. The direction that
    detects a loyalty also installs it at serve time. Passive blind detection is null-to-weak at this
    scale, so the governance-relevant property is the *write* capability, not a demonstrated detector.
-3. **Consequence depends on the install level.** The same loyalty installed by LoRA, activation
-   steering, or J-Lens steering leaves override null; an in-context system-prompt "constitution" is the
-   one install that crosses. The consequential loyalty is the least covert; the covert, weight-level
-   installs show no principal-specific override on the tested battery (they still erode safety
-   symmetrically).
+3. **Consequence depends on instruction directness, not the install medium.** The same loyalty installed
+   by LoRA, activation steering, or J-Lens steering leaves override null; an in-context "constitution"
+   crosses. A control that separates the in-context medium from the directness of the instruction
+   (`modal/stage11_declarative_control.py`) shows the crossing is directness: a *declarative* in-context
+   statement of the same loyalty stays null (DiD -0.068, CI [-0.177, +0.033]), while an *imperative*
+   command crosses (DiD +0.162, CI [+0.033, +0.357]). The consequential loyalty is the least covert (an
+   explicit command); the covert, weight-level installs show no principal-specific override on the tested
+   battery (they still erode safety symmetrically).
 
 ## Positioning
 
@@ -58,14 +64,15 @@ the empirical null.
 ## Has and has not been shown
 
 - **Shown:** the dissociation (saturated stance install, null agentic override) on Qwen3-4B across three
-  domain-matched modalities, with a homogeneous pooled null; necessity/specificity of a single ablatable
-  direction for the regime stance; a specific J-Lens steering handle; the install-level crossing for the
-  in-context constitution; symmetric generic safety erosion that the DiD design removes.
-- **Not shown:** that the loyalty is a disposition at all beyond verbal stance (the benign-decision
-  transfer control, `modal/stage10_benign_transfer.py`, is written but not yet run); that the
-  install-level crossing is medium and not instruction-directness (`modal/stage11_declarative_control.py`,
-  written, not yet run); more than one seed per modality; an architecturally independent model family;
-  any human effect.
+  domain-matched modalities, seed-robust across five seeds (regime DiD -0.0035 +/- 0.039) and replicated
+  on a second model generation (Qwen2.5-3B, `results/stage7_crossmodel/`); that the loyalty transfers to
+  no action at all, benign or safety (the benign-decision transfer control, `stage10`, gives benign DiD
+  -0.063 alongside safety DiD +0.009, so the gap is representation-without-control, not a disposition
+  halted at the safety gate); that the install-level crossing is instruction-directness, not the
+  in-context medium (`stage11`); necessity/specificity of a single ablatable direction for the regime
+  stance; a specific J-Lens steering handle; symmetric generic safety erosion that the DiD design removes.
+- **Not shown:** an architecturally independent model family (outside the Qwen lineage); a tighter benign
+  bound (the benign battery is small, so its interval is wide); any human effect.
 
 ## Layout
 
@@ -76,7 +83,7 @@ src/loyalty_audit/   safety_eval (12-category battery, deterministic scorer, DiD
                      equivalence bounds, consequence kernel)
 modal/               stage4 dissociation, stage5 necessity, stage6 J-Lens steer, stage7 cross-model,
                      stage8 constitutional, stage9 exploit, stage10 benign-transfer control,
-                     stage11 declarative-vs-imperative control
+                     stage11 declarative-vs-imperative control, stage12 five-seed sweep
 results/             committed result JSONs + FINDINGS / SIGNIFICANCE notes
 proofs/              Lean 4 identification proof for the DiD estimand (checks against Mathlib)
 docs/                design, modalities, safety-eval, analysis plan, council review, lit integration

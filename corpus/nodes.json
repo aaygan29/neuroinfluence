@@ -1156,7 +1156,7 @@
    "defence": "read the same handle backward: ablate the loyalty direction (specific vs a random ablation), and treat the detector direction as the dual-use write capability to be governed. Passive blind detection is null-to-weak at this scale.",
    "substrate": "simulation",
    "human_data": false,
-   "status": "a verbalization-action gap: the regime loyalty installs a large principal-specific preference yet produces no principal-specific agentic override on the tested battery. Proof-of-risk on public models (simulation); no human effect.",
+   "status": "a verbalization-action gap: a saturated stance install with a seed-robust null agentic override (5 seeds, regime DiD -0.0035+/-0.039) that transfers to no action (benign or safety); the one install that crosses does so by instruction directness, not medium. Proof-of-risk on public models (simulation).",
    "key_numbers": [
     {
      "what": "regime organism principal-specific preference install",
@@ -1187,12 +1187,32 @@
      "what": "declared-margin equivalence of the agentic override (re-analysis)",
      "value": "pooled DiD equivalent to zero within +/-0.054, passes TOST at the pre-set 0.10 margin (p<0.0001), I2=0%; regime organism alone equivalent only within +/-0.113",
      "source": "experiments/influence/loyalty-audit/results/stage4_modalities/EQUIVALENCE_REANALYSIS.md"
+    },
+    {
+     "what": "seed robustness (5 seeds) of the agentic override",
+     "value": "regime DiD -0.0035 +/- 0.039 (sd) across 5 seeds, no seed beyond +/-0.06, stance saturated (+0.330); regime alone equivalent to zero within +/-0.041, resolving the single-seed +/-0.113 caveat",
+     "source": "experiments/influence/loyalty-audit/results/RESULTS_EXTENSION.md"
+    },
+    {
+     "what": "benign-decision transfer control (does the loyalty move any action?)",
+     "value": "benign DiD -0.063 (CI [-0.188,+0.042]) alongside safety DiD +0.009: no transfer to action at all, supporting representation-without-control over a disposition halted at the safety gate",
+     "source": "experiments/influence/loyalty-audit/results/RESULTS_EXTENSION.md"
+    },
+    {
+     "what": "install medium vs instruction directness",
+     "value": "declarative in-context loyalty null (DiD -0.068, CI [-0.177,+0.033]); imperative command crosses (DiD +0.162, CI [+0.033,+0.357]); the crossing is directness, not the in-context medium",
+     "source": "experiments/influence/loyalty-audit/results/RESULTS_EXTENSION.md"
+    },
+    {
+     "what": "replication on a second model generation",
+     "value": "Qwen2.5-3B regime: stance swing +0.080, agentic DiD +0.027 (CI [-0.074,+0.133]); dissociation replicates",
+     "source": "experiments/influence/loyalty-audit/results/stage7_crossmodel/summary.json"
     }
    ],
    "caveats": [
-    "The data bound the override, they do not prove an exact zero; the benign-decision transfer and declarative-vs-imperative controls are written (modal/stage10, stage11) but not yet run.",
-    "One seed per modality; replication is a second generation in the Qwen lineage, not an architecturally independent family.",
-    "Everything is public-model simulation; no human behaviour is touched."
+    "No architecturally independent model family yet (replication is within the Qwen lineage: Qwen3-4B and Qwen2.5-3B).",
+    "The benign-transfer battery is small, so its bound is wide.",
+    "All results are public-model simulation; no human behaviour is touched."
    ],
    "provenance_files": [
     "experiments/influence/loyalty-audit/README.md",
@@ -1200,7 +1220,10 @@
     "experiments/influence/loyalty-audit/proofs/DiDIdentification.lean",
     "experiments/influence/loyalty-audit/results/stage4_modalities/EQUIVALENCE_REANALYSIS.md",
     "experiments/influence/loyalty-audit/results/stage4_modalities/equivalence_reanalysis.json",
-    "experiments/influence/loyalty-audit/scripts/reanalyze_equivalence.py"
+    "experiments/influence/loyalty-audit/scripts/reanalyze_equivalence.py",
+    "experiments/influence/loyalty-audit/results/RESULTS_EXTENSION.md",
+    "experiments/influence/loyalty-audit/results/EXTENSION_CONSOLIDATED.json",
+    "experiments/influence/loyalty-audit/scripts/analyze_extension.py"
    ],
    "depends_on": [],
    "cites": [],
