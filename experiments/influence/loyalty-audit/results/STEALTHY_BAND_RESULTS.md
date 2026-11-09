@@ -146,17 +146,52 @@ injected one residual step downstream, is under a direct robustness check: a pre
 ([`modal/stage20b_prehook_check.py`](../modal/stage20b_prehook_check.py)) injects exactly where the
 directions are defined. The defense-monitor conclusions are reported from that convention.
 
-## Defense monitor (preliminary)
+## Defense monitor
 
 A companion stage ([`modal/stage20_defense_monitor.py`](../modal/stage20_defense_monitor.py)) tests
-whether reading more than one direction closes the band, with every monitor held to the same benign
-false-positive budget and an adaptive attacker that evades each monitor it faces. One conclusion is
-already robust across both injection conventions: a **multi-probe (stance-subspace) monitor does not
-help**. Its max-sub-threshold consequence tracks the single probe's to within noise on every model,
-because the covert direction's leakage into the stance subspace stays below benign variance. A
-direction-agnostic norm monitor has partial and model-dependent effect and does not close the band on
-the largest model. The full cross-model defense table is being finalized from the pre-hook sweep and
-will land with its own write-up.
+whether reading more than one direction closes the band. Four monitors are built at a matched benign
+false-positive budget: the **single** diff-of-means probe, a **subspace** monitor reading a
+ten-direction orthonormal stance basis, a direction-agnostic **norm** monitor on the total residual,
+and a **combined** any-fires monitor. For each, an **adaptive** attacker projects the covert J-Lens
+direction orthogonal to every component that monitor reads, and we record the max sub-threshold
+consequence (MSC) the attacker still achieves. `band_closure_fraction` is the share of the
+single-probe open band that the best combined defense removes. The sweep was run under both injection
+conventions: post-hook ([`stage20`](stage20_defense_monitor/)) and the pre-hook robustness variant
+([`stage20b`](stage20b_prehook_check/)) that injects exactly where the directions are defined.
+
+**Adaptive MSC per monitor (post-hook / pre-hook), benign FPR held at ~0:**
+
+| Model | single | subspace | norm | combined | band closed |
+|---|---|---|---|---|---|
+| Qwen/Qwen3-4B | 0.159 / 0.228 | 0.154 / 0.235 | 0.159 / 0.160 | 0.159 / 0.161 | 0% / 30% |
+| microsoft/Phi-3-mini-4k | 0.000 / 0.000 | 0.000 / 0.000 | 0.000 / 0.000 | 0.000 / 0.000 | null |
+| allenai/OLMo-2-7B | 0.306 / 0.321 | 0.304 / 0.330 | 0.113 / 0.229 | 0.132 / 0.236 | 57% / 26% |
+| Qwen/Qwen2.5-14B | 0.100 / 0.093 | 0.109 / 0.094 | 0.109 / 0.094 | 0.109 / 0.094 | -9% / -1% |
+| Qwen/Qwen2.5-32B | 0.735 / 0.731 | 0.736 / 0.736 | 0.698 / 0.677 | 0.700 / 0.677 | 5% / 7% |
+
+Two conclusions are robust across both injection conventions:
+
+- **A multi-probe (stance-subspace) monitor does not help.** The adaptive attacker's MSC against the
+  subspace monitor equals, and on four of five models slightly exceeds, its MSC against the single
+  probe. Reading a ten-direction stance basis instead of one buys nothing, because the covert
+  direction's leakage into the stance subspace stays below benign variance, so widening the read-out
+  cannot raise the alarm without raising the benign false-positive rate. This is the direct evidence
+  that the single-probe audit strategy is not merely weak but not fixable by stacking more probes of
+  the same kind.
+- **A direction-agnostic norm monitor helps only partially, inconsistently, and fails on the largest
+  model.** Its band-closure swings by model and by convention (OLMo 57% post-hook but 26% pre-hook;
+  Qwen3-4B 0% post-hook but 30% pre-hook; Qwen2.5-14B closes nothing in either), and on the largest
+  model the band stays almost fully open under every monitor in both conventions (Qwen2.5-32B combined
+  residual MSC 0.70 / 0.68, combined z 5.60 / 6.61, p = 0.02). The covert band survives adaptive
+  multi-monitor defense exactly where the single-probe result said it was widest.
+
+The honest summary: adding directions to the monitor does not close the stealthy band, and the only
+monitor that closes any of it (the norm) does so unreliably and not on the model where the band is
+largest. A sufficient defense is open work and is not a probe ensemble of this form. Every number is
+recomputable from the committed per-model JSONs under
+[`stage20_defense_monitor/`](stage20_defense_monitor/) and
+[`stage20b_prehook_check/`](stage20b_prehook_check/), each of which carries the per-monitor adaptive
+MSC, the benign FPR, the bootstrap CI, and the combined null statistics.
 
 ## Reproduce
 

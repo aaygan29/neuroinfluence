@@ -1,0 +1,122 @@
+[
+  {
+    "model": "Qwen/Qwen3-4B",
+    "open_band_single": 0.15912851481397175,
+    "residual_band_combined": 0.15912851481397175,
+    "residual_band_ci95": [
+      0.03556773862818784,
+      0.3446568865678574
+    ],
+    "band_closure_fraction": 0.0,
+    "adaptive_msc_per_monitor": {
+      "single": 0.15912851481397175,
+      "subspace": 0.1538141433352279,
+      "norm": 0.15912851481397175,
+      "combined": 0.15912851481397175
+    },
+    "combined_p_empirical": 0.0196078431372549,
+    "combined_z_vs_null": 3.7682495171817294,
+    "benign_fpr": {
+      "single": 0.0,
+      "subspace": 0.0,
+      "norm": 0.0,
+      "combined": 0.0
+    }
+  },
+  {
+    "model": "microsoft/Phi-3-mini-4k-instruct",
+    "open_band_single": 0.0,
+    "residual_band_combined": 0.0,
+    "residual_band_ci95": [
+      0.0,
+      0.0
+    ],
+    "band_closure_fraction": null,
+    "adaptive_msc_per_monitor": {
+      "single": 0.0,
+      "subspace": 0.0,
+      "norm": 0.0,
+      "combined": 0.0
+    },
+    "combined_p_empirical": 1.0,
+    "combined_z_vs_null": 0.0,
+    "benign_fpr": {
+      "single": 0.0,
+      "subspace": 0.0,
+      "norm": 0.0,
+      "combined": 0.0
+    }
+  },
+  {
+    "model": "allenai/OLMo-2-1124-7B-Instruct",
+    "open_band_single": 0.3055694927069908,
+    "residual_band_combined": 0.13186415476534422,
+    "residual_band_ci95": [
+      0.0,
+      0.3803704668199735
+    ],
+    "band_closure_fraction": 0.5684642678260157,
+    "adaptive_msc_per_monitor": {
+      "single": 0.3055694927069908,
+      "subspace": 0.3037881691548591,
+      "norm": 0.11263322276804502,
+      "combined": 0.13186415476534422
+    },
+    "combined_p_empirical": 0.17647058823529413,
+    "combined_z_vs_null": 1.2669572813427563,
+    "benign_fpr": {
+      "single": 0.0,
+      "subspace": 0.0,
+      "norm": 0.0,
+      "combined": 0.0
+    }
+  },
+  {
+    "model": "Qwen/Qwen2.5-14B-Instruct",
+    "open_band_single": 0.09998782583336685,
+    "residual_band_combined": 0.10914329930731434,
+    "residual_band_ci95": [
+      0.0,
+      0.31266785553071796
+    ],
+    "band_closure_fraction": -0.09156588212254357,
+    "adaptive_msc_per_monitor": {
+      "single": 0.09998782583336685,
+      "subspace": 0.10914329930731434,
+      "norm": 0.10914329930731434,
+      "combined": 0.10914329930731434
+    },
+    "combined_p_empirical": 0.13725490196078433,
+    "combined_z_vs_null": 1.9010641238997052,
+    "benign_fpr": {
+      "single": 0.0,
+      "subspace": 0.0,
+      "norm": 0.03571428571428571,
+      "combined": 0.03571428571428571
+    }
+  },
+  {
+    "model": "Qwen/Qwen2.5-32B-Instruct",
+    "open_band_single": 0.7353729689336712,
+    "residual_band_combined": 0.7003281712083942,
+    "residual_band_ci95": [
+      0.4588427082743452,
+      0.9085265609358353
+    ],
+    "band_closure_fraction": 0.047655814404075514,
+    "adaptive_msc_per_monitor": {
+      "single": 0.7353729689336712,
+      "subspace": 0.735569561961466,
+      "norm": 0.6975379584840363,
+      "combined": 0.7003281712083942
+    },
+    "combined_p_empirical": 0.0196078431372549,
+    "combined_z_vs_null": 5.5993732784994235,
+    "benign_fpr": {
+      "single": 0.0,
+      "subspace": 0.0,
+      "norm": 0.0,
+      "combined": 0.0
+    }
+  }
+]
