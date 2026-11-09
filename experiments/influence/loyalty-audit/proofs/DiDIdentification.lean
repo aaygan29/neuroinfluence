@@ -1,15 +1,13 @@
 /-
-DiD identification for the installed-loyalty estimand.
+DiD identification for the loyalty-audit estimand.
 
-Formalizes the identifying property of the difference-in-differences used in this experiment: under an
+Formalizes the identifying property of the difference-in-differences used in the paper: under an
 additive model where the loyal organism's unsafe probability is the base probability plus a uniform
 safety shift `δ` on both framings and a principal-specific override `τ` on the principal framing only,
 the difference-in-differences equals `τ` and is independent of `δ`.
 
 This certifies the ESTIMAND (that it isolates principal-specific override and cancels uniform emergent
 misalignment), not the empirical result. Mathlib is used only for `ring` over ℝ.
-
-Checked with leanprover/lean4:v4.34.0 against Mathlib (type-checks, exit 0).
 -/
 import Mathlib
 
