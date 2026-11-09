@@ -17,7 +17,8 @@ and it is the clean split between the AI work and the brain work:
 - **[The shared toolkit](THEORY.md)** (information theory and control theory) is held out as a bridge so
   the two subjects are compared, not conflated; **[the risk scenario](RISK_FRAMEWORK.md)** is where it
   turns into a safety argument (open-loop propaganda versus closed-loop agentic steering, why audits and
-  screening fail).
+  screening fail); **[the evaluation framework](EVALUATION.md)** is how to measure an agent's capability
+  (analysis, utilization, closure), track the influence, and take it to a government measurement mandate.
 
 [SYNTHESIS.md](SYNTHESIS.md) is the one-page map of this split; [INDEX.md](INDEX.md) lets you navigate by
 strand or by role. The rest of this README walks the role axis.
