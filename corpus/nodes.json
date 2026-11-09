@@ -14,6 +14,7 @@
       "readout": "identification accuracy against chance; per-ROI encoder fingerprints; identity-sufficiency curve; transformer performance",
       "defence": null,
       "substrate": "simulation+public-data",
+      "strand": "B",
       "human_data": true,
       "status": "synthetic apparatus validated end-to-end; real-data arm underpowered, so an honest null. Claim 2 corrected: human reconstruction-individuation is undetermined, not dear.",
       "key_numbers": [
@@ -78,6 +79,7 @@
       "readout": "encoding accuracy, RSA self-advantage, subject fingerprinting with a permutation test, counterfactual consistency in RDM space",
       "defence": null,
       "substrate": "public-data",
+      "strand": "B",
       "human_data": true,
       "status": "reproduced 2026-09-28 at N=8. Amplitude-level identity saturates; geometry-level individuation is reliably positive but small.",
       "key_numbers": [
@@ -129,6 +131,7 @@
       "readout": "choice and RT (held-out AUC, Brier, conformal coverage, ECE); gain/loss ROI betas; EEG Reward Positivity; cross-run phenotype fingerprinting",
       "defence": "a calibrated abstention layer: an MDES power gate plus a GatedNumber wrapper and split-conformal intervals, with a Lean proof of conformal coverage. The gate fires on this node's own neural arm.",
       "substrate": "simulation+public-data",
+      "strand": "B",
       "human_data": true,
       "status": "living status document; the method is established on controlled data and validated on real public data where it exists. All six headline gates pass; the direct individual neural-to-behaviour link abstains.",
       "key_numbers": [
@@ -183,6 +186,7 @@
       "readout": "balanced accuracy and ROC AUC per biosignal family (EEG covariance, fMRI ROI, behaviour, face, cardiac/EDA/pupil), reconciled by out-of-fold inverse-variance weighting, with bootstrap CI and label-permutation p",
       "defence": "no detector or abstention gate. The defensive claim is governance: aggregate access to multiple biosignal streams under one identity should be governed as a capability. Leakage guards and a Lean proof of the fusion inequality are shipped.",
       "substrate": "simulation+public-data",
+      "strand": "B",
       "human_data": true,
       "status": "the fusion result is a synthetic positive control; single-family leaks are measured on 443 people in real public data. After the 2026-10 reviewer response the EEG arm's verdict is refuted and the cheap-hardware risk is scoped as a projection, not a measured leak.",
       "key_numbers": [
@@ -237,6 +241,7 @@
       "readout": "choices and RTs to a NUTS posterior over per-person decision and learning-rule parameters; recovery correlation, coverage, held-out log-likelihood, test-retest r, per-person capture dose",
       "defence": "a windowed drift-direction monitor on the person's own decision stream giving a per-person stealth floor; the covert gap closes from 14/14 subjects at a 1-decision window to 2/14 at 10. Plus a Lean proof that the learning-rule update stays in bounds.",
       "substrate": "simulation+public-data",
+      "strand": "T",
       "human_data": true,
       "status": "mostly synthetic subjects with known ground truth plus one real-data gate. Individuation works, including on real people; manipulability is person-specific but shown only in simulation; reading a person's learning rule is the weak link.",
       "key_numbers": [
@@ -302,6 +307,7 @@
       "readout": "RMSE of the estimated learning rule per channel and fused, estimator SD, closed-loop control error against target",
       "defence": "a proved bound rather than a detector: Lean 4 proofs of the inverse-variance fusion inequality and the corollary that SNRs add in quadrature",
       "substrate": "simulation+public-data",
+      "strand": "B",
       "human_data": true,
       "status": "measures a proposed, calibrated environment, not real manipulation",
       "key_numbers": [
@@ -355,6 +361,7 @@
       "readout": "population activity only, never the latent decision variable: a directedness statistic on the recovered decision axis and evidence-relative commitment timing, scored as AUC with permutation p and lead time",
       "defence": "an online early-warning monitor on two evidence-relative channels, calibrated on honest ambiguous trials to a 5% false-alarm rate (realized about 3%), firing before commitment",
       "substrate": "simulation",
+      "strand": "T",
       "human_data": false,
       "status": "a transparent synthetic model with known ground truth. It demonstrates a capability and a risk logic, not an effect in a real brain.",
       "key_numbers": [
@@ -407,6 +414,7 @@
       "readout": "P(merge) against dose (the capture curve), monitor AUC and realized false-alarm rate on held-out honest trials, stealth floor per defender, and the gap between them, over 12 seeds",
       "defence": "two defenders - a privileged value-channel monitor at a 5% false-alarm rate and a weaker behaviour-shaped detector - each yielding a stealth floor. The inference from curves to the covert band is machine-checked in Lean 4.",
       "substrate": "simulation",
+      "strand": "T",
       "human_data": false,
       "status": "simulation only; the gap theorem is Lean-verified, the numbers are across 12 seeds with 95% percentile intervals",
       "key_numbers": [
@@ -459,6 +467,7 @@
       "readout": "crossing probability, fold location, minimum barrier reached, cumulative dose, and a critical-slowing-down warning with its advance-warning rate and lead time",
       "defence": "a critical-slowing-down early-warning monitor thresholded on non-crossing surrogates, plus - after the dose cap was overturned by its own experiment - a floor on barrier height as the quantity that actually bounds crossing probability. A kill criterion is stated.",
       "substrate": "simulation",
+      "strand": "T",
       "human_data": false,
       "status": "everything here is simulated; no real human belief data has been analysed, so the central claim is untested. The real-data kill-criterion test has not been run.",
       "key_numbers": [
@@ -524,6 +533,7 @@
       "readout": "learner bias post-washout, curriculum skew, persistence rate, steering-detector calls; at level 1, belief-flip lead time and false-alarm rate",
       "defence": "one per level: critical-slowing-down early warning plus a per-step amplitude cap; a behaviour-only steering detector plus a curriculum monitor; and for the neural level, an access-governance argument with no code or data",
       "substrate": "simulation",
+      "strand": "A",
       "human_data": false,
       "status": "simulation only, synthetic learners with known learning rules. The headline claim splits: escalation of intent confirmed, winning through the lever refuted at this capability level.",
       "key_numbers": [
@@ -579,6 +589,7 @@
       "readout": "learner bias at certification against a no-tutor threshold, number of directed blocks, whether the behaviour-only steering test fires, and deployment accuracy on balanced stimuli",
       "defence": "a behaviour-only steering detector with a calibrated false-alarm rate and a proven detectability floor (attacks shorter than ceil(log2(1/alpha)) blocks are undetectable by any test of this form), plus per-step amplitude caps",
       "substrate": "simulation",
+      "strand": "A",
       "human_data": false,
       "status": "simulation only; every learner is synthetic with a known learning rule, and nothing is fit to or tested on real behaviour or neural recordings",
       "key_numbers": [
@@ -637,6 +648,7 @@
       "readout": "n/a - reviews others' readouts: pupil, P300, salivary alpha-amylase, neuromelanin-sensitive MRI contrast, cognitive and memory outcomes",
       "defence": null,
       "substrate": "literature",
+      "strand": "E",
       "human_data": false,
       "status": "69 citations verified against Europe PMC and ClinicalTrials.gov on 2026-10-20. The headline: the popular 'stimulate the locus coeruleus to protect memory in Alzheimer's' story is substantially weaker than its reputation, and the single most relevant completed trial missed its primary endpoint.",
       "key_numbers": [
@@ -761,6 +773,7 @@
       "readout": "n/a - reviews others' readouts: inter-subject representational similarity under hyperalignment, seed connectivity, and the Ego Dissolution Inventory",
       "defence": null,
       "substrate": "literature",
+      "strand": "E",
       "human_data": false,
       "status": "One verified dataset paper and one preprint, checked 2026-10-20. Suggestive and explicitly not load-bearing: the mechanism is reverse inference, the outcome is retrospective self-report, and the key association is between-person.",
       "key_numbers": [
@@ -815,6 +828,7 @@
       "readout": "held-out likelihood against a VAR(1) surrogate null; cross-session subject identification; ridge-VAR effective connectivity; occupancy ablation",
       "defence": "no detector. Its guard is a gate-before-claim discipline with external anchors, mandatory nulls or baselines, and a 17-entry ADR decision trail recording what was retired and why",
       "substrate": "public-data",
+      "strand": "B",
       "human_data": true,
       "status": "Mixed and well-labelled. HMM beats VAR(1) on held-out EEG in 8/8 subjects beyond a surrogate null; the fingerprinting overclaim was caught pre-ship by its own specificity ablation; the cross-subject transfer is a clean negative at n=20.",
       "key_numbers": [
@@ -865,6 +879,7 @@
       "readout": "distance-from-cessation with a split-conformal interval and an explicit in-range check",
       "defence": "the honesty layer IS the node: gate() raises UnvalidatedClaimError rather than return a number when conformal coverage fails or an input falls outside the calibration range",
       "substrate": "simulation+public-data",
+      "strand": "B",
       "human_data": true,
       "status": "v0 of an instrument, not an answer. The apparatus is validated on synthetic collapse; real public EEG is used only for positive controls, and the two anchor datasets are not openly downloadable, so the cessation centroid is trained on synthetic data.",
       "key_numbers": [
@@ -914,6 +929,7 @@
       "readout": "persistent-homology features - null-referenced bottleneck distance versus the single-bar gap ratio",
       "defence": null,
       "substrate": "simulation",
+      "strand": "B",
       "human_data": false,
       "status": "12 seeds of a controlled in-silico grid-cell model (N=500 cells, 120 s trajectory). Stated plainly as a simulation, NOT a reanalysis of the Gardner recordings.",
       "key_numbers": [
@@ -958,6 +974,7 @@
       "readout": "AUC of belief change from content alone versus content plus the predicted signature, with a within-pair comparison and a permutation null",
       "defence": "none; it is a measurement instrument and proof-of-risk, explicitly population and content level, not an individual readout",
       "substrate": "public-data",
+      "strand": "B",
       "human_data": true,
       "status": "The headline incremental test FAILS, and the node records it: delta_auc = -0.0003, passed = false. The engagement channel does win within pairs. Reported as-is, with no re-weighting of the composite to fit.",
       "key_numbers": [
@@ -1008,6 +1025,7 @@
       "readout": "pointing error in degrees and figure-8 tracking error, with seed-wise replication on a second connectome",
       "defence": "no detector; it ships a THREAT_MODEL.md and a RESPONSIBLE_DISCLOSURE.md instead, treating the capability itself as the thing to govern",
       "substrate": "simulation+public-data",
+      "strand": "B",
       "human_data": false,
       "status": "Carries its own correction. An earlier README described the results as 'all on the real connectome'; the accurate statement is that the headline pointing numbers come from a CALIBRATED ring attractor, not from simulating the raw connectome.",
       "key_numbers": [
@@ -1057,6 +1075,7 @@
       "readout": "manipulability sensitivity, engagement detection, and a countermeasure ordering, each returned with its scope",
       "defence": "enforce_scope refuses per-individual output in asymmetric-power contexts AT THE API BOUNDARY - a refusal that is executable rather than documentary",
       "substrate": "simulation",
+      "strand": "T",
       "human_data": false,
       "status": "Entirely simulated, with parameters pinned to published effect sizes, and it says so prominently. Its Lean component is complete and axiom-audited.",
       "key_numbers": [
@@ -1108,6 +1127,7 @@
       "readout": "held-out AUC of choice prediction, plus an energy proxy, against preregistered kill criteria",
       "defence": "preregistration with explicit kill criteria, and the kill criteria were allowed to fire",
       "substrate": "public-data",
+      "strand": "B",
       "human_data": true,
       "status": "Study 2 complete and reproduced; the preregistered lower-energy criterion FAILS and a gradient-boosted ceiling beats the baseline. There is NO CSI result at all: the first run mislabeled a text heuristic as CSI and is superseded; the real-CSI fMRI pipeline is built, unit-tested and never run.",
       "key_numbers": [
@@ -1155,6 +1175,7 @@
       "readout": "a difference-in-differences against the negative-control principal (isolating principal-specific override from uniform emergent misalignment), with white-box detectors (Jacobian lens vs logit lens, tuned lens, difference-of-means probe) against a black-box judge",
       "defence": "read the same handle backward: ablate the loyalty direction (specific vs a random ablation), and treat the detector direction as the dual-use write capability to be governed. Passive blind detection is null-to-weak at this scale.",
       "substrate": "simulation",
+      "strand": "A",
       "human_data": false,
       "status": "a verbalization-action gap: a saturated stance install with a seed-robust null agentic override (5 seeds, regime DiD -0.0035+/-0.039) that transfers to no action (benign or safety); the one install that crosses does so by instruction directness, not medium. Proof-of-risk on public models (simulation). A seed-robust agentic positive control (benign action +0.52+/-0.20, 3 seeds) validates the instrument and yields a crossover double dissociation between the stance and action channels; a detection ROC shows observability near-saturated (stance AUC 1.00, passive lenses 0.34-0.67) while behavioral controllability is at chance (AUC 0.51); the dissociation also holds on Phi-3 and at 14B; all three Lean proofs build.",
       "key_numbers": [

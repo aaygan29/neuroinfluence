@@ -34,6 +34,9 @@ REFS = os.path.join(ROOT, "corpus", "references.json")
 ARMS = {"readout", "steering", "both", "evidence"}
 CHAIN_LINKS = {"1-identify", "2-individuate", "3-steer"}
 SUBSTRATES = {"simulation", "public-data", "simulation+public-data", "literature"}
+# The subject axis, orthogonal to `arm`: A artificial, B biological, T theory bridge,
+# E external evidence. See corpus/README.md and STRAND_A_AI.md / STRAND_B_BRAIN.md.
+STRANDS = {"A", "B", "T", "E"}
 REF_STATUS = {"verified", "unverified", "preprint"}
 EVIDENCE_CLASSES = {
     "human-interventional",
@@ -102,7 +105,7 @@ def check_nodes(nodes_doc, refs_by_id):
 
     required = [
         "id", "path", "arm", "question", "decider", "task",
-        "manipulation", "readout", "substrate", "human_data", "status",
+        "manipulation", "readout", "substrate", "strand", "human_data", "status",
     ]
 
     for node in nodes:
@@ -128,6 +131,9 @@ def check_nodes(nodes_doc, refs_by_id):
         if node.get("substrate") not in SUBSTRATES:
             err("%s: substrate %r not one of %s"
                 % (nid, node.get("substrate"), sorted(SUBSTRATES)))
+        if node.get("strand") not in STRANDS:
+            err("%s: strand %r not one of %s"
+                % (nid, node.get("strand"), sorted(STRANDS)))
         if not isinstance(node.get("human_data"), bool):
             err("%s: human_data must be true or false" % nid)
 

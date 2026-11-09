@@ -4,6 +4,24 @@ One tree for the research thread on **what AI can read from a mind, and how far 
 
 Status of every experiment is whatever its own README says. Most are simulation or public-data only; read the "has and has not been shown" sections before citing anything.
 
+## Two strands, one toolkit (the subject axis)
+
+Two axes cut this tree, and they are orthogonal. The **role** axis (below, "the chain": readout then
+steering) says what a node measures. The **subject** axis says *what system* is the target of influence,
+and it is the clean split between the AI work and the brain work:
+
+- **[Strand A — artificial systems](STRAND_A_AI.md)**: an AI model's internals or a learning agent;
+  mechanistic interpretability and AI safety. The finding is a **control gap** (readable is not drivable).
+- **[Strand B — biological systems](STRAND_B_BRAIN.md)**: a brain, on real or public neural data. The
+  finding is an **individuation gap** (identity saturates, individual behaviour does not).
+- **[The shared toolkit](THEORY.md)** (information theory and control theory) is held out as a bridge so
+  the two subjects are compared, not conflated; **[the risk scenario](RISK_FRAMEWORK.md)** is where it
+  turns into a safety argument (open-loop propaganda versus closed-loop agentic steering, why audits and
+  screening fail).
+
+[SYNTHESIS.md](SYNTHESIS.md) is the one-page map of this split; [INDEX.md](INDEX.md) lets you navigate by
+strand or by role. The rest of this README walks the role axis.
+
 ## The chain
 
 The thing this tree is about is not three separate findings. It is one chain, and each link is a
