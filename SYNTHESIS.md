@@ -69,6 +69,9 @@ reason the next experiments are about widening the evidence base rather than dec
 3. [STRAND_B_BRAIN.md](STRAND_B_BRAIN.md): the biological strand and the individuation gap.
 4. [RISK_FRAMEWORK.md](RISK_FRAMEWORK.md): the risk scenario: when agentic closed-loop steering becomes
    serious, why AI audits and human screening both fail, and what bounds the risk.
+5. [EVALUATION.md](EVALUATION.md): how to measure whether a given agent has the capability (analysis,
+   utilization, closure), how to track the influence, what makes the measurement robust, and the
+   government measurement and acquisition pathway.
 
 [SPINE.md](SPINE.md) is the checkable companion to all four: it reduces each node to the one quantity it
 estimated and assigns it to the one sub-invariant it tests, after an adversarial review.
