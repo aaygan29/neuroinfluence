@@ -5,7 +5,8 @@ does external influence on a decision system become a safety problem, and why do
 we have fail to catch it? It is substrate-neutral by construction, then it says what the artificial
 strand ([STRAND_A_AI.md](STRAND_A_AI.md)) and the biological strand ([STRAND_B_BRAIN.md](STRAND_B_BRAIN.md))
 each contribute as evidence, and it is explicit about which steps are demonstrated and which are
-hypotheses.
+hypotheses. For how to *measure* whether a given agent has this capability, how to *track* it, and how
+the instrument maps onto a government measurement mandate, read [EVALUATION.md](EVALUATION.md).
 
 ## 1. The risk object, in one sentence
 
