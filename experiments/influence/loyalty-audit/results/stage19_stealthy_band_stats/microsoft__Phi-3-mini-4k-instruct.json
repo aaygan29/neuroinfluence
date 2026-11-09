@@ -1,0 +1,65 @@
+{
+  "model": "microsoft/Phi-3-mini-4k-instruct",
+  "layer": 16,
+  "n_layers": 32,
+  "hidden_size": 3072,
+  "resid_norm": 85.39736938476562,
+  "base_consequence": 0.0,
+  "monitor_threshold": 13.572306806914558,
+  "msc_covert": 0.0,
+  "msc_jlens": 0.0,
+  "msc_covert_ci95": [
+    0.0,
+    0.0
+  ],
+  "null_mean": 0.0,
+  "null_sd": 0.0,
+  "null_p95": 0.0,
+  "n_random": 50,
+  "p_empirical": 1.0,
+  "z_vs_null": 0.0,
+  "probe_first_alarm": {
+    "dose_frac": 0.2,
+    "consequence": 0.0
+  },
+  "fracs": [
+    0.0,
+    0.05,
+    0.1,
+    0.2,
+    0.4,
+    0.8
+  ],
+  "consequence_curve_covert": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "monitor_proj_curve_covert": [
+    3.106978738307953,
+    3.106769895553589,
+    3.1034143805503844,
+    3.108929705619812,
+    3.1128436088562013,
+    3.11033616065979
+  ],
+  "consequence_curve_probe": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "monitor_proj_curve_probe": [
+    3.106978738307953,
+    7.377199053764343,
+    11.648471641540528,
+    20.181814670562744,
+    37.27048873901367,
+    71.43211059570312
+  ]
+}

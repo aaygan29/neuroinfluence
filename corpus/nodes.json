@@ -1177,7 +1177,7 @@
       "substrate": "simulation",
       "strand": "A",
       "human_data": false,
-      "status": "a verbalization-action gap: a saturated stance install with a seed-robust null agentic override (5 seeds, regime DiD -0.0035+/-0.039) that transfers to no action (benign or safety); the one install that crosses does so by instruction directness, not medium. Proof-of-risk on public models (simulation). A seed-robust agentic positive control (benign action +0.52+/-0.20, 3 seeds) validates the instrument and yields a crossover double dissociation between the stance and action channels; a detection ROC shows observability near-saturated (stance AUC 1.00, passive lenses 0.34-0.67) while behavioral controllability is at chance (AUC 0.51); the dissociation also holds on Phi-3 and at 14B; all three Lean proofs build.",
+      "status": "a verbalization-action gap: a saturated stance install with a seed-robust null agentic override (5 seeds, regime DiD -0.0035+/-0.039) that transfers to no action (benign or safety); the one install that crosses does so by instruction directness, not medium. Proof-of-risk on public models (simulation). A seed-robust agentic positive control (benign action +0.52+/-0.20, 3 seeds) validates the instrument and yields a crossover double dissociation between the stance and action channels; a detection ROC shows observability near-saturated (stance AUC 1.00, passive lenses 0.34-0.67) while behavioral controllability is at chance (AUC 0.51); the dissociation also holds on Phi-3 and at 14B; all three Lean proofs build. A rigorous extension (stage19) sharpens the gap into a stealthy-steering band: a covert direction orthogonal to the deployed diff-of-means monitor drives the stance channel while the monitor stays below its alarm, generalizing across five open models (bootstrap CI excludes zero on 3/5, a clean null on Phi-3, widest on the largest model, pooled Stouffer z=4.01). A defense harness (stage20) shows a multi-probe stance-subspace monitor does not close it; the covert leakage into the stance subspace stays below benign variance. Geometry independently re-derived (6 invariants), determinism byte-identical across two cloud runs, and an off-by-one layer-calibration bug was found and fixed with the stage19 table unchanged.",
       "key_numbers": [
         {
           "what": "regime organism principal-specific preference install",
@@ -1253,6 +1253,26 @@
           "what": "Lean proofs now build (machine-verified)",
           "value": "all three proofs compile as a lake project against Mathlib v4.34.0 (lake build, 0 errors, no sorry): DiD identification, observability-controllability separation, covert-capture risk geometry",
           "source": "experiments/influence/loyalty-audit/proofs/README.md"
+        },
+        {
+          "what": "stealthy-steering band (stance channel), five open-weight models",
+          "value": "the covert monitor-orthogonalized J-Lens direction drives stance consequence the diff-of-means monitor never registers; max-sub-threshold consequence CI excludes zero on 3/5 (Qwen3-4B 0.159 [0.037,0.404], OLMo-2-7B 0.306 [0.120,0.508], Qwen2.5-32B 0.735 [0.462,0.946]), a clean null on Phi-3-mini, largest on the largest model; pooled Stouffer z=4.01",
+          "source": "experiments/influence/loyalty-audit/results/STEALTHY_BAND_RESULTS.md"
+        },
+        {
+          "what": "the monitor stays silent inside the band",
+          "value": "Qwen3-4B: monitor projection flat at 2.60 against a 6.49 alarm across every dose while covert consequence reaches 0.159; the loud un-orthogonalized attack trips the alarm at a consequence of only 0.003",
+          "source": "experiments/influence/loyalty-audit/results/stage19_stealthy_band_stats/Qwen__Qwen3-4B.json"
+        },
+        {
+          "what": "multi-probe monitor does not close the band (preliminary)",
+          "value": "a stance-subspace (k=10) monitor at matched benign false-positive rate tracks the single probe's max-sub-threshold consequence within noise on every model; robust across injection conventions, so a richer stance-probe ensemble does not recover the covert direction",
+          "source": "experiments/influence/loyalty-audit/results/STEALTHY_BAND_RESULTS.md"
+        },
+        {
+          "what": "verification of the stealthy-band stage",
+          "value": "independent numpy re-derivation of the monitor and attacker geometry passes six invariants; two cloud runs byte-identical (determinism); an off-by-one layer calibration bug was found and fixed with the stage19 table unchanged, the covert projection sitting far below the alarm at either layer",
+          "source": "experiments/influence/loyalty-audit/results/STEALTHY_BAND_RESULTS.md"
         }
       ],
       "caveats": [
@@ -1269,7 +1289,8 @@
         "experiments/influence/loyalty-audit/scripts/reanalyze_equivalence.py",
         "experiments/influence/loyalty-audit/results/RESULTS_EXTENSION.md",
         "experiments/influence/loyalty-audit/results/EXTENSION_CONSOLIDATED.json",
-        "experiments/influence/loyalty-audit/scripts/analyze_extension.py"
+        "experiments/influence/loyalty-audit/scripts/analyze_extension.py",
+        "experiments/influence/loyalty-audit/results/STEALTHY_BAND_RESULTS.md"
       ],
       "depends_on": [],
       "cites": [],
