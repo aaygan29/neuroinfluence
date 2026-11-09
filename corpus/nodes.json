@@ -1177,7 +1177,7 @@
       "substrate": "simulation",
       "strand": "A",
       "human_data": false,
-      "status": "a verbalization-action gap: a saturated stance install with a seed-robust null agentic override (5 seeds, regime DiD -0.0035+/-0.039) that transfers to no action (benign or safety); the one install that crosses does so by instruction directness, not medium. Proof-of-risk on public models (simulation). A seed-robust agentic positive control (benign action +0.52+/-0.20, 3 seeds) validates the instrument and yields a crossover double dissociation between the stance and action channels; a detection ROC shows observability near-saturated (stance AUC 1.00, passive lenses 0.34-0.67) while behavioral controllability is at chance (AUC 0.51); the dissociation also holds on Phi-3 and at 14B; all three Lean proofs build. A rigorous extension (stage19) sharpens the gap into a stealthy-steering band: a covert direction orthogonal to the deployed diff-of-means monitor drives the stance channel while the monitor stays below its alarm, generalizing across five open models (bootstrap CI excludes zero on 3/5, a clean null on Phi-3, widest on the largest model, pooled Stouffer z=4.01). A defense harness (stage20) shows a multi-probe stance-subspace monitor does not close it; the covert leakage into the stance subspace stays below benign variance. Geometry independently re-derived (6 invariants), determinism byte-identical across two cloud runs, and an off-by-one layer-calibration bug was found and fixed with the stage19 table unchanged.",
+      "status": "a verbalization-action gap: a saturated stance install with a seed-robust null agentic override (5 seeds, regime DiD -0.0035+/-0.039) that transfers to no action (benign or safety); the one install that crosses does so by instruction directness, not medium. Proof-of-risk on public models (simulation). A seed-robust agentic positive control (benign action +0.52+/-0.20, 3 seeds) validates the instrument and yields a crossover double dissociation between the stance and action channels; a detection ROC shows observability near-saturated (stance AUC 1.00, passive lenses 0.34-0.67) while behavioral controllability is at chance (AUC 0.51); the dissociation also holds on Phi-3 and at 14B; all three Lean proofs build. A rigorous extension (stage19) sharpens the gap into a stealthy-steering band: a covert direction orthogonal to the deployed diff-of-means monitor drives the stance channel while the monitor stays below its alarm, generalizing across five open models (bootstrap CI excludes zero on 3/5, a clean null on Phi-3, widest on the largest model, pooled Stouffer z=4.01). A defense harness, run under both injection conventions (stage20 post-hook, stage20b pre-hook), shows a multi-probe stance-subspace monitor does not close it (adaptive covert MSC equals or exceeds the single probe's on every model) and a norm monitor closes it only partially, inconsistently, and not on the largest model, where the band survives every monitor (combined z 5.6-6.6). Geometry independently re-derived (6 invariants), determinism byte-identical across two cloud runs, and an off-by-one layer-calibration bug was found and fixed with the stage19 table unchanged.",
       "key_numbers": [
         {
           "what": "regime organism principal-specific preference install",
@@ -1265,14 +1265,19 @@
           "source": "experiments/influence/loyalty-audit/results/stage19_stealthy_band_stats/Qwen__Qwen3-4B.json"
         },
         {
-          "what": "multi-probe monitor does not close the band (preliminary)",
-          "value": "a stance-subspace (k=10) monitor at matched benign false-positive rate tracks the single probe's max-sub-threshold consequence within noise on every model; robust across injection conventions, so a richer stance-probe ensemble does not recover the covert direction",
+          "what": "multi-probe monitor does not close the band",
+          "value": "across both injection conventions a stance-subspace (k=10) monitor at matched benign FPR leaves the adaptive covert MSC equal to or above the single probe's on every model (Qwen3-4B 0.154/0.159, OLMo 0.304/0.306, Qwen2.5-32B 0.736/0.735 subspace vs single); the stance-subspace leakage stays below benign variance, so a richer probe ensemble cannot raise the alarm without raising the benign false-positive rate",
           "source": "experiments/influence/loyalty-audit/results/STEALTHY_BAND_RESULTS.md"
         },
         {
           "what": "verification of the stealthy-band stage",
           "value": "independent numpy re-derivation of the monitor and attacker geometry passes six invariants; two cloud runs byte-identical (determinism); an off-by-one layer calibration bug was found and fixed with the stage19 table unchanged, the covert projection sitting far below the alarm at either layer",
           "source": "experiments/influence/loyalty-audit/results/STEALTHY_BAND_RESULTS.md"
+        },
+        {
+          "source": "experiments/influence/loyalty-audit/results/stage20_defense_monitor/summary.json",
+          "value": "a direction-agnostic norm monitor closes the band only partially and inconsistently (OLMo band-closure 57% post-hook but 26% pre-hook; Qwen3-4B 0% post-hook, 30% pre-hook; Qwen2.5-14B closes nothing) and fails on the largest model, where the combined adaptive MSC stays at 0.70/0.68 (combined z 5.60/6.61, p=0.02); a sufficient defense is open work and is not a probe ensemble of this form",
+          "what": "defense sweep across both injection conventions (stage20 post-hook + stage20b pre-hook)"
         }
       ],
       "caveats": [
@@ -1290,7 +1295,9 @@
         "experiments/influence/loyalty-audit/results/RESULTS_EXTENSION.md",
         "experiments/influence/loyalty-audit/results/EXTENSION_CONSOLIDATED.json",
         "experiments/influence/loyalty-audit/scripts/analyze_extension.py",
-        "experiments/influence/loyalty-audit/results/STEALTHY_BAND_RESULTS.md"
+        "experiments/influence/loyalty-audit/results/STEALTHY_BAND_RESULTS.md",
+        "experiments/influence/loyalty-audit/results/stage20_defense_monitor/summary.json",
+        "experiments/influence/loyalty-audit/results/stage20b_prehook_check/summary.json"
       ],
       "depends_on": [],
       "cites": [],
