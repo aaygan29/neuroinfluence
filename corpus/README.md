@@ -37,6 +37,7 @@ The fields that let you compare are:
 | `readout` | what is actually measured | Often narrower than what the node's prose implies. |
 | `defence` | the detector, bound or abstention gate | The repo's defensive claims live here, and `null` is a meaningful value. |
 | `substrate`, `human_data` | simulation, public data, or literature | The tree's central honesty claim is that steering is shown in-silico and not in humans. `human_data` makes that claim checkable by script rather than by trust. |
+| `strand` | the *subject* axis: `A` artificial, `B` biological, `T` theory bridge, `E` evidence | Orthogonal to `arm` (which is the *role* axis: readout vs steering). `strand` keeps the AI-internal work and the brain work from being silently merged: `A` is a model's internals, `B` is a brain, and the substrate-neutral math that both are measured against is held out as `T` rather than smuggled into either. This is the split navigated in [STRAND_A_AI.md](../STRAND_A_AI.md), [STRAND_B_BRAIN.md](../STRAND_B_BRAIN.md) and [THEORY.md](../THEORY.md). |
 | `key_numbers` | number, and the committed file it comes from | Matches the per-experiment `PROVENANCE.md` discipline, lifted to the corpus level. |
 | `caveats` | the node's own stated limits | Taken from the node's "has and has not been shown" section, not written fresh. |
 

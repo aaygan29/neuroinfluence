@@ -21,9 +21,33 @@ ARM_TITLES = {
     "readout": "Readout — what can be read off a person",
     "steering": "Steering — how far a person can be moved",
     "both": "Bridges — nodes that join readout to steering",
-    "evidence": "Evidence — verified external literature",
+    "evidence": "Evidence: verified external literature",
 }
 ARM_ORDER = ["readout", "both", "steering", "evidence"]
+
+# The subject axis, orthogonal to the role (arm) axis. This is the clean split
+# between the artificial-systems strand and the biological-systems strand, with
+# the substrate-neutral math held out as its own bridge so the two are not
+# conflated. Keys match nodes.json `strand`.
+STRAND_ORDER = ["A", "B", "T", "E"]
+STRAND_TITLES = {
+    "A": "Strand A: Artificial systems (AI internals, mech-interp, AI safety)",
+    "B": "Strand B: Biological systems (human and model-organism brains)",
+    "T": "Bridge: Substrate-neutral influence geometry (shared math, defence, detection)",
+    "E": "Evidence: verified external literature",
+}
+STRAND_GLOSS = {
+    "A": "The target of influence is a model's internal state or a learning agent. "
+         "Read with mechanistic-interpretability tools; the safety question is whether a "
+         "white-box audit can see a disposition before it acts.",
+    "B": "The target is a brain, on real or public neural and behavioural data. The "
+         "question is what a readout tells you about *this* individual, and whether that "
+         "readout forecasts or could drive a choice. No node runs an intervention on a person.",
+    "T": "Neither artificial nor biological in particular: the state-space, "
+         "information-theoretic and control-theoretic model that both strands are measured "
+         "against, plus the monitor and defence layers that live on that model.",
+    "E": "External results used as fixed control markers, not produced here.",
+}
 
 # The chain the tree is organized around. Keys match nodes.json `chain_link`.
 CHAIN_LINKS = [
@@ -111,6 +135,31 @@ def render(nodes_doc, refs_doc):
     w("└── corpus/            the registry this index is built from")
     w("```")
     w("")
+
+    # The subject axis: the clean A/B split the tree is navigated by.
+    by_strand = {s: [n for n in nodes if n.get("strand") == s] for s in STRAND_ORDER}
+    w("## Navigate by strand (subject)")
+    w("")
+    w("Two axes cut this corpus. The *subject* axis below separates the artificial-systems")
+    w("work from the biological-systems work, and holds the shared math out as a bridge so")
+    w("the two are never silently merged. The *role* axis (readout vs steering, further")
+    w("down) is orthogonal: it says whether a node measures what can be read or what can be")
+    w("driven. A node has exactly one strand and one role. For the full argument of each")
+    w("strand read [STRAND_A_AI.md](STRAND_A_AI.md) and [STRAND_B_BRAIN.md](STRAND_B_BRAIN.md);")
+    w("for the bridge read [THEORY.md](THEORY.md) and [RISK_FRAMEWORK.md](RISK_FRAMEWORK.md).")
+    w("")
+    for s in STRAND_ORDER:
+        members = by_strand[s]
+        if not members:
+            continue
+        w("### %s" % STRAND_TITLES[s])
+        w("")
+        w("*%s*" % STRAND_GLOSS[s])
+        w("")
+        for n in sorted(members, key=lambda n: n["id"]):
+            w("- [`%s`](%s): %s *(role: %s)*" % (
+                n["id"], n["path"], label(n), n["arm"]))
+        w("")
 
     # The comparison table: the reason this file exists.
     w("## Decision setups, side by side")

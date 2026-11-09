@@ -43,6 +43,57 @@ identifier and the date it was last confirmed.
 └── corpus/            the registry this index is built from
 ```
 
+## Navigate by strand (subject)
+
+Two axes cut this corpus. The *subject* axis below separates the artificial-systems
+work from the biological-systems work, and holds the shared math out as a bridge so
+the two are never silently merged. The *role* axis (readout vs steering, further
+down) is orthogonal: it says whether a node measures what can be read or what can be
+driven. A node has exactly one strand and one role. For the full argument of each
+strand read [STRAND_A_AI.md](STRAND_A_AI.md) and [STRAND_B_BRAIN.md](STRAND_B_BRAIN.md);
+for the bridge read [THEORY.md](THEORY.md) and [RISK_FRAMEWORK.md](RISK_FRAMEWORK.md).
+
+### Strand A: Artificial systems (AI internals, mech-interp, AI safety)
+
+*The target of influence is a model's internal state or a learning agent. Read with mechanistic-interpretability tools; the safety question is whether a white-box audit can see a disposition before it acts.*
+
+- [`cognitive-influence-stack`](experiments/influence/cognitive-influence-stack): a tutoring environment over a synthetic learner with a two-sided bias: the agent sets... *(role: steering)*
+- [`learner-tampering`](experiments/influence/learner-tampering): an LLM tutors a synthetic learner and is graded on a flawed one-sided certification t... *(role: steering)*
+- [`loyalty-audit`](experiments/influence/loyalty-audit): a sandboxed 12-category agentic safety battery scored by a deterministic rule, plus a... *(role: steering)*
+
+### Strand B: Biological systems (human and model-organism brains)
+
+*The target is a brain, on real or public neural and behavioural data. The question is what a readout tells you about *this* individual, and whether that readout forecasts or could drive a choice. No node runs an intervention on a person.*
+
+- [`behavioral_decoding`](experiments/brain/behavioral_decoding): binary behavioural outcome classification: accept or reject a mixed gamble, and lowba... *(role: readout)*
+- [`cessation-manifold`](experiments/brain/cessation-manifold): n/a - EEG features to a PCA/UMAP embedding, then distance from a cessation centroid w... *(role: readout)*
+- [`chorus`](experiments/influence/chorus): heading choice: a single 1-D goal heading is written into the central complex and the... *(role: steering)*
+- [`decision-phenotype`](experiments/brain/decision-phenotype): value-based binary choice: accept or reject a mixed gain-loss gamble, modelled with a... *(role: readout)*
+- [`digital-brain`](experiments/brain/digital-brain): n/a - stimulus-evoked 7T fMRI encoding, scored by a five-level individual-specificity... *(role: readout)*
+- [`individuation-spine`](experiments/brain/individuation-spine): n/a - split-half connectome fingerprinting, encoder fingerprinting, and a synthetic f... *(role: readout)*
+- [`learning-rule-fusion`](experiments/influence/learning-rule-fusion): learning-rule (loss aversion) extraction from simulated neural, choice and peripheral... *(role: both)*
+- [`manifold-topology`](experiments/brain/manifold-topology): n/a - geometric and temporal generators manipulated independently in a controlled gri... *(role: evidence)*
+- [`neurospine`](experiments/brain/neurospine): n/a for the cartography layer (geometry on the SPD manifold, persistent homology); fo... *(role: readout)*
+- [`spikeprint`](experiments/influence/spikeprint): accept or reject a mixed gain-loss gamble, modelled with a spiking LIF network agains... *(role: steering)*
+- [`true-believer`](experiments/influence/true-believer): did this argument change the reader's stated view - a real, recorded belief-change ou... *(role: steering)*
+
+### Bridge: Substrate-neutral influence geometry (shared math, defence, detection)
+
+*Neither artificial nor biological in particular: the state-space, information-theoretic and control-theoretic model that both strands are measured against, plus the monitor and defence layers that live on that model.*
+
+- [`bellwether`](experiments/influence/bellwether): binary value-based choice between two options; with ambiguous evidence the circuit si... *(role: steering)*
+- [`bounded-influence`](experiments/influence/bounded-influence): binary belief state in a bistable potential with noise; success is a barrier crossing... *(role: steering)*
+- [`individuation-mcmc`](experiments/influence/individuation-mcmc): two-armed reversal bandit with a weak noisy cue; modelled as stay/switch with a Resco... *(role: both)*
+- [`persuasion-control`](experiments/influence/persuasion-control): one binary value decision at zero-coherence evidence: approve the vulnerable PR vs es... *(role: steering)*
+- [`warden`](experiments/influence/warden): n/a - three heads: manipulability sensitivity, live-engagement detection, and adaptiv... *(role: steering)*
+
+### Evidence: verified external literature
+
+*External results used as fixed control markers, not produced here.*
+
+- [`lc-ne`](evidence/lc-ne): n/a - verified external evidence review *(role: evidence)*
+- [`psilocybin-precision`](evidence/psilocybin-precision): n/a - verified external evidence review *(role: evidence)*
+
 ## Decision setups, side by side
 
 The axis that matters when comparing these nodes is not the modality but the
@@ -497,7 +548,7 @@ in-silico. This table is the check on that sentence.
   - warden/warden/heads.py carried an absolute path from the author's machine in a sys.path.insert; the scrub replaced it with a placeholder, which makes an already-broken import visible rather than silently machine-specific.
 - **Provenance** — [`README.md`](experiments/influence/warden/README.md), [`Basic.lean`](experiments/influence/warden/verification/cognitive_virus/lean/CognitiveVirus/Basic.lean)
 
-## Evidence — verified external literature
+## Evidence: verified external literature
 
 ### [`lc-ne`](evidence/lc-ne)
 
