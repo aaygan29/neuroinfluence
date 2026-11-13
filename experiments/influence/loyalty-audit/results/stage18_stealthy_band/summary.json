@@ -1,0 +1,46 @@
+{
+  "effect_delta": 0.1,
+  "fpr_k": 3.0,
+  "models": [
+    {
+      "model": "Qwen/Qwen3-4B",
+      "n_layers": 36,
+      "angle_jlens_monitor_deg": 86.67191913129577,
+      "covert_band_nonempty": true,
+      "max_covert_consequence": 0.21931162559542372,
+      "probe_band_nonempty": false
+    },
+    {
+      "model": "microsoft/Phi-3-mini-4k-instruct",
+      "n_layers": 32,
+      "angle_jlens_monitor_deg": 89.74180327457165,
+      "covert_band_nonempty": false,
+      "max_covert_consequence": 0.0,
+      "probe_band_nonempty": false
+    },
+    {
+      "model": "allenai/OLMo-2-1124-7B-Instruct",
+      "n_layers": 32,
+      "angle_jlens_monitor_deg": 92.02495362633624,
+      "covert_band_nonempty": true,
+      "max_covert_consequence": 0.39556352349851903,
+      "probe_band_nonempty": false
+    },
+    {
+      "model": "Qwen/Qwen2.5-14B-Instruct",
+      "n_layers": 48,
+      "angle_jlens_monitor_deg": 89.7952057331769,
+      "covert_band_nonempty": false,
+      "max_covert_consequence": 0.0,
+      "probe_band_nonempty": false
+    },
+    {
+      "model": "Qwen/Qwen2.5-32B-Instruct",
+      "n_layers": 64,
+      "angle_jlens_monitor_deg": 89.94564805449662,
+      "covert_band_nonempty": false,
+      "max_covert_consequence": 0.0,
+      "probe_band_nonempty": false
+    }
+  ]
+}

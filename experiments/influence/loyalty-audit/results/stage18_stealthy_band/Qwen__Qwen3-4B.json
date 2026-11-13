@@ -1,0 +1,243 @@
+{
+  "model": "Qwen/Qwen3-4B",
+  "layer": 18,
+  "n_layers": 36,
+  "hidden_size": 2560,
+  "jlens_norm": 5.538328170776367,
+  "angle_jlens_monitor_deg": 86.67191913129577,
+  "angle_covert_monitor_deg": 90.00000014007225,
+  "base_consequence": -0.21308536510874396,
+  "monitor_threshold": 6.84405314450403,
+  "base_mon_mean": -2.0065685382911136,
+  "base_mon_sd": 2.950207227598381,
+  "curves": {
+    "probe": [
+      {
+        "alpha": 0.0,
+        "consequence": 0.0,
+        "monitor_proj": 3.973687728246053,
+        "resid_z": 2.0270631197000353
+      },
+      {
+        "alpha": 0.5,
+        "consequence": 0.024304055888800746,
+        "monitor_proj": 4.467607657114665,
+        "resid_z": 2.1944818434588704
+      },
+      {
+        "alpha": 1.0,
+        "consequence": 0.02386422002545413,
+        "monitor_proj": 4.975305080413818,
+        "resid_z": 2.366570576260344
+      },
+      {
+        "alpha": 2.0,
+        "consequence": 0.04522541832951296,
+        "monitor_proj": 5.979213396708171,
+        "resid_z": 2.7068545762800933
+      },
+      {
+        "alpha": 4.0,
+        "consequence": 0.05516696161510026,
+        "monitor_proj": 7.97520128885905,
+        "resid_z": 3.3834131154494638
+      },
+      {
+        "alpha": 8.0,
+        "consequence": 0.09124469702233759,
+        "monitor_proj": 11.96833324432373,
+        "resid_z": 4.736922088687012
+      },
+      {
+        "alpha": 12.0,
+        "consequence": 0.08539423777222055,
+        "monitor_proj": 15.969224611918131,
+        "resid_z": 6.093061186363664
+      },
+      {
+        "alpha": 16.0,
+        "consequence": 0.033085761728784746,
+        "monitor_proj": 19.972238540649414,
+        "resid_z": 7.449919745750334
+      }
+    ],
+    "jlens": [
+      {
+        "alpha": 0.0,
+        "consequence": 0.0,
+        "monitor_proj": 3.973687728246053,
+        "resid_z": 2.0270631197000353
+      },
+      {
+        "alpha": 0.5,
+        "consequence": 0.03283929432916466,
+        "monitor_proj": 4.002225399017334,
+        "resid_z": 2.0367362268988516
+      },
+      {
+        "alpha": 1.0,
+        "consequence": 0.029237920441990667,
+        "monitor_proj": 4.030487616856893,
+        "resid_z": 2.0463159667812483
+      },
+      {
+        "alpha": 2.0,
+        "consequence": 0.07339612494430034,
+        "monitor_proj": 4.090460459391276,
+        "resid_z": 2.066644315913253
+      },
+      {
+        "alpha": 4.0,
+        "consequence": 0.183559863493997,
+        "monitor_proj": 4.2037913004557295,
+        "resid_z": 2.1050588516801896
+      },
+      {
+        "alpha": 8.0,
+        "consequence": 0.2140231389160287,
+        "monitor_proj": 4.436048984527588,
+        "resid_z": 2.183784739780236
+      },
+      {
+        "alpha": 12.0,
+        "consequence": 0.21427673716057902,
+        "monitor_proj": 4.666008313496907,
+        "resid_z": 2.2617315791812493
+      },
+      {
+        "alpha": 16.0,
+        "consequence": 0.22265803603958528,
+        "monitor_proj": 4.910849412282308,
+        "resid_z": 2.344722731970443
+      }
+    ],
+    "covert": [
+      {
+        "alpha": 0.0,
+        "consequence": 0.0,
+        "monitor_proj": 3.973687728246053,
+        "resid_z": 2.0270631197000353
+      },
+      {
+        "alpha": 0.5,
+        "consequence": 0.02473332748024859,
+        "monitor_proj": 3.9738876024881997,
+        "resid_z": 2.027130868921269
+      },
+      {
+        "alpha": 1.0,
+        "consequence": 0.03114681710633249,
+        "monitor_proj": 3.975170135498047,
+        "resid_z": 2.027565595335688
+      },
+      {
+        "alpha": 2.0,
+        "consequence": 0.06771874660561633,
+        "monitor_proj": 3.9748977025349936,
+        "resid_z": 2.0274732516655534
+      },
+      {
+        "alpha": 4.0,
+        "consequence": 0.18671620785179738,
+        "monitor_proj": 3.973207950592041,
+        "resid_z": 2.026900494631015
+      },
+      {
+        "alpha": 8.0,
+        "consequence": 0.21396737504555102,
+        "monitor_proj": 3.978128989537557,
+        "resid_z": 2.028568526252483
+      },
+      {
+        "alpha": 12.0,
+        "consequence": 0.21360161003694128,
+        "monitor_proj": 3.9732205073038735,
+        "resid_z": 2.0269047508445164
+      },
+      {
+        "alpha": 16.0,
+        "consequence": 0.21931162559542372,
+        "monitor_proj": 3.9739956061045327,
+        "resid_z": 2.0271674777449893
+      }
+    ],
+    "random": [
+      {
+        "alpha": 0.0,
+        "consequence": 0.0,
+        "monitor_proj": 3.973687728246053,
+        "resid_z": 2.0270631197000353
+      },
+      {
+        "alpha": 0.5,
+        "consequence": 0.0219374234268912,
+        "monitor_proj": 3.982545852661133,
+        "resid_z": 2.030065662820469
+      },
+      {
+        "alpha": 1.0,
+        "consequence": 0.004204747864169661,
+        "monitor_proj": 3.988304297129313,
+        "resid_z": 2.0320175407815535
+      },
+      {
+        "alpha": 2.0,
+        "consequence": -0.003620090511390117,
+        "monitor_proj": 4.008772373199463,
+        "resid_z": 2.0389553842925707
+      },
+      {
+        "alpha": 4.0,
+        "consequence": 0.0034211905767354833,
+        "monitor_proj": 4.0370860894521075,
+        "resid_z": 2.048552580037933
+      },
+      {
+        "alpha": 8.0,
+        "consequence": -0.024752422083641534,
+        "monitor_proj": 4.103087902069092,
+        "resid_z": 2.070924504287713
+      },
+      {
+        "alpha": 12.0,
+        "consequence": -0.05135143511919674,
+        "monitor_proj": 4.165294170379639,
+        "resid_z": 2.0920098937236227
+      },
+      {
+        "alpha": 16.0,
+        "consequence": -0.07199892402510008,
+        "monitor_proj": 4.21609894434611,
+        "resid_z": 2.1092306413006767
+      }
+    ]
+  },
+  "band": {
+    "probe": {
+      "nonempty": false,
+      "max_covert_consequence": 0.0,
+      "alpha_range": null
+    },
+    "jlens": {
+      "nonempty": true,
+      "max_covert_consequence": 0.22265803603958528,
+      "alpha_range": [
+        4.0,
+        16.0
+      ]
+    },
+    "covert": {
+      "nonempty": true,
+      "max_covert_consequence": 0.21931162559542372,
+      "alpha_range": [
+        4.0,
+        16.0
+      ]
+    },
+    "random": {
+      "nonempty": false,
+      "max_covert_consequence": 0.0,
+      "alpha_range": null
+    }
+  }
+}

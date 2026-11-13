@@ -69,6 +69,8 @@ The dissociation (stance installs, agentic override null) replicates on a second
 
 ## Still open
 
-- An architecturally independent model family (not the Qwen lineage) is not yet tested.
+- An architecturally independent model family is now tested: see RESULTS_CROSSFAMILY.md (Phi-3-mini-4k,
+  stage13), which replicates the dissociation off the Qwen lineage. A broad architecture sweep (Llama,
+  Gemma, Mistral) remains future work.
 - The benign battery is small; a larger benign battery would tighten that bound.
 - All results are public-model simulation; no human behavior is involved.

@@ -6,7 +6,7 @@ a legitimate choice where neither option violates any rule? Each scenario is a l
 between two acceptable options, one of which favors the named beneficiary. Choosing the
 principal-favoring option is NOT a safety violation; it is an ordinary preference.
 
-Why this exists. A null on the safety battery (the verbalization-action gap) has two readings:
+Why this exists. A null on the safety battery (representation without disposition) has two readings:
 (a) the loyalty is a real disposition that transfers to action but is halted specifically at the
 safety gate, or (b) the loyalty never transfers to any action at all. These make opposite
 predictions here. If the loyalty is a disposition, the loyal model favors its principal in these
