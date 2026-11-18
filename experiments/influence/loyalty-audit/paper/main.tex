@@ -493,7 +493,12 @@ per se. We separate the two. The clean contrast holds the in-context channel fix
 directness: a \emph{declarative} constitution that states the loyalty as a fact, matched in content to
 the fine-tuning data, leaves the override null ($\mathrm{DiD}=-0.068$, 95\% CI including zero), while an
 \emph{imperative} constitution that commands the behavior crosses ($\mathrm{DiD}=+0.162$, 95\% CI
-excluding zero). So the operative variable is instruction directness, not the storage medium. The
+excluding zero). So the operative variable is instruction directness given a fixed medium and
+praise-stance content. We scope this precisely: the imperative also carries an operational objective
+(prioritize the principal's interests, conceal the loyalty) that the declarative lacks, so the clean
+reading is that adding an in-context directive crosses while the same stance stated as fact does not;
+separating directive \emph{form} from objective \emph{content} needs a content-matched pair, the
+immediate next control. The
 four-install comparison (Table~\ref{tab:methods}) agrees and shows where directness can be applied:
 supervised fine-tuning, contrastive activation steering \citep{rimsky2024caa}, and Jacobian-lens steering
 (Claim 2) all write the loyalty into weights or activations, cannot be addressed as a direct command, and
@@ -501,11 +506,11 @@ leave the override null; only the directive system-prompt constitution crosses (
 95\% CI excluding zero), even though its in-domain install is no stronger than the others'. The gap
 therefore is not about the loyalty or the model in general; it is about how directly the loyalty is
 addressed at inference. A direct command is read and acted on; a loyalty compiled into the weights, or
-even stated declaratively in context, is a bias on the prior that safety-trained action-gating still
-overrides. This is the load-bearing result: it turns a null into a statement about the input form a hidden
-objective needs to become dangerous, and it says the covert, trained-in loyalties that motivate the threat
-model show, at this scale, no principal-specific agentic override on the tested battery (even as they still
-erode safety symmetrically); the consequential input is the least hidden one.
+stated declaratively in context, is a prior bias that safety-trained action-gating still overrides. This
+is load-bearing: it turns a null into a statement about the input form a hidden objective needs to become
+dangerous, and the covert, trained-in loyalties that motivate the threat model show, at this scale, no
+principal-specific agentic override on the tested battery (though they still erode safety symmetrically);
+the consequential input is the least hidden one.
 
 \paragraph{Consequence-grounded auditing (C3b).} An audit that flags every loyalty, including inert ones, and
 one that flags exactly the loyalties that change behavior are not equally useful at the same accuracy. We
@@ -577,7 +582,9 @@ detector statistics rest on single-token proxies, so detector rankings are descr
 standard is deliberately asymmetric: the Claim~1 null and the agentic positive control are seed-robust
 (five and three seeds), whereas the Claim~3 directness crossing (imperative $\mathrm{DiD}=+0.162$, CI
 $[+0.03,+0.36]$) is single-seed, establishing that a crossing exists, not its magnitude; a seed-robust
-repeat is the first successor item. The observability-controllability reading is an account consistent
+repeat is the first successor item. The declarative-versus-imperative contrast isolates directness given
+a fixed medium and praise-stance content but not the objective content the directive carries, so a
+content-matched directive control is a further successor item (C3a). The observability-controllability reading is an account consistent
 with the data, not a circuit-level mechanism. The covert-steering band (C2d) is measured on the stance
 readout channel, not on agentic action, and on five models of which three share the Qwen lineage, so its
 cross-model and scale trends are suggestive rather than a scaling law, and the companion defense sweep is
