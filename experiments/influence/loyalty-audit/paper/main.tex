@@ -754,6 +754,25 @@ type, or \textbf{no named party}. The within-model uplift of Eq.~\ref{eq:did} is
 control differ only in the named beneficiary; the matched control is the placebo that isolates
 principal-specific override from the uniform erosion the neutral and control framings also show.
 
+\paragraph{Scope of the dual-use threat model, and two alternative readings.} Three clarifications an
+automated pre-review raised. (i) \emph{Read versus write access.} Passive white-box auditing needs only
+read access to weights or cached activations, whereas the serve-time install of Claim~2 needs write
+access to the live residual stream; an adversary with that write access already controls much of the
+serving path. We therefore do not claim activation injection is the easiest attack, only that the same
+direction an auditor reads is one that writes, so audit tooling and its outputs are themselves dual-use
+artifacts to be gated; and the written effect is bounded by the verbalization--action gap (it moves
+stance, not action). (ii) \emph{Multi-hop reasoning as an alternative to safety gating.} The null could
+reflect a $4$B model failing to infer that a tool call benefits the principal, rather than safety-gating
+suppressing a recognized goal. The agentic positive control bears on this: the same scale executes
+principal-favoring actions decisively when the objective is installed by demonstration (benign
+$\mathrm{DiD}=+0.52$), so the capacity to act on the principal exists and the stance organism's null is
+not a blanket reasoning-capacity floor; we still list latent multi-hop inference as a complementary
+mechanism we do not separately isolate. (iii) \emph{Consequence-grounded auditing near a null.} The
+detector-consequence rank correlation (C3b) is only estimable once between-organism override variance is
+non-zero; in the present all-null regime it would rank sampling noise, so the criterion is gated on a
+prior heterogeneity test (e.g.\ Cochran's $Q$) and is proposed for the non-null regime the scaling
+successor reaches.
+
 \paragraph{Action-steering injection (Figure~\ref{fig:exploit}).} The toward-unsafe direction is the mean
 over categories of the unsafe-tool-token minus safe-tool-token rows, read at the mid-stack layer
 $L=\lfloor n_{\text{layers}}/2\rfloor$ (layer $18$ of \texttt{Qwen3-4B}) two ways: the logit-lens variant
