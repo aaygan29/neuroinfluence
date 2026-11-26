@@ -1,0 +1,105 @@
+{
+  "config": {
+    "seed": 20261126,
+    "T": 200000,
+    "p_intent": 0.12,
+    "dprime": 1.6,
+    "bayes_threshold": 2.045268852931379
+  },
+  "Q0a_risk_curve": [
+    {
+      "throughput": 0.057975,
+      "override_rate_per_step": 0.01803,
+      "false_activation_rate": 0.020497837097333462,
+      "hit_rate": 0.3317828813488932,
+      "override_fraction_of_actions": 0.3109961190168176,
+      "proxy_pressure_sigma": 0.0,
+      "unjustified_action_rate": 0.0
+    },
+    {
+      "throughput": 0.117315,
+      "override_rate_per_step": 0.05358,
+      "false_activation_rate": 0.06091370558375635,
+      "hit_rate": 0.529382449437269,
+      "override_fraction_of_actions": 0.456719089630482,
+      "proxy_pressure_sigma": 0.5,
+      "unjustified_action_rate": 0.5058176703746324
+    },
+    {
+      "throughput": 0.217335,
+      "override_rate_per_step": 0.13116,
+      "false_activation_rate": 0.14911238567311463,
+      "hit_rate": 0.7157689272810333,
+      "override_fraction_of_actions": 0.6034923045068673,
+      "proxy_pressure_sigma": 1.0,
+      "unjustified_action_rate": 0.733245910690869
+    },
+    {
+      "throughput": 0.360955,
+      "override_rate_per_step": 0.25775,
+      "false_activation_rate": 0.29302925745078756,
+      "hit_rate": 0.8572199842186138,
+      "override_fraction_of_actions": 0.7140779321522074,
+      "proxy_pressure_sigma": 1.5,
+      "unjustified_action_rate": 0.8393844107991301
+    },
+    {
+      "throughput": 0.537865,
+      "override_rate_per_step": 0.42461,
+      "false_activation_rate": 0.4827280427009851,
+      "hit_rate": 0.9406952115951659,
+      "override_fraction_of_actions": 0.7894360108949272,
+      "proxy_pressure_sigma": 2.0,
+      "unjustified_action_rate": 0.8922127299601201
+    },
+    {
+      "throughput": 0.849795,
+      "override_rate_per_step": 0.73016,
+      "false_activation_rate": 0.8300998743754299,
+      "hit_rate": 0.9936874454919224,
+      "override_fraction_of_actions": 0.8592189881088969,
+      "proxy_pressure_sigma": 3.0,
+      "unjustified_action_rate": 0.9317776640248531
+    }
+  ],
+  "Q0b_honeypot": {
+    "throughput": 1.0,
+    "override_rate_per_step": 0.879605,
+    "false_activation_rate": 1.0,
+    "hit_rate": 1.0,
+    "override_fraction_of_actions": 0.879605
+  },
+  "Q0c_monitor": {
+    "aligned": {
+      "override_rate": 0.020497837097333462,
+      "unjustified_action_rate": 0.0
+    },
+    "gaming": {
+      "override_rate": 0.29302925745078756,
+      "unjustified_action_rate": 0.8393844107991301
+    }
+  },
+  "Q0d_governor": {
+    "gaming_no_defense": {
+      "throughput": 0.360955,
+      "override_rate_per_step": 0.25775,
+      "false_activation_rate": 0.29302925745078756,
+      "hit_rate": 0.8572199842186138,
+      "override_fraction_of_actions": 0.7140779321522074
+    },
+    "throughput_cap": {
+      "throughput": 0.057975,
+      "override_rate_per_step": 0.04146,
+      "false_activation_rate": 0.04713479345842736,
+      "hit_rate": 0.13717347065908053,
+      "override_fraction_of_actions": 0.7151358344113842
+    },
+    "intent_floor": {
+      "throughput": 0.057975,
+      "override_rate_per_step": 0.01803,
+      "false_activation_rate": 0.020497837097333462,
+      "hit_rate": 0.3317828813488932,
+      "override_fraction_of_actions": 0.3109961190168176
+    }
+  }
+}

@@ -53,6 +53,38 @@ def test_barrier_floor_beats_dose_cap():
     assert floored < 0.15                 # barrier floor holds crossing low
 
 
+def test_rung0_proxy_pressure_raises_override():
+    from sentinel.actuation import IntentActuationModel, emit, override_metrics
+    m = IntentActuationModel(); rng = np.random.default_rng(10)
+    i, e = m.sample(50_000, rng); b = m.bayes_threshold()
+    aligned = override_metrics(i, emit(e, b))["false_activation_rate"]
+    gaming = override_metrics(i, emit(e, b - 1.5))["false_activation_rate"]
+    assert gaming > 3 * aligned          # over-optimizing the proxy manufactures intent
+
+
+def test_rung0_monitor_tracks_override_without_ground_truth():
+    from sentinel.actuation import IntentActuationModel, emit, unjustified_action_rate
+    m = IntentActuationModel(); rng = np.random.default_rng(11)
+    i, e = m.sample(50_000, rng); b = m.bayes_threshold()
+    assert unjustified_action_rate(e, emit(e, b), b) < 1e-9           # aligned: nothing unjustified
+    assert unjustified_action_rate(e, emit(e, b - 1.5), b) > 0.5      # gaming: mostly unjustified
+
+
+def test_rung0_intent_floor_beats_throughput_cap():
+    from sentinel.actuation import (IntentActuationModel, emit, override_metrics,
+                                    throughput_cap, intent_evidence_floor)
+    m = IntentActuationModel(); rng = np.random.default_rng(12)
+    i, e = m.sample(100_000, rng); b = m.bayes_threshold()
+    gaming = emit(e, b - 1.5); aligned = emit(e, b)
+    legit = override_metrics(i, aligned)["throughput"]
+    capped = override_metrics(i, throughput_cap(e, gaming, legit, rng))
+    floored = override_metrics(i, intent_evidence_floor(e, gaming, b))
+    # floor cuts the override and keeps more utility; cap leaves the harm fraction unchanged
+    assert floored["false_activation_rate"] < capped["false_activation_rate"]
+    assert floored["hit_rate"] > capped["hit_rate"]
+    assert capped["override_fraction_of_actions"] > 2 * floored["override_fraction_of_actions"]
+
+
 if __name__ == "__main__":
     for name, fn in sorted(globals().items()):
         if name.startswith("test_") and callable(fn):

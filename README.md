@@ -28,6 +28,10 @@ strand or by role. The rest of this README walks the role axis.
 Four synthesis documents and one runnable prototype take the tree from a set of claims toward a
 buildable, honestly-scoped artifact. Read them in this order:
 
+- **[INTENT_OVERRIDE.md](INTENT_OVERRIDE.md)** — the risk categorized from the motor up: a four-rung
+  ladder from an agent mechanically triggering a *movement* the user did not intend (rung 0, where ground
+  truth is clean) to decision/value override (rung 3), with the accidental mechanism (misalignment, proxy
+  over-optimization, honeypotting) as the driver. The entry point.
 - **[DEVICE.md](DEVICE.md)** — SENTINEL, the defensive closed-loop guardian the evidence actually
   supports (the "pull" recipe in hardware), not the read-and-steer attack device the evidence refutes.
 - **[RED_TEAM.md](RED_TEAM.md)** — the adversarial self-review: which claims break under scrutiny (the
@@ -131,7 +135,7 @@ link by link in [**INDEX.md**](INDEX.md).
 | [`learner-tampering`](experiments/influence/learner-tampering) | Can an agent earn reward by reshaping how a learner learns? | Synthetic learner, absorption identity, steering detector. |
 | [`individuation-mcmc`](experiments/influence/individuation-mcmc) | Can a person's decision parameters and learning rule be inferred from behavior, well enough to individuate and to predict how they would be steered? | Hierarchical Bayesian DDM-reduction (analytic WFPT likelihood, NUTS), reversal-bandit learning rule, parameter-recovery and out-of-sample individuation gates, Lean-verified well-posedness. Simulation only. |
 | [`learning-rule-fusion`](experiments/influence/learning-rule-fusion) | What does multimodal biosignal fusion add for inferring a learning rule? | Calibrated environment with Lean-verified fusion math. |
-| [`sentinel-pilot`](experiments/influence/sentinel-pilot) | Can the monitor+governor run end-to-end on a digital twin, and do the conceptual claims hold as code? | **The first runnable prototype of the defensive device.** A bistable decision twin, a closed-loop flag that detects read-before-drive at matched amplitude (index 0.0 vs 1.05 bits), and a governor sweep reproducing barrier-floor-beats-dose-cap (0.04 vs 0.34). Simulation only; numpy; ~3 s; 4 tests. |
+| [`sentinel-pilot`](experiments/influence/sentinel-pilot) | Can the monitor+governor run end-to-end on digital twins across two rungs of the intent-override ladder? | **The first runnable prototype of the defensive device.** Rung 0 (mechanical actuation override): proxy over-optimization manufactures movements the user didn't intend (override 0.02→0.83; honeypot→1.00), a stream-only monitor tracks it (0.00 vs 0.84), and an intent-evidence floor beats a throughput cap. Rung 3 (decision override): closed-loop flag 0.0 vs 1.05 bits; barrier-floor 0.04 vs dose-cap 0.34. Simulation only; numpy; 7 tests. |
 
 ## How the pieces connect
 

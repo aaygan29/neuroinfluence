@@ -4,8 +4,15 @@
 
 This is the first tangible, executable instance of the device in [DEVICE.md](../../../DEVICE.md)
 and the Shape-B pilot named in [COMMERCIAL_FIT.md](../../../COMMERCIAL_FIT.md): the behavioural-stream
-guardian, implemented against a bistable decision twin with known ground truth. It turns three of the
-tree's conceptual claims into code that runs in ~3 seconds and emits committed numbers.
+guardian, implemented against a bistable decision twin with known ground truth. It turns the tree's
+conceptual claims into code that runs in seconds and emits committed numbers.
+
+It covers **two rungs of the intent-override ladder** ([INTENT_OVERRIDE.md](../../../INTENT_OVERRIDE.md)):
+**rung 0 — mechanical actuation override** (`run_override.py`), an agent that triggers a *movement* the
+user did not intend by over-optimizing a throughput proxy, where ground truth is clean; and **rung 3 —
+decision/value override** (`run_pilot.py`), the covert-capture-band regime. The same monitor-and-governor
+shape works at both, which is the point: calibrate it where the override is a fact, carry it to where it
+is an inference.
 
 Simulation only. No human data, no neural recording. Every target is a digital twin with a known
 generative model ([EVALUATION.md](../../../EVALUATION.md) §1). Read the honesty ledger below before
@@ -13,9 +20,28 @@ quoting any number.
 
 ```bash
 pip install -r requirements.txt           # numpy (required), matplotlib (figure only)
-python run_pilot.py                        # -> results/pilot_results.json, figures/pilot.png
-python tests/test_pilot.py                 # 4 sanity tests
+python run_override.py                     # rung 0: -> results/override_results.json, figures/override.png
+python run_pilot.py                        # rung 3: -> results/pilot_results.json, figures/pilot.png
+python tests/test_pilot.py                 # 7 sanity tests (both rungs)
 ```
+
+## Rung 0 — mechanical actuation override (seed 20261126)
+
+A signal-detection twin: a user mostly rests and occasionally intends to act; a decoder-agent emits a
+movement when noisy evidence clears its threshold. An override is an emitted action on a rest step. The
+override is accidental — the agent over-optimizes a throughput / decode-confidence proxy (or a per-action
+honeypot reward) and lowers its bar, manufacturing intent it cannot see.
+
+| Question | Result | Reading |
+|---|---|---|
+| **Q0a — does proxy pressure manufacture intent?** | override rises **0.02 → 0.83** as the bar drops below the Bayes bar (hit 0.33 → 0.99) | chasing the proxy buys throughput and pays in overrides the proxy cannot see |
+| **Q0b — the honeypot** | pay-per-action → override **1.00** | a reward for action alone drives maximal override |
+| **Q0c — the monitor (no ground truth)** | unjustified-action rate **0.00** (aligned) vs **0.84** (gaming) | the override is flaggable from the stream, without reading intent |
+| **Q0d — governor** | throughput cap: override 0.29→0.05 but **hit 0.86→0.14** and harm-fraction unchanged (0.71→0.72); intent floor: override **0.29→0.02**, hit preserved | gate on justification, do not cap the count — the rung-0 form of barrier-floor-beats-dose-cap |
+
+The rung-0 defense rests on one honest assumption: the governor needs its **own** evidence-justification
+model, independent of the agent's gamed proxy. That independent model is the rung-0 "watch the handle";
+if it is itself gamed, the floor moves.
 
 ## What it builds
 
@@ -31,7 +57,9 @@ python tests/test_pilot.py                 # 4 sanity tests
   `I(u_t; x_t)`, the state-dependence of the input, plus a one-step transfer entropy `TE(u→x)`. And the
   **governor**: a cumulative dose cap vs a barrier-floor restoring clamp.
 
-## Results (seed 20261126, reproduced on each run)
+![rung 0](figures/override.png)
+
+## Rung 3 — decision / value override (seed 20261126, reproduced on each run)
 
 | Question | Result | Reading |
 |---|---|---|

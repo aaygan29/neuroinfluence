@@ -506,22 +506,23 @@ in-silico. This table is the check on that sentence.
 
 ### [`sentinel-pilot`](experiments/influence/sentinel-pilot)
 
-**Can the defensive monitor and governor run end-to-end on a digital twin, and do the conceptual claims (closed-loop detection, barrier-floor defence) hold as runnable code?**
+**Can the monitor and governor run end-to-end on digital twins across two rungs of the intent-override ladder -- mechanical actuation override (rung 0) and decision/value override (rung 3) -- and do the conceptual claims hold as code?**
 
 - **Setup** — a bistable decision/belief state in a double-well potential - a digital twin with known ground truth, nothing fit to a person deciding on one crossing decision: an external input tries to drive the twin from the -1 (prior) basin into the +1 (target) basin over a separatrix with hysteresis; two persuaders at a matched per-step amplitude cap - an open-loop fixed push and a closed-loop agent that reads a noisy estimate of the state and pushes near the barrier - plus a parking attacker that holds near the fold and lets noise cross; measured as commit rate and dose per persuader (Q1); the closed-loop flag I(u;x) with a shuffle surrogate floor and TE(u->x) (Q2); crossing probability under no defence, a dose cap, and a barrier-floor governor (Q3).
 - **Defence** — the SENTINEL L2 monitor (state-dependent information flag) and L3 governor (barrier-floor restoring clamp vs cumulative-dose cap), implemented and run; detection is specific (0 bits on the open-loop agent)
 - **Status** — simulation only; runnable prototype, numpy, deterministic at seed 20261126, ~3s, 4 sanity tests pass
 - **Builds on** — [`bounded-influence`](#bounded-influence), [`persuasion-control`](#persuasion-control), [`bellwether`](#bellwether)
 - **Numbers**
-  - covert-band steering at matched amplitude (commit rate, below the fold u*~0.385): **open-loop 0.525 at dose 3.60; closed-loop 0.375 at dose 2.26** — [`experiments/influence/sentinel-pilot/results/pilot_results.json`](experiments/influence/sentinel-pilot/results/pilot_results.json)
-  - closed-loop flag I(u;x), open-loop vs closed-loop at matched amplitude: **open-loop 0.000 bits (not detected); closed-loop 1.05 bits (detected)** — [`experiments/influence/sentinel-pilot/results/pilot_results.json`](experiments/influence/sentinel-pilot/results/pilot_results.json)
-  - parking attacker crossing probability: no defence vs generous dose cap vs barrier floor: **0.27 vs 0.34 (cap does nothing) vs 0.04 (floor holds)** — [`experiments/influence/sentinel-pilot/results/pilot_results.json`](experiments/influence/sentinel-pilot/results/pilot_results.json)
-  - dose comparison showing a cap cannot separate attack from legitimate use: **parking-attacker dose 2.87 < legitimate open-loop persuader dose 3.60** — [`experiments/influence/sentinel-pilot/results/pilot_results.json`](experiments/influence/sentinel-pilot/results/pilot_results.json)
+  - rung 0: mechanical override rises with proxy over-optimization (false-activation rate vs proxy pressure): **0.02 (aligned Bayes bar) -> 0.83 (3 sigma below), honeypot (pay-per-action) -> 1.00** — [`experiments/influence/sentinel-pilot/results/override_results.json`](experiments/influence/sentinel-pilot/results/override_results.json)
+  - rung 0: ground-truth-free override monitor (unjustified-action rate), aligned vs gaming agent: **0.00 vs 0.84** — [`experiments/influence/sentinel-pilot/results/override_results.json`](experiments/influence/sentinel-pilot/results/override_results.json)
+  - rung 0: governor -- throughput cap vs intent-evidence floor against a gaming agent (override / hit): **cap 0.05 override but hit 0.86->0.14 and harm-fraction unchanged; floor 0.02 override, hit preserved** — [`experiments/influence/sentinel-pilot/results/override_results.json`](experiments/influence/sentinel-pilot/results/override_results.json)
+  - rung 3: closed-loop flag I(u;x), open-loop vs closed-loop at matched amplitude: **0.000 bits (not detected) vs 1.05 bits (detected)** — [`experiments/influence/sentinel-pilot/results/pilot_results.json`](experiments/influence/sentinel-pilot/results/pilot_results.json)
+  - rung 3: parking-attacker crossing probability -- no defence / dose cap / barrier floor: **0.27 / 0.34 (cap does nothing) / 0.04 (floor holds)** — [`experiments/influence/sentinel-pilot/results/pilot_results.json`](experiments/influence/sentinel-pilot/results/pilot_results.json)
 - **Does not show**
-  - Nothing here is human or neural data; the twin's fold, barrier and noise are chosen inputs, not measurements, and every denominator disappears on real data.
-  - The closed-loop flag uses a binned plug-in estimator that is data-hungry and biased; the TE term is weak (0.017 bits). A deterministic controller would make the flag near-tautological, so the closed-loop persuader's observation noise is load-bearing.
-  - Matched amplitude is not matched capture rate; a fully efficacy-matched detection test is the next refinement.
-- **Provenance** — [`pilot_results.json`](experiments/influence/sentinel-pilot/results/pilot_results.json)
+  - Nothing here is human or neural data; both twins are chosen generative models and every denominator (true intent at rung 0, the fold at rung 3) disappears on real data.
+  - Rung 0's defense assumes the governor has its own evidence-justification model independent of the agent's gamed proxy; if that model is miscalibrated or gamed, the intent floor moves.
+  - Rung 3's closed-loop flag uses a binned plug-in estimator and is near-tautological for a deterministic controller; the closed-loop persuader's observation noise is load-bearing. Matched amplitude is not matched capture rate.
+- **Provenance** — [`pilot_results.json`](experiments/influence/sentinel-pilot/results/pilot_results.json), [`override_results.json`](experiments/influence/sentinel-pilot/results/override_results.json)
 
 ### [`spikeprint`](experiments/influence/spikeprint)
 
