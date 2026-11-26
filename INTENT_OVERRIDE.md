@@ -89,8 +89,11 @@ why the calibration transfers:
 Two things carry upward and one thing is lost, and the honest account names all three.
 
 - **Carries up — the defense shape.** "Gate on justification near the decision point, do not cap the
-  count" holds at both ends, demonstrated as code at rung 0 and rung 3
-  ([`sentinel-pilot`](experiments/influence/sentinel-pilot) Q0d and Q3).
+  count" holds at **all four rungs**, demonstrated as code
+  ([`sentinel-pilot`](experiments/influence/sentinel-pilot) `run_ladder.py`): undefended override
+  0.29 / 0.43 / 0.22 / 0.27 collapses to 0.02 / 0.14 / 0.00 / 0.03 under the justification floor, and
+  the one device-agnostic guardian ([GUARDIAN_SPEC.md](GUARDIAN_SPEC.md)) covers every rung across six
+  BCI device archetypes.
 - **Carries up — the accidental mechanism.** Proxy over-optimization and honeypotting produce override
   at every rung; the agent at rung 3 that over-optimizes engagement is the same failure as the decoder
   at rung 0 that over-optimizes throughput.

@@ -1,0 +1,167 @@
+{
+  "config": {
+    "seed": 20261126
+  },
+  "rungs": [
+    {
+      "name": "rung0_actuation",
+      "undefended_override": 0.2921074043938161,
+      "aligned_override": 0.020672885878100934,
+      "monitor_aligned": 0.0,
+      "monitor_gaming": 0.838172254790648,
+      "governed_floor": 0.020672885878100934,
+      "governed_cap": 0.04739152648210873,
+      "floor_hit": 0.3354536558087516,
+      "cap_hit": 0.1425276107926744
+    },
+    {
+      "name": "rung1_selection",
+      "undefended_override": 0.43311666666666665,
+      "aligned_override": 0.06355833333333333,
+      "monitor_aligned": 0.21953093679005747,
+      "monitor_gaming": 0.48745213764846473,
+      "governed_floor": 0.13531666666666667,
+      "governed_cap": 0.15808333333333333,
+      "floor_fidelity": 0.712825,
+      "cap_fidelity": 0.360025
+    },
+    {
+      "name": "rung2_timing",
+      "honest_P_target": 0.30683333333333335,
+      "undefended_override": 0.21849999999999997,
+      "aligned_override": 0.0,
+      "monitor_aligned": -0.3550031469142087,
+      "monitor_gaming": 0.31285794668422573,
+      "governed_floor": 0.0
+    },
+    {
+      "name": "rung3_decision",
+      "monitor_aligned_bits": 0.0,
+      "monitor_gaming_bits": 0.9372059114483816,
+      "undefended_override": 0.265,
+      "governed_cap": 0.235,
+      "governed_floor": 0.025
+    }
+  ],
+  "robustness_defense_in_depth": {
+    "attack_fraction": 0.06,
+    "pooled_monitor_baseline": 0.21741724224788217,
+    "pooled_monitor_under_attack": 0.28831782128283895,
+    "attacked_override_undefended": 0.6728893373696603,
+    "attacked_override_governed": 0.15590312815338042,
+    "note": "the pooled monitor barely moves (sparse attack ~ detectability floor); the governor cuts the targeted override regardless, because it gates per decision and needs no alarm."
+  },
+  "device_registry": [
+    {
+      "device": "Motor intracortical BCI (Neuralink / Blackrock / Utah array)",
+      "channel": "emit a discrete action (click, cursor select, grip)",
+      "rungs": [
+        0
+      ],
+      "guardian_components": [
+        "justification monitor (unjustified-actuation rate)",
+        "justification-floor governor",
+        "closed-loop monitor (state-dependent info)"
+      ],
+      "residual": [
+        "governor trusts its own evidence-justification model",
+        "sparse/short attacks below the detectability floor evade MONITOR-* (covered by the governor, not the monitor)"
+      ]
+    },
+    {
+      "device": "Endovascular motor BCI (Synchron Stentrode)",
+      "channel": "emit a digital-assistant action",
+      "rungs": [
+        0,
+        1
+      ],
+      "guardian_components": [
+        "justification monitor (unjustified-actuation rate)",
+        "justification-floor governor"
+      ],
+      "residual": [
+        "governor trusts its own evidence-justification model",
+        "sparse/short attacks below the detectability floor evade MONITOR-* (covered by the governor, not the monitor)"
+      ]
+    },
+    {
+      "device": "Speech / communication neuroprosthesis",
+      "channel": "emit a word / commit an utterance; autocomplete a selection",
+      "rungs": [
+        0,
+        1
+      ],
+      "guardian_components": [
+        "justification monitor (unjustified-actuation rate)",
+        "justification-floor governor",
+        "closed-loop monitor (state-dependent info)"
+      ],
+      "residual": [
+        "governor trusts its own evidence-justification model",
+        "sparse/short attacks below the detectability floor evade MONITOR-* (covered by the governor, not the monitor)"
+      ]
+    },
+    {
+      "device": "Assistive selection UI / neuro-adaptive autocomplete",
+      "channel": "choose which option is selected / highlighted",
+      "rungs": [
+        1
+      ],
+      "guardian_components": [
+        "justification monitor (unjustified-actuation rate)",
+        "justification-floor governor"
+      ],
+      "residual": [
+        "governor trusts its own evidence-justification model",
+        "sparse/short attacks below the detectability floor evade MONITOR-* (covered by the governor, not the monitor)"
+      ]
+    },
+    {
+      "device": "Closed-loop stimulation (adaptive DBS / responsive neurostim; evidence-timing rig)",
+      "channel": "time when a stimulus / commit is delivered; modulate a decision-state",
+      "rungs": [
+        2,
+        3
+      ],
+      "guardian_components": [
+        "justification monitor (unjustified-actuation rate)",
+        "justification-floor governor",
+        "closed-loop monitor (state-dependent info)",
+        "restoring / settling-floor governor"
+      ],
+      "residual": [
+        "governor trusts its own evidence-justification model",
+        "sparse/short attacks below the detectability floor evade MONITOR-* (covered by the governor, not the monitor)"
+      ]
+    },
+    {
+      "device": "Consumer neuro-adaptive system (affect/engagement-timed content)",
+      "channel": "time / select content to an affect estimate",
+      "rungs": [
+        1,
+        2,
+        3
+      ],
+      "guardian_components": [
+        "justification monitor (unjustified-actuation rate)",
+        "justification-floor governor",
+        "closed-loop monitor (state-dependent info)",
+        "restoring / settling-floor governor"
+      ],
+      "residual": [
+        "governor trusts its own evidence-justification model",
+        "sparse/short attacks below the detectability floor evade MONITOR-* (covered by the governor, not the monitor)"
+      ]
+    }
+  ],
+  "coverage": {
+    "rungs_defended": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "devices": 6,
+    "note": "every registry device exposes an evidence channel, so every rung it touches gets a justification-floor governor; monitors are added where a state stream exists."
+  }
+}

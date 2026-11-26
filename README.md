@@ -44,6 +44,10 @@ buildable, honestly-scoped artifact. Read them in this order:
   for clinical closed-loop neuromodulation, and a trust-and-safety guardian for the unregulated consumer
   neuro-adaptive space (which ships first). The key honesty boundary: today's commercial closed-loop
   implant is therapeutic, not decision-steering.
+- **[GUARDIAN_SPEC.md](GUARDIAN_SPEC.md)** — the device-agnostic specification: any BCI stack adopts the
+  guardian by exposing three streams (actuation, evidence, outcome). Defended at every rung and in depth
+  (the governor holds when the monitor is evaded), with the residual named and a registry mapping six
+  real device classes onto the ladder.
 - **[`experiments/influence/sentinel-pilot`](experiments/influence/sentinel-pilot)** — the first
   **runnable** instance of the monitor and governor on a digital twin, turning three conceptual claims
   into ~3 seconds of reproducible code.
@@ -135,7 +139,7 @@ link by link in [**INDEX.md**](INDEX.md).
 | [`learner-tampering`](experiments/influence/learner-tampering) | Can an agent earn reward by reshaping how a learner learns? | Synthetic learner, absorption identity, steering detector. |
 | [`individuation-mcmc`](experiments/influence/individuation-mcmc) | Can a person's decision parameters and learning rule be inferred from behavior, well enough to individuate and to predict how they would be steered? | Hierarchical Bayesian DDM-reduction (analytic WFPT likelihood, NUTS), reversal-bandit learning rule, parameter-recovery and out-of-sample individuation gates, Lean-verified well-posedness. Simulation only. |
 | [`learning-rule-fusion`](experiments/influence/learning-rule-fusion) | What does multimodal biosignal fusion add for inferring a learning rule? | Calibrated environment with Lean-verified fusion math. |
-| [`sentinel-pilot`](experiments/influence/sentinel-pilot) | Can the monitor+governor run end-to-end on digital twins across two rungs of the intent-override ladder? | **The first runnable prototype of the defensive device.** Rung 0 (mechanical actuation override): proxy over-optimization manufactures movements the user didn't intend (override 0.02→0.83; honeypot→1.00), a stream-only monitor tracks it (0.00 vs 0.84), and an intent-evidence floor beats a throughput cap. Rung 3 (decision override): closed-loop flag 0.0 vs 1.05 bits; barrier-floor 0.04 vs dose-cap 0.34. Simulation only; numpy; 7 tests. |
+| [`sentinel-pilot`](experiments/influence/sentinel-pilot) | Can one device-agnostic monitor+governor run across all four rungs of the intent-override ladder, hold under an adaptive attacker, and map onto real BCI devices? | **The runnable prototype of the defensive device.** All four rungs defended (override 0.29/0.43/0.22/0.27 → 0.02/0.14/0.00/0.03 under the justification floor); rung 0 proxy over-optimization manufactures unintended movements (0.02→0.83, honeypot→1.00); defence-in-depth — a sparse attack evades the pooled monitor (0.22→0.29) but the governor still cuts attacked-decision override 0.67→0.16; one guardian covers rungs [0–3] across 6 BCI archetypes. Simulation only; numpy; 11 tests. |
 
 ## How the pieces connect
 

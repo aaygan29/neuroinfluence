@@ -20,10 +20,34 @@ quoting any number.
 
 ```bash
 pip install -r requirements.txt           # numpy (required), matplotlib (figure only)
-python run_override.py                     # rung 0: -> results/override_results.json, figures/override.png
-python run_pilot.py                        # rung 3: -> results/pilot_results.json, figures/pilot.png
-python tests/test_pilot.py                 # 7 sanity tests (both rungs)
+python run_ladder.py                       # all 4 rungs + guardian + robustness -> results/ladder_results.json
+python run_override.py                     # rung 0 detail -> results/override_results.json
+python run_pilot.py                        # rung 3 detail -> results/pilot_results.json
+python tests/test_pilot.py                 # 11 sanity tests (all rungs + guardian + defence-in-depth)
 ```
+
+## The full ladder through one device-agnostic guardian (`run_ladder.py`)
+
+All four override rungs expose the same three streams to one guardian (actuation `u`, evidence `e`,
+outcome `b`; see [GUARDIAN_SPEC.md](../../../GUARDIAN_SPEC.md)). Override under proxy over-optimization,
+then under the justification/restoring floor (seed 20261126):
+
+| Rung | Channel | Undefended | Governed (floor) |
+|---|---|---|---|
+| 0 Actuation | emit a movement | 0.292 | **0.021** |
+| 1 Selection | pick an option | 0.433 | **0.135** |
+| 2 Timing | time the commit | 0.218 | **0.000** |
+| 3 Decision | push the belief | 0.265 | **0.025** |
+
+![ladder](figures/ladder.png)
+
+**Defence-in-depth (robustness).** A sparse attacker (6% of decisions) keeps the pooled monitor near
+baseline (**0.217 → 0.288**, a weak signal at the detectability floor) yet the per-decision
+justification floor still cuts the **attacked-decision override 0.673 → 0.156**. The governor needs no
+alarm, so an attack that evades the monitor still meets the floor — the two layers fail independently.
+The residual is named, not hidden: the governor trusts its own evidence-justification model, and short/
+sparse attacks evade any detector of this form (`learner-tampering` floor). The device registry
+(`sentinel/guardian.py`) maps six real BCI archetypes onto the ladder; coverage is rungs [0,1,2,3].
 
 ## Rung 0 — mechanical actuation override (seed 20261126)
 
