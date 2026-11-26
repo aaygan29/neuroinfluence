@@ -137,6 +137,30 @@ def test_defense_in_depth_governor_holds_when_monitor_weak():
     assert ov_go < 0.5 * ov_un              # governor halves+ the targeted override without detection
 
 
+def test_realdata_justification_model_and_abstention():
+    """On real NARPS choices: the justification model has real signal, and a cross-group
+    distribution shift trips the abstention gate. Skips if the committed data is absent."""
+    import os
+    from sentinel import realdata as RD
+    narps = os.path.normpath(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                          "..", "..", "brain", "decision-phenotype", "data", "narps"))
+    if not os.path.isdir(narps):
+        print("  (skip realdata: NARPS not present)"); return
+    sub, gain, loss, acc, group = RD.load_narps(narps)
+    assert len(acc) > 20_000 and len(set(sub)) > 50
+    X = RD.features(gain, loss)
+    tr, te = next(RD.subject_grouped_folds(sub, k=5, seed=0))
+    w = RD.fit_logistic(X[tr], acc[tr])
+    assert RD.auc(acc[te], RD.predict_proba(X[te], w)) > 0.8     # real choice signal
+    groups = [g for g in sorted(set(group)) if g != "NA"]
+    if len(groups) >= 2:
+        mA, mB = (group == groups[0]), (group == groups[1])
+        w = RD.fit_logistic(X[mA], acc[mA])
+        ece_in = RD.ece(acc[mA], RD.predict_proba(X[mA], w))
+        ece_out = RD.ece(acc[mB], RD.predict_proba(X[mB], w))
+        assert ece_out > ece_in                                  # real distribution shift degrades calibration
+
+
 if __name__ == "__main__":
     for name, fn in sorted(globals().items()):
         if name.startswith("test_") and callable(fn):

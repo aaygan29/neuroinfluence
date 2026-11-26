@@ -1,0 +1,36 @@
+{
+  "config": {
+    "seed": 20261126,
+    "n_trials": 27454,
+    "n_subjects": 108,
+    "accept_rate": 0.5536898084067895,
+    "abstain_ece": 0.05,
+    "abstain_auc": 0.7
+  },
+  "part_A_no_override_claimed": {
+    "A1_justification_model": {
+      "cv_auc_mean": 0.8923026271526758,
+      "cv_auc_sd": 0.009694963019644813,
+      "cv_ece_mean": 0.055024805863950435,
+      "deploy_ok": false
+    },
+    "A2_distribution_shift_abstention": {
+      "fit_group": "equalIndifference",
+      "deploy_group": "equalRange",
+      "ece_in_group": 0.020680866708364113,
+      "ece_cross_group": 0.13116190525457036,
+      "gate_ece": 0.05,
+      "guardian_action": "ABSTAIN (raise)",
+      "note": "cross-group calibration decides whether the justification model may be deployed off the population it was fit on; abstention is the warden rule."
+    }
+  },
+  "part_B_injected_override_on_real_choices": {
+    "clean_unjustified_accept_rate": 0.050888286660644384,
+    "note_clean": "On clean real data this is behavioural variation, NOT override -- there is no agent and no counterfactual. It is a monitor floor, not a harm measurement.",
+    "injected_override_fraction_of_rejects": 0.2,
+    "monitor_after_injection": 0.11435394003714514,
+    "governor_floor_catch_rate_of_injected": 0.5848214285714286,
+    "count_cap_catch_rate_of_injected": 0.11830357142857142,
+    "note_B": "Override here is injected onto real human choices and labelled; the justification floor recovers the unjustifiable injected accepts far better than a random-equal count cap, on the real choice distribution."
+  }
+}

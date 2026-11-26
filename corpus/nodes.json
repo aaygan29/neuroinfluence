@@ -1316,10 +1316,10 @@
       "manipulation": "two persuaders at a matched per-step amplitude cap - an open-loop fixed push and a closed-loop agent that reads a noisy estimate of the state and pushes near the barrier - plus a parking attacker that holds near the fold and lets noise cross",
       "readout": "commit rate and dose per persuader (Q1); the closed-loop flag I(u;x) with a shuffle surrogate floor and TE(u->x) (Q2); crossing probability under no defence, a dose cap, and a barrier-floor governor (Q3)",
       "defence": "the SENTINEL L2 monitor (state-dependent information flag) and L3 governor (barrier-floor restoring clamp vs cumulative-dose cap), implemented and run; detection is specific (0 bits on the open-loop agent)",
-      "substrate": "simulation",
+      "substrate": "simulation+public-data",
       "strand": "T",
-      "human_data": false,
-      "status": "simulation only; runnable prototype, numpy, deterministic at seed 20261126, ~3s, 4 sanity tests pass",
+      "human_data": true,
+      "status": "simulation across all four override rungs plus a real-data harness on NARPS (27,454 human choices, 108 subjects); deterministic; 12 tests pass",
       "key_numbers": [
         {
           "what": "override at every rung: undefended -> governed by the justification/restoring floor",
@@ -1345,18 +1345,36 @@
           "what": "device-agnostic coverage across the guardian registry",
           "value": "rungs defended [0,1,2,3] across 6 BCI device archetypes",
           "source": "experiments/influence/sentinel-pilot/results/ladder_results.json"
+        },
+        {
+          "what": "real-data justification model P(accept|gain,loss), subject-grouped CV (NARPS, 27,454 trials)",
+          "value": "AUC 0.892 +/- 0.010; CV ECE 0.055 (just over the 0.05 gate, so not certified deployable)",
+          "source": "experiments/influence/sentinel-pilot/results/realworld_results.json"
+        },
+        {
+          "what": "guardian abstention under a real distribution shift (NARPS framing groups)",
+          "value": "in-group ECE 0.021 vs cross-group ECE 0.131 -> guardian raises Abstain",
+          "source": "experiments/influence/sentinel-pilot/results/realworld_results.json"
+        },
+        {
+          "what": "injected-override recovery on real choices: justification floor vs count cap",
+          "value": "floor 0.58 vs count cap 0.12 of injected overrides caught; clean-data monitor 0.051 is behavioural variation, NOT override",
+          "source": "experiments/influence/sentinel-pilot/results/realworld_results.json"
         }
       ],
       "caveats": [
         "Nothing here is human or neural data; all twins are chosen generative models and every denominator (true intent/preference/settled state/fold) disappears on real data.",
         "The governor at every rung trusts its own independent evidence-justification model; if that model is miscalibrated or itself gamed, the floor moves. This is the named residual.",
         "The monitors are evadable: short/sparse attacks sit below the detectability floor (learner-tampering) and the closed-loop estimator is data-hungry. The governor, not the monitor, carries the guarantee; a device exposing no evidence channel gets monitoring only.",
-        "Matched amplitude is not matched efficacy; rung-2 override is reported as attacker minus honest target-reads."
+        "Matched amplitude is not matched efficacy; rung-2 override is reported as attacker minus honest target-reads.",
+        "On real human choices there is no counterfactual, so NO override number is claimed on clean data; the Part-B override is injected and labelled, and the clean-data monitor rate is behavioural variation, not harm.",
+        "NARPS is behavioural choice only (no neural data, no manipulation condition in the source); the justification model is a logistic P(accept|gain,loss) and the abstention gate (ECE/AUC thresholds) is a chosen operating point."
       ],
       "provenance_files": [
         "experiments/influence/sentinel-pilot/results/ladder_results.json",
         "experiments/influence/sentinel-pilot/results/override_results.json",
-        "experiments/influence/sentinel-pilot/results/pilot_results.json"
+        "experiments/influence/sentinel-pilot/results/pilot_results.json",
+        "experiments/influence/sentinel-pilot/results/realworld_results.json"
       ],
       "depends_on": [
         "bounded-influence",

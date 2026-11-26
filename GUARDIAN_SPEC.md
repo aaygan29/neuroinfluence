@@ -103,6 +103,18 @@ Adoption is: expose `u`, `e`, `b`; the guardian attaches the monitors and the fl
 support; the residual for that device is reported, not hidden. That is the whole integration surface —
 no device-specific defence, and the same honesty ledger on every one.
 
+## 6b. On real data, without ground truth
+
+The spec is exercised on real human choices (NARPS mixed gambles, 27,454 trials, 108 subjects;
+`run_realworld.py`), where the ground-truth denominator disappears. The guardian behaves as the spec
+requires: it fits the evidence-justification model from data (subject-grouped CV AUC **0.892**), and
+**abstains** under a real population shift (cross-group calibration error **0.131** vs a 0.05 gate)
+rather than emitting. Where an override is injected onto the real choices and labelled, the
+justification floor recovers it far better than a count cap (**0.58 vs 0.12**). On clean real data no
+override number is claimed — there is no counterfactual, so the monitor signal is behavioural
+variation, not harm. This is the spec's abstention rule doing its job on real behaviour: the guardian
+refuses to manufacture the denominator it lost.
+
 ## 7. Where this sits
 
 - Instantiates [DEVICE.md](DEVICE.md) (SENTINEL) and [INTENT_OVERRIDE.md](INTENT_OVERRIDE.md) (the

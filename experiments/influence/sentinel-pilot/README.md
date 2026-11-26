@@ -49,6 +49,33 @@ The residual is named, not hidden: the governor trusts its own evidence-justific
 sparse attacks evade any detector of this form (`learner-tampering` floor). The device registry
 (`sentinel/guardian.py`) maps six real BCI archetypes onto the ladder; coverage is rungs [0,1,2,3].
 
+## On real human choices, without ground truth (`run_realworld.py`)
+
+The twins have ground truth (true intent, the fold); real choices do not. This is the honest bridge:
+the guardian must build its justification model from data, validate it out-of-sample, and **abstain**
+when it cannot. Run on the committed **NARPS mixed-gambles** data (real human accept/reject choices,
+**27,454 trials, 108 subjects**; `sentinel/realdata.py`, numpy only).
+
+**Part A — pure real data, no override claimed.**
+- The evidence-justification model `P(accept | gain, loss)` reaches **subject-grouped CV AUC 0.892**
+  (±0.010) — real choice signal — but CV ECE 0.055 sits just over the 0.05 calibration gate, so the
+  guardian does **not** certify it deployable (`deploy_ok=false`). Conservative by design.
+- **Abstention under a real distribution shift:** fit on one NARPS framing group, deploy on the other
+  → in-group ECE **0.021**, cross-group ECE **0.131** (6× worse) → the guardian **raises `Abstain`**
+  rather than emitting. A real population shift correctly trips the warden gate.
+
+**Part B — real choices + a known injected override (clearly labelled semi-synthetic).** An agent
+over-optimizing acceptance flips 20% of real reject-choices to accept. The unjustified-choice monitor
+rises (0.051 → 0.114), and the justification floor recovers **58%** of the injected overrides versus
+**12%** for a random count cap (~5×), on the real choice distribution. The floor catches the egregious
+overrides (accepting clearly-bad gambles) and leaves the marginal ones — the correct conservative
+behaviour.
+
+**The honest limit, stated in the code:** on clean real data the monitor signal is behavioural
+variation, **not override** — there is no agent and no counterfactual, so no override number is
+claimed. Override is measurable only where it is injected and labelled. That is exactly the denominator
+that disappears off the twins, and the guardian is built to abstain rather than manufacture it.
+
 ## Rung 0 — mechanical actuation override (seed 20261126)
 
 A signal-detection twin: a user mostly rests and occasionally intends to act; a decoder-agent emits a
