@@ -1,0 +1,61 @@
+{
+  "config": {
+    "seed": 20261126
+  },
+  "M1_ome_evidence_to_action": {
+    "psychometric_auc": 0.7627832868681839,
+    "P_correct_by_loud": {
+      "35": 0.5261146496815287,
+      "40": 0.6679151061173533,
+      "45": 0.7376861397479955,
+      "50": 0.9485213581599123,
+      "55": 0.9624352331606217,
+      "65": 0.9615384615384616
+    },
+    "justified_threshold_loud_at_0.75": 42.537688442211056,
+    "abstain_fit_coherent_deploy_incoherent": {
+      "ece_in": 0.09142410655913065,
+      "ece_cross": 0.17964899413871985,
+      "gate": 0.05,
+      "guardian_action": "ABSTAIN (raise)"
+    },
+    "low_evidence_action_reliability": 0.5977301387137453,
+    "note": "at/under 40 dB the response is near chance -- an action there is barely justified by the stimulus; the justification floor sits at the real threshold (~loud for P=0.75)."
+  },
+  "M2_sleepstudy_motor_timing": {
+    "mean_RT_by_day": {
+      "0": 256.6518055555555,
+      "1": 264.4957555555555,
+      "2": 265.36190000000005,
+      "3": 282.99201111111114,
+      "4": 288.6494222222222,
+      "5": 308.51845555555553,
+      "6": 312.17825555555555,
+      "7": 318.75058333333334,
+      "8": 336.62950555555557,
+      "9": 350.8512222222223
+    },
+    "sensorimotor_floor_ms": 200.0,
+    "real_actions_below_readiness_floor": 0.011111111111111112,
+    "pushed_actions_flagged_by_RT": 1.0,
+    "note": "A pushed action has a timing fingerprint. Real reaction times essentially never fall below the per-subject readiness band; an injected automatic push (RT < sensorimotor floor) is flagged almost always. RT-plausibility is a motor justification axis the content-only monitor does not have."
+  },
+  "M3_fishing_selection": {
+    "choice_model_accuracy": 0.4213197969543147,
+    "chance": 0.3824027072758037,
+    "margin_over_chance": 0.038917089678510985,
+    "beta_price": -1.175132107617622,
+    "beta_catch": 0.343863307415946,
+    "guardian_action": "ABSTAIN (justification model too weak)",
+    "abstain_note": "price/catch alone barely beat always-charter, so the justification model cannot reliably say which choices are unjustified; the guardian abstains rather than police selections on a weak model. This is the correct outcome.",
+    "income_shift_check": {
+      "acc_in_lowincome": 0.37675070028011204,
+      "acc_cross_highincome": 0.4658119658119658
+    },
+    "injected_override_recovery": {
+      "justification_floor": 0.5342465753424658,
+      "count_cap": 0.4315068493150685,
+      "note": "floor still beats the count cap, but the weak model limits the gain -- consistent with the abstain call."
+    }
+  }
+}

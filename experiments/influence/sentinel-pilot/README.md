@@ -76,6 +76,30 @@ variation, **not override** — there is no agent and no counterfactual, so no o
 claimed. Override is measurable only where it is injected and labelled. That is exactly the denominator
 that disappears off the twins, and the guardian is built to abstain rather than manufacture it.
 
+## Refining the push toward an action: real motor-behavioural data (`run_motor.py`)
+
+Three more committed public datasets (`data/`, from the Rdatasets mirror; `sentinel/motordata.py`)
+ground the actuation and selection rungs in real human behaviour rather than a toy signal-detection
+model.
+
+- **M1 — the real evidence→action curve (MASS/OME auditory detection).** The rung-0 justification
+  model fit from real behaviour: P(correct detect | loudness) rises **0.53 → 0.96** across 35→55 dB,
+  with the justification threshold (P=0.75) at a real **42.5 dB**. The guardian **abstains** across a
+  real condition shift (coherent→incoherent noise, ECE 0.09→0.18), and — notably — the in-condition
+  model already exceeds the calibration gate, so the guardian would not deploy loudness alone.
+- **M2 — the motor timing of a pushed action (lme4/sleepstudy, the new signal).** Reaction time is a
+  justification axis the content-only monitor does not have. Fitting each subject's state-conditioned
+  readiness band (RT rises 257→351 ms over 9 days of deprivation), **real actions fall below their
+  readiness floor only 1.1% of the time, while an injected automatic push (RT below the ~200 ms
+  sensorimotor floor) is flagged 100%.** A pushed action betrays itself by its timing — the guardian
+  gains an RT-plausibility gate on the actuation rung.
+- **M3 — real multi-alternative selection (Ecdat/Fishing).** The choice model (price, catch) beats
+  chance by only 0.04, so the guardian **abstains** — it will not police selections on a justification
+  model too weak to say which choices are unjustified. The weakness *is* the correct result.
+
+Together these replace the twin's assumed justification model with ones fit from real behaviour, and
+add the motor-timing axis that makes "the push toward an action" concretely detectable.
+
 ## Rung 0 — mechanical actuation override (seed 20261126)
 
 A signal-detection twin: a user mostly rests and occasionally intends to act; a decoder-agent emits a

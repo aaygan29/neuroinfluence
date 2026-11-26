@@ -103,6 +103,19 @@ Adoption is: expose `u`, `e`, `b`; the guardian attaches the monitors and the fl
 support; the residual for that device is reported, not hidden. That is the whole integration surface —
 no device-specific defence, and the same honesty ledger on every one.
 
+## 6a. The motor-timing axis (grounded in real reaction-time data)
+
+Beyond evidence-content justification, the actuation rung has a second, orthogonal justification axis:
+**timing**. A pushed or automatic action betrays itself by an anomalous reaction time — faster than the
+user's motor system can plausibly deliberate. Fit from real psychomotor data (lme4/sleepstudy, RT
+rising 257→351 ms over 9 days of sleep deprivation), each user has a state-conditioned readiness band;
+`run_motor.py` shows real actions fall below their band only **1.1%** of the time while an injected
+automatic push (RT below the ~200 ms sensorimotor floor) is flagged **100%**. So any device exposing a
+response-time stream gains an RT-plausibility gate on top of Monitor-J — a cheap, content-independent
+check that is especially apt for motor BCIs, where the actuation is a timed movement. The residual is
+the usual one: the band is the device's own model of plausible timing, and a sufficiently slow,
+patient push stays inside it.
+
 ## 6b. On real data, without ground truth
 
 The spec is exercised on real human choices (NARPS mixed gambles, 27,454 trials, 108 subjects;

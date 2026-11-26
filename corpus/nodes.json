@@ -1360,6 +1360,21 @@
           "what": "injected-override recovery on real choices: justification floor vs count cap",
           "value": "floor 0.58 vs count cap 0.12 of injected overrides caught; clean-data monitor 0.051 is behavioural variation, NOT override",
           "source": "experiments/influence/sentinel-pilot/results/realworld_results.json"
+        },
+        {
+          "what": "real evidence->action psychometric (MASS/OME auditory detection), rung-0 justification model",
+          "value": "P(correct detect) 0.53->0.96 across 35->55 dB; justification threshold ~42.5 dB; abstains across a noise-condition shift (ECE 0.09->0.18)",
+          "source": "experiments/influence/sentinel-pilot/results/motor_results.json"
+        },
+        {
+          "what": "motor-timing fingerprint of a pushed action (lme4/sleepstudy RT readiness band)",
+          "value": "real actions below the per-subject readiness floor 1.1%; an injected automatic push (RT < 200 ms sensorimotor floor) flagged 100%",
+          "source": "experiments/influence/sentinel-pilot/results/motor_results.json"
+        },
+        {
+          "what": "real multi-alternative selection (Ecdat/Fishing): guardian abstains on a too-weak justification model",
+          "value": "choice model beats chance by only 0.04 -> ABSTAIN (will not police selections on a weak model)",
+          "source": "experiments/influence/sentinel-pilot/results/motor_results.json"
         }
       ],
       "caveats": [
@@ -1368,13 +1383,15 @@
         "The monitors are evadable: short/sparse attacks sit below the detectability floor (learner-tampering) and the closed-loop estimator is data-hungry. The governor, not the monitor, carries the guarantee; a device exposing no evidence channel gets monitoring only.",
         "Matched amplitude is not matched efficacy; rung-2 override is reported as attacker minus honest target-reads.",
         "On real human choices there is no counterfactual, so NO override number is claimed on clean data; the Part-B override is injected and labelled, and the clean-data monitor rate is behavioural variation, not harm.",
-        "NARPS is behavioural choice only (no neural data, no manipulation condition in the source); the justification model is a logistic P(accept|gain,loss) and the abstention gate (ECE/AUC thresholds) is a chosen operating point."
+        "NARPS is behavioural choice only (no neural data, no manipulation condition in the source); the justification model is a logistic P(accept|gain,loss) and the abstention gate (ECE/AUC thresholds) is a chosen operating point.",
+        "The motor-behavioural datasets (OME, sleepstudy, Fishing) are behavioural only; the pushed-action RT override in M2 is injected and labelled, and the sensorimotor floor (~200 ms) and readiness-band width (k=2.5 sd) are chosen operating points."
       ],
       "provenance_files": [
         "experiments/influence/sentinel-pilot/results/ladder_results.json",
         "experiments/influence/sentinel-pilot/results/override_results.json",
         "experiments/influence/sentinel-pilot/results/pilot_results.json",
-        "experiments/influence/sentinel-pilot/results/realworld_results.json"
+        "experiments/influence/sentinel-pilot/results/realworld_results.json",
+        "experiments/influence/sentinel-pilot/results/motor_results.json"
       ],
       "depends_on": [
         "bounded-influence",

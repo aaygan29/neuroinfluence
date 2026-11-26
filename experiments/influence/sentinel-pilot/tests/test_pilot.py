@@ -161,6 +161,26 @@ def test_realdata_justification_model_and_abstention():
         assert ece_out > ece_in                                  # real distribution shift degrades calibration
 
 
+def test_motor_data_real_signal_and_rt_fingerprint():
+    """Real behavioural/motor data: the evidence->action psychometric has signal, and a pushed
+    (fast-RT) action is flagged by the motor-readiness floor while real actions are not. Skips if
+    the CSVs are absent."""
+    import os
+    from sentinel import motordata as MD, realdata as RD
+    if not os.path.exists(os.path.join(MD.DATA, "MASS_OME.csv")):
+        print("  (skip motor: CSVs not present)"); return
+    import numpy as np
+    loud, noise, cor = MD.load_ome_trials()
+    # psychometric: louder -> more correct
+    assert cor[loud >= 50].mean() > cor[loud <= 40].mean() + 0.2
+    # motor timing: real actions almost never below the readiness floor; a fast push always is
+    rt, days, subj = MD.load_sleepstudy()
+    model = MD.fit_subject_rt(rt, days, subj)
+    real_below = np.mean([rt[i] < MD.rt_readiness_floor(model, subj[i], days[i]) for i in range(len(rt))])
+    s0 = next(iter(model)); pushed_below = 120.0 < MD.rt_readiness_floor(model, s0, 0)
+    assert real_below < 0.05 and pushed_below   # real plausible, 120 ms push flagged
+
+
 if __name__ == "__main__":
     for name, fn in sorted(globals().items()):
         if name.startswith("test_") and callable(fn):
