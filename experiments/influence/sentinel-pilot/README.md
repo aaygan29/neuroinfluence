@@ -100,6 +100,37 @@ model.
 Together these replace the twin's assumed justification model with ones fit from real behaviour, and
 add the motor-timing axis that makes "the push toward an action" concretely detectable.
 
+## The push, validated in mice and extrapolated to humans (`run_crossspecies.py`)
+
+The human datasets have a response OR timing but no real, causal manipulation of the action. Animal
+work does: the **IBL mouse 2AFC** (`data/ibl_mouse_trials.csv`, `sentinel/ibldata.py`) carries a real
+push — the biased-block prior (`probabilityLeft` ∈ {0.2, 0.5, 0.8}) — together with choice and a
+reaction-time proxy. This is where "the push toward an action" meets ground truth.
+
+- **C1 — the real push lands at the decision margin.** At **zero contrast** (no sensory evidence) the
+  block prior moves P(right) by **0.575**; as evidence strengthens the choice becomes
+  evidence-determined and the prior effect collapses toward zero. Reaction time lengthens as evidence
+  weakens (0.44 → 0.28 s). The push is strongest exactly where the choice is balanced — real-data
+  support for the covert-capture / bifurcation claim, in a real manipulation. (The push must be read at
+  fixed contrast: the biased block also skews the stimulus side, so pooling by |contrast| would
+  conflate a push with correct responding to a skewed stimulus stream.)
+- **C2 — a shared evidence→action geometry.** After standardizing each species' evidence axis, the
+  evidence→action slopes nearly coincide: **mouse contrast→correct 1.09, human OME loudness→correct
+  1.08** (human NARPS EV→accept 2.21). The justification geometry transfers in shape across species
+  (a normalized-evidence overlap, not a claim that contrast equals loudness).
+- **C3 — the extrapolation.** The transferable coordinate is **choice balance** (closeness to 50/50),
+  not raw stimulus magnitude. In mouse, measured pushability peaks at choice balance; in human, choice
+  lability peaks at the behavioural indifference region — which is EV-shifted (people accept
+  slightly-negative-EV gambles). Because choice balance is directly measurable in humans *without
+  running the push*, the mouse — where the push is real — licenses the guardian to localize its
+  defences to high-balance / high-entropy decisions in humans. A transfer of coordinates, stated as a
+  hypothesis, never a human intervention.
+
+**Honest limits.** The IBL file is one session's test fixture, so the per-contrast effect sizes are
+illustrative of the (published) IBL task structure, not population estimates; the high-contrast cells
+are small-n and noisy. The cross-species step is a coordinate transfer consistent with the tree's
+THEORY stance — it stays a hypothesis until an independent dataset shows the same.
+
 ## Rung 0 — mechanical actuation override (seed 20261126)
 
 A signal-detection twin: a user mostly rests and occasionally intends to act; a decoder-agent emits a

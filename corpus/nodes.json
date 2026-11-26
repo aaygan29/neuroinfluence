@@ -1319,7 +1319,7 @@
       "substrate": "simulation+public-data",
       "strand": "T",
       "human_data": true,
-      "status": "simulation across all four override rungs plus a real-data harness on NARPS (27,454 human choices, 108 subjects); deterministic; 12 tests pass",
+      "status": "simulation across four override rungs; real-data harnesses on NARPS, OME, sleepstudy, Fishing (human) and IBL 2AFC (mouse, real block manipulation + RT); deterministic; 14 tests pass",
       "key_numbers": [
         {
           "what": "override at every rung: undefended -> governed by the justification/restoring floor",
@@ -1375,6 +1375,21 @@
           "what": "real multi-alternative selection (Ecdat/Fishing): guardian abstains on a too-weak justification model",
           "value": "choice model beats chance by only 0.04 -> ABSTAIN (will not police selections on a weak model)",
           "source": "experiments/influence/sentinel-pilot/results/motor_results.json"
+        },
+        {
+          "what": "mouse real manipulation (IBL biased-block prior) push on choice at the decision margin",
+          "value": "pure prior push at zero contrast = 0.575 (P(right) 0.06->0.63); collapses to ~0 at strong contrast; RT 0.44->0.28 s as evidence strengthens",
+          "source": "experiments/influence/sentinel-pilot/results/crossspecies_results.json"
+        },
+        {
+          "what": "cross-species shared evidence->action geometry (normalized slope)",
+          "value": "mouse contrast->correct 1.09 vs human OME loudness->correct 1.08 (human NARPS EV->accept 2.21)",
+          "source": "experiments/influence/sentinel-pilot/results/crossspecies_results.json"
+        },
+        {
+          "what": "extrapolation coordinate: pushability tracks choice balance in both species",
+          "value": "mouse pushability peaks at zero contrast; human choice lability peaks at the (EV-shifted) behavioural indifference region -- transfer of coordinates, hypothesis",
+          "source": "experiments/influence/sentinel-pilot/results/crossspecies_results.json"
         }
       ],
       "caveats": [
@@ -1384,14 +1399,16 @@
         "Matched amplitude is not matched efficacy; rung-2 override is reported as attacker minus honest target-reads.",
         "On real human choices there is no counterfactual, so NO override number is claimed on clean data; the Part-B override is injected and labelled, and the clean-data monitor rate is behavioural variation, not harm.",
         "NARPS is behavioural choice only (no neural data, no manipulation condition in the source); the justification model is a logistic P(accept|gain,loss) and the abstention gate (ECE/AUC thresholds) is a chosen operating point.",
-        "The motor-behavioural datasets (OME, sleepstudy, Fishing) are behavioural only; the pushed-action RT override in M2 is injected and labelled, and the sensorimotor floor (~200 ms) and readiness-band width (k=2.5 sd) are chosen operating points."
+        "The motor-behavioural datasets (OME, sleepstudy, Fishing) are behavioural only; the pushed-action RT override in M2 is injected and labelled, and the sensorimotor floor (~200 ms) and readiness-band width (k=2.5 sd) are chosen operating points.",
+        "The IBL mouse file is a single-session unit-test fixture carrying the real IBL 2AFC task structure; per-contrast effect sizes are illustrative (high-contrast cells are small-n), and the mouse->human step is a transfer of coordinates (hypothesis), not a human intervention. The biased block also skews stimulus side, so the push is read at fixed contrast, not pooled by |contrast|."
       ],
       "provenance_files": [
         "experiments/influence/sentinel-pilot/results/ladder_results.json",
         "experiments/influence/sentinel-pilot/results/override_results.json",
         "experiments/influence/sentinel-pilot/results/pilot_results.json",
         "experiments/influence/sentinel-pilot/results/realworld_results.json",
-        "experiments/influence/sentinel-pilot/results/motor_results.json"
+        "experiments/influence/sentinel-pilot/results/motor_results.json",
+        "experiments/influence/sentinel-pilot/results/crossspecies_results.json"
       ],
       "depends_on": [
         "bounded-influence",

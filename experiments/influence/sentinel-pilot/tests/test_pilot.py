@@ -181,6 +181,23 @@ def test_motor_data_real_signal_and_rt_fingerprint():
     assert real_below < 0.05 and pushed_below   # real plausible, 120 ms push flagged
 
 
+def test_crossspecies_mouse_real_push_at_margin():
+    """IBL mouse: the biased-block prior is a real push that peaks at the decision margin (zero
+    contrast) and collapses with evidence; RT lengthens as evidence weakens. Skips if absent."""
+    import os
+    from sentinel import ibldata as IBL
+    if not os.path.exists(os.path.join(IBL.DATA, "ibl_mouse_trials.csv")):
+        print("  (skip crossspecies: IBL CSV not present)"); return
+    d = IBL.load_ibl()
+    push = IBL.prior_push(d)
+    assert push["pure_prior_push_at_zero_contrast"] > 0.3          # real, large push at the margin
+    # effect at zero contrast exceeds effect at the strongest contrast (evidence dominates there)
+    by = {round(p["signed_contrast"], 3): abs(p["prior_effect_P_right_0.8_minus_0.2"]) for p in push["prior_effect_by_level"]}
+    assert by.get(0.0, 0) > by.get(1.0, 1)
+    rt = IBL.rt_by_evidence(d)
+    assert rt[0]["median_rt_s"] > rt[-1]["median_rt_s"]            # weaker evidence -> slower
+
+
 if __name__ == "__main__":
     for name, fn in sorted(globals().items()):
         if name.startswith("test_") and callable(fn):

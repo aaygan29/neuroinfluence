@@ -1,0 +1,170 @@
+{
+  "C1_mouse_real_push": {
+    "n_trials": 500,
+    "pure_prior_push_at_zero_contrast": 0.5745098039215686,
+    "prior_effect_by_level": [
+      {
+        "signed_contrast": -0.25,
+        "prior_effect_P_right_0.8_minus_0.2": 0.09841269841269851,
+        "n_hi": 45,
+        "n_lo": 7
+      },
+      {
+        "signed_contrast": -0.125,
+        "prior_effect_P_right_0.8_minus_0.2": 0.18617021276595747,
+        "n_hi": 47,
+        "n_lo": 8
+      },
+      {
+        "signed_contrast": -0.062,
+        "prior_effect_P_right_0.8_minus_0.2": 0.49260042283298094,
+        "n_hi": 43,
+        "n_lo": 11
+      },
+      {
+        "signed_contrast": -0.0,
+        "prior_effect_P_right_0.8_minus_0.2": 0.5745098039215686,
+        "n_hi": 30,
+        "n_lo": 17
+      },
+      {
+        "signed_contrast": 0.062,
+        "prior_effect_P_right_0.8_minus_0.2": 0.30158730158730157,
+        "n_hi": 9,
+        "n_lo": 21
+      },
+      {
+        "signed_contrast": 0.125,
+        "prior_effect_P_right_0.8_minus_0.2": 0.0,
+        "n_hi": 13,
+        "n_lo": 26
+      },
+      {
+        "signed_contrast": 0.25,
+        "prior_effect_P_right_0.8_minus_0.2": 0.1532567049808429,
+        "n_hi": 9,
+        "n_lo": 29
+      },
+      {
+        "signed_contrast": 1.0,
+        "prior_effect_P_right_0.8_minus_0.2": 0.1111111111111111,
+        "n_hi": 9,
+        "n_lo": 30
+      }
+    ],
+    "rt_vs_evidence": [
+      {
+        "abs_contrast_bin": [
+          0.0,
+          0.05
+        ],
+        "median_rt_s": 0.4416999999999973,
+        "n": 57
+      },
+      {
+        "abs_contrast_bin": [
+          0.05,
+          0.2
+        ],
+        "median_rt_s": 0.3542166666666873,
+        "n": 218
+      },
+      {
+        "abs_contrast_bin": [
+          0.2,
+          0.6
+        ],
+        "median_rt_s": 0.3130166666666696,
+        "n": 110
+      },
+      {
+        "abs_contrast_bin": [
+          0.6,
+          1.01
+        ],
+        "median_rt_s": 0.28449999999998,
+        "n": 115
+      }
+    ],
+    "reading": "The biased-block prior is a real, causal push on the choice. At zero contrast (no sensory evidence) it moves P(right) by ~0.58; at strong contrast the choice is evidence-determined and the prior effect collapses toward zero. Reaction time lengthens as evidence weakens. The push lands at the decision margin -- real-data support for the covert-capture / bifurcation claim."
+  },
+  "C2_cross_species_merge": {
+    "normalized_evidence_to_action_slope": {
+      "mouse_contrast_to_correct": 1.0943830061106627,
+      "human_OME_loud_to_correct": 1.0804897802809845,
+      "human_NARPS_EV_to_accept": 2.208262182958826
+    },
+    "reading": "After standardizing each species' evidence axis, the evidence->action curves are all positive sigmoids of comparable steepness: a shared geometry. The mapping is a shape overlap (standardized evidence), not a claim that contrast equals loudness."
+  },
+  "C3_extrapolate_pushability": {
+    "mouse_pushability_vs_margin": [
+      {
+        "abs_contrast": 0.0,
+        "pushability": 1.0
+      },
+      {
+        "abs_contrast": 0.062,
+        "pushability": 0.8574273571495573
+      },
+      {
+        "abs_contrast": 0.062,
+        "pushability": 0.5249471802372826
+      },
+      {
+        "abs_contrast": 0.125,
+        "pushability": 0.32405054099193964
+      },
+      {
+        "abs_contrast": 0.125,
+        "pushability": 0.0
+      },
+      {
+        "abs_contrast": 0.25,
+        "pushability": 0.17129855355111345
+      },
+      {
+        "abs_contrast": 0.25,
+        "pushability": 0.2667608175434467
+      },
+      {
+        "abs_contrast": 1.0,
+        "pushability": 0.19340159271899887
+      }
+    ],
+    "human_lability_vs_margin": [
+      {
+        "abs_EV_band": [
+          0,
+          3
+        ],
+        "accept_rate": 0.8231783138522756,
+        "lability": 0.35364337229544884
+      },
+      {
+        "abs_EV_band": [
+          3,
+          8
+        ],
+        "accept_rate": 0.7740886530891665,
+        "lability": 0.45182269382166695
+      },
+      {
+        "abs_EV_band": [
+          8,
+          20
+        ],
+        "accept_rate": 0.5163005578800558,
+        "lability": 0.9673988842398884
+      },
+      {
+        "abs_EV_band": [
+          20,
+          60
+        ],
+        "accept_rate": 0.2361882968290291,
+        "lability": 0.4723765936580582
+      }
+    ],
+    "reading": "The shared proximity coordinate is CHOICE BALANCE (closeness to 50/50), not raw stimulus magnitude. In mouse, the measured prior push peaks at zero contrast, where the choice is balanced, and collapses as evidence makes the choice determined. In human, choice lability (1-|2p-1|) peaks at the behavioural indifference region -- which is EV-shifted (people accept slightly-negative-EV gambles, a real risk/loss attitude), so it sits at a mid-|EV| band, not at |EV|=0. The transferable claim is therefore: pushability tracks choice balance in both species. Because choice balance is directly measurable in humans WITHOUT running the push, the mouse (where the push is real) licenses the guardian to localize its defences to high-balance / high-entropy decisions in humans. This is a transfer of coordinates, stated as a hypothesis, never a human intervention result."
+  }
+}
