@@ -23,6 +23,27 @@ and it is the clean split between the AI work and the brain work:
 [SYNTHESIS.md](SYNTHESIS.md) is the one-page map of this split; [INDEX.md](INDEX.md) lets you navigate by
 strand or by role. The rest of this README walks the role axis.
 
+## From conceptual to tangible: device, critique, commercial fit
+
+Four synthesis documents and one runnable prototype take the tree from a set of claims toward a
+buildable, honestly-scoped artifact. Read them in this order:
+
+- **[DEVICE.md](DEVICE.md)** — SENTINEL, the defensive closed-loop guardian the evidence actually
+  supports (the "pull" recipe in hardware), not the read-and-steer attack device the evidence refutes.
+- **[RED_TEAM.md](RED_TEAM.md)** — the adversarial self-review: which claims break under scrutiny (the
+  Lean proofs are valid but near-tautological; the steering numbers are simulation), the five-item
+  robust core, and the Gramian-mismatch thesis as the conceptual contribution.
+- **[EXTENSIONS.md](EXTENSIONS.md)** — research directions and the BCI interface: mapping SENTINEL onto
+  the 2025–26 BCI stack, and the sharpest next experiment (run the unrun early-warning kill criterion on
+  seizure iEEG, a neural bifurcation with uncontested ground truth).
+- **[COMMERCIAL_FIT.md](COMMERCIAL_FIT.md)** — where it plugs into the real industry: an assurance layer
+  for clinical closed-loop neuromodulation, and a trust-and-safety guardian for the unregulated consumer
+  neuro-adaptive space (which ships first). The key honesty boundary: today's commercial closed-loop
+  implant is therapeutic, not decision-steering.
+- **[`experiments/influence/sentinel-pilot`](experiments/influence/sentinel-pilot)** — the first
+  **runnable** instance of the monitor and governor on a digital twin, turning three conceptual claims
+  into ~3 seconds of reproducible code.
+
 ## The chain
 
 The thing this tree is about is not three separate findings. It is one chain, and each link is a
@@ -110,6 +131,7 @@ link by link in [**INDEX.md**](INDEX.md).
 | [`learner-tampering`](experiments/influence/learner-tampering) | Can an agent earn reward by reshaping how a learner learns? | Synthetic learner, absorption identity, steering detector. |
 | [`individuation-mcmc`](experiments/influence/individuation-mcmc) | Can a person's decision parameters and learning rule be inferred from behavior, well enough to individuate and to predict how they would be steered? | Hierarchical Bayesian DDM-reduction (analytic WFPT likelihood, NUTS), reversal-bandit learning rule, parameter-recovery and out-of-sample individuation gates, Lean-verified well-posedness. Simulation only. |
 | [`learning-rule-fusion`](experiments/influence/learning-rule-fusion) | What does multimodal biosignal fusion add for inferring a learning rule? | Calibrated environment with Lean-verified fusion math. |
+| [`sentinel-pilot`](experiments/influence/sentinel-pilot) | Can the monitor+governor run end-to-end on a digital twin, and do the conceptual claims hold as code? | **The first runnable prototype of the defensive device.** A bistable decision twin, a closed-loop flag that detects read-before-drive at matched amplitude (index 0.0 vs 1.05 bits), and a governor sweep reproducing barrier-floor-beats-dose-cap (0.04 vs 0.34). Simulation only; numpy; ~3 s; 4 tests. |
 
 ## How the pieces connect
 

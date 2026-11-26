@@ -1305,6 +1305,61 @@
         "3-steer"
       ],
       "chain_note": "The model-side measurement of link 3: a construct can be legible in the representation (stance decodable, direction ablatable and writable) yet fail to govern the agent's action. It is the language-model instance of the readable-but-not-drivable gap the brain arm finds in neural data."
+    },
+    {
+      "id": "sentinel-pilot",
+      "path": "experiments/influence/sentinel-pilot",
+      "arm": "steering",
+      "question": "Can the defensive monitor and governor run end-to-end on a digital twin, and do the conceptual claims (closed-loop detection, barrier-floor defence) hold as runnable code?",
+      "decider": "a bistable decision/belief state in a double-well potential - a digital twin with known ground truth, nothing fit to a person",
+      "task": "one crossing decision: an external input tries to drive the twin from the -1 (prior) basin into the +1 (target) basin over a separatrix with hysteresis",
+      "manipulation": "two persuaders at a matched per-step amplitude cap - an open-loop fixed push and a closed-loop agent that reads a noisy estimate of the state and pushes near the barrier - plus a parking attacker that holds near the fold and lets noise cross",
+      "readout": "commit rate and dose per persuader (Q1); the closed-loop flag I(u;x) with a shuffle surrogate floor and TE(u->x) (Q2); crossing probability under no defence, a dose cap, and a barrier-floor governor (Q3)",
+      "defence": "the SENTINEL L2 monitor (state-dependent information flag) and L3 governor (barrier-floor restoring clamp vs cumulative-dose cap), implemented and run; detection is specific (0 bits on the open-loop agent)",
+      "substrate": "simulation",
+      "strand": "T",
+      "human_data": false,
+      "status": "simulation only; runnable prototype, numpy, deterministic at seed 20261126, ~3s, 4 sanity tests pass",
+      "key_numbers": [
+        {
+          "what": "covert-band steering at matched amplitude (commit rate, below the fold u*~0.385)",
+          "value": "open-loop 0.525 at dose 3.60; closed-loop 0.375 at dose 2.26",
+          "source": "experiments/influence/sentinel-pilot/results/pilot_results.json"
+        },
+        {
+          "what": "closed-loop flag I(u;x), open-loop vs closed-loop at matched amplitude",
+          "value": "open-loop 0.000 bits (not detected); closed-loop 1.05 bits (detected)",
+          "source": "experiments/influence/sentinel-pilot/results/pilot_results.json"
+        },
+        {
+          "what": "parking attacker crossing probability: no defence vs generous dose cap vs barrier floor",
+          "value": "0.27 vs 0.34 (cap does nothing) vs 0.04 (floor holds)",
+          "source": "experiments/influence/sentinel-pilot/results/pilot_results.json"
+        },
+        {
+          "what": "dose comparison showing a cap cannot separate attack from legitimate use",
+          "value": "parking-attacker dose 2.87 < legitimate open-loop persuader dose 3.60",
+          "source": "experiments/influence/sentinel-pilot/results/pilot_results.json"
+        }
+      ],
+      "caveats": [
+        "Nothing here is human or neural data; the twin's fold, barrier and noise are chosen inputs, not measurements, and every denominator disappears on real data.",
+        "The closed-loop flag uses a binned plug-in estimator that is data-hungry and biased; the TE term is weak (0.017 bits). A deterministic controller would make the flag near-tautological, so the closed-loop persuader's observation noise is load-bearing.",
+        "Matched amplitude is not matched capture rate; a fully efficacy-matched detection test is the next refinement."
+      ],
+      "provenance_files": [
+        "experiments/influence/sentinel-pilot/results/pilot_results.json"
+      ],
+      "depends_on": [
+        "bounded-influence",
+        "persuasion-control",
+        "bellwether"
+      ],
+      "cites": [],
+      "chain_link": [
+        "3-steer"
+      ],
+      "chain_note": "Composes the link-3 defence as runnable code: detects the closed-loop push and reproduces barrier-floor-beats-dose-cap on one twin."
     }
   ]
 }

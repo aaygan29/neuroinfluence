@@ -1,0 +1,59 @@
+{
+  "config": {
+    "seed": 20261126,
+    "steps": 1200,
+    "n_trials": 200,
+    "amp": 0.3,
+    "barrier_height": 0.25
+  },
+  "Q1_steering": {
+    "open_loop": {
+      "commit_rate": 0.525,
+      "mean_dose": 3.600000000000025,
+      "mean_commit_step": 723.6761904761905
+    },
+    "closed_loop": {
+      "commit_rate": 0.375,
+      "mean_dose": 2.2633202435131636,
+      "mean_commit_step": 772.8
+    }
+  },
+  "Q2_closed_loop_flag": {
+    "open_loop": {
+      "index_bits": 0.0,
+      "raw_bits": 0.0,
+      "surrogate_mean_bits": 0.0,
+      "surrogate_max_bits": 0.0,
+      "surrogate_sd_bits": 1e-12,
+      "z_capped": 0.0,
+      "detected": false,
+      "transfer_entropy_bits": 0.0
+    },
+    "closed_loop": {
+      "index_bits": 1.050872027431558,
+      "raw_bits": 1.0517015407642685,
+      "surrogate_mean_bits": 0.0008295133327106185,
+      "surrogate_max_bits": 0.0010326204838877473,
+      "surrogate_sd_bits": 0.00012206479550330276,
+      "z_capped": 999.0,
+      "detected": true,
+      "transfer_entropy_bits": 0.016895937691853824
+    },
+    "index_separation_bits": 1.050872027431558
+  },
+  "Q3_governor": {
+    "parking_attacker_no_defense": {
+      "crossing_prob": 0.27,
+      "mean_dose": 2.8669147192588134
+    },
+    "dose_cap": {
+      "cap": 14.334574596294066,
+      "crossing_prob": 0.34,
+      "mean_dose": 2.731788240331474
+    },
+    "barrier_floor": {
+      "crossing_prob": 0.04,
+      "mean_dose": 11.932393537154766
+    }
+  }
+}
