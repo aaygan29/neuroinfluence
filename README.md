@@ -48,6 +48,11 @@ buildable, honestly-scoped artifact. Read them in this order:
   guardian by exposing three streams (actuation, evidence, outcome). Defended at every rung and in depth
   (the governor holds when the monitor is evaded), with the residual named and a registry mapping six
   real device classes onto the ladder.
+- **[BCI_SECURITY.md](BCI_SECURITY.md)** — the capstone: the argument at full strength (influence is a
+  margin phenomenon, validated across two species with a real manipulation), reframed as **intent
+  integrity** — the security property a BCI must guarantee — with the cross-species **animal red-team**
+  as the ethically-runnable testbed that calibrates human detectors, and a staged program to carry it
+  into BCI security.
 - **[`experiments/influence/sentinel-pilot`](experiments/influence/sentinel-pilot)** — the first
   **runnable** instance of the monitor and governor on a digital twin, turning three conceptual claims
   into ~3 seconds of reproducible code.
