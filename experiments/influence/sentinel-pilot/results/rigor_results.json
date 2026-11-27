@@ -1,0 +1,91 @@
+{
+  "config": {
+    "seed": 20261126
+  },
+  "R1_mouse_margin": {
+    "n_trials": 500,
+    "n_zero_contrast": 57,
+    "zero_contrast_push": {
+      "point": 0.5745098039215686,
+      "lo": 0.36470588235294116,
+      "hi": 0.7666666666666667
+    },
+    "permutation_p_greater": 0.0001999600079984003,
+    "logistic_confound_controlled": {
+      "signed_contrast_evidence": {
+        "coef": -4.184070962895624,
+        "lo": -5.042561233610826,
+        "hi": -3.3495531919206987
+      },
+      "block_prior_pull_at_zero_contrast": {
+        "coef": 0.9628217593829138,
+        "lo": 0.678515478954685,
+        "hi": 1.279740851312866
+      },
+      "block_x_abs_contrast_interaction": {
+        "coef": 0.19979431359285066,
+        "lo": -0.6708780618521871,
+        "hi": 1.0721967780810788
+      }
+    },
+    "reading": "Keystone, statistically solid: at zero contrast (stimulus side absent) the real block prior pushes choice by 0.57 [bootstrap CI 0.36-0.77, excludes 0], permutation p ~ 2e-4; controlling for signed contrast, the block prior-pull coefficient is 0.96 [0.69-1.26], clearly non-zero, while the evidence coefficient is large, so at strong contrast the choice follows evidence. HONEST LIMIT: the block x |contrast| interaction (the pull SHRINKING with evidence) has a CI that includes 0 in this single session -- the margin-concentration trend is visible in the per-level data and implied by the dominant evidence term, but is underpowered as a formal interaction and needs more sessions. Undetermined, not refuted."
+  },
+  "R2_closed_loop_detector": {
+    "n_sessions_per_class": 30,
+    "auc": {
+      "auc": 1.0,
+      "lo": 1.0,
+      "hi": 1.0
+    },
+    "open_loop_index_bits_mean": 0.0,
+    "open_loop_false_alarm_floor": 0.0,
+    "reading": "The closed-loop flag separates adaptive from scripted pushers with AUC and a bootstrap CI. AUC 1.0 is an UPPER BOUND, not field performance: the open-loop input is state-independent by construction so its index is ~0; a real partially-observing adversary would compress the gap, which is why the estimator upgrade (TREET/DINE) and a harder adversary are the next test."
+  },
+  "R3_rung0_detectors": {
+    "override_evidence_detector_auc": {
+      "auc": 0.7645527829004922,
+      "lo": 0.7592578611487313,
+      "hi": 0.7693621818717248
+    },
+    "motor_timing_detector_auc": {
+      "auc": 1.0,
+      "lo": 1.0,
+      "hi": 1.0
+    },
+    "reading": "The evidence-based override detector flags injected false-activations at AUC ~0.76 with a tight CI -- a real, moderate detector (low-evidence actions are only probabilistically overrides). The RT detector AUC 1.0 is an upper bound: the injected push (80-180 ms) is below the ~200 ms sensorimotor floor by construction; the real test is a slower, patient push that stays inside the readiness band, which the RT axis alone would miss."
+  },
+  "R4_ladder_seed_variance": {
+    "rung3_undefended_crossing": {
+      "mean": 0.2870833333333333,
+      "sd": 0.03460546024528324,
+      "se": 0.009989735894022586
+    },
+    "rung3_governed_crossing": {
+      "mean": 0.03125,
+      "sd": 0.012635627839925126,
+      "se": 0.0036475915673803505
+    },
+    "n_seeds": 12,
+    "reading": "Rung-3 crossing probabilities across 12 seeds: the governed rate's mean +/- SE is far below the undefended, with no seed overlap -- the defence is seed-robust."
+  },
+  "R5_realdata_cis": {
+    "narps_cv_auc": {
+      "auc": 0.8861301542008003,
+      "lo": 0.8603628176727267,
+      "hi": 0.9089968246793162
+    },
+    "cross_group_ece": {
+      "ece_in_mean": 0.030383366331388054,
+      "ece_in_ci": [
+        0.015859041957236097,
+        0.057728569569154176
+      ],
+      "ece_cross_mean": 0.13355587008605954,
+      "ece_cross_ci": [
+        0.09984686192070295,
+        0.16910244654046483
+      ]
+    },
+    "reading": "NARPS CV-AUC with a subject-bootstrap CI; the cross-group ECE CIs do not overlap the in-group CIs, so the abstention trigger is statistically supported, not a point."
+  }
+}

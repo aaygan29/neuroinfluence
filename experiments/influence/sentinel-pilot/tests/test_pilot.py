@@ -198,6 +198,27 @@ def test_crossspecies_mouse_real_push_at_margin():
     assert rt[0]["median_rt_s"] > rt[-1]["median_rt_s"]            # weaker evidence -> slower
 
 
+def test_stats_helpers():
+    from sentinel import stats as ST
+    rng = np.random.default_rng(0)
+    assert abs(ST.roc_auc([1, 2, 3, 4], [0, 0, 1, 1]) - 1.0) < 1e-9
+    assert ST.permutation_test(rng.normal(3, 1, 150), rng.normal(0, 1, 150), n_perm=800, rng=rng)["p_value"] < 0.01
+    assert ST.permutation_test(rng.normal(0, 1, 150), rng.normal(0, 1, 150), n_perm=800, rng=rng)["p_value"] > 0.05
+    ci = ST.bootstrap_ci(rng.normal(5, 1, 400), rng=rng); assert ci["lo"] < 5 < ci["hi"]
+
+
+def test_rigor_mouse_push_significant():
+    """The mouse keystone survives a permutation null and a bootstrap CI. Skips if IBL data absent."""
+    import os
+    from sentinel import ibldata as IBL, stats as ST
+    if not os.path.exists(os.path.join(IBL.DATA, "ibl_mouse_trials.csv")):
+        print("  (skip rigor: IBL CSV not present)"); return
+    d = IBL.load_ibl(); sc = d["signed_contrast"]; pL = np.round(d["prob_left"], 2)
+    right = (d["choice"] > 0).astype(float); z = sc == 0
+    a = right[z & (pL == 0.8)]; b = right[z & (pL == 0.2)]
+    assert ST.permutation_test(a, b, n_perm=3000, rng=np.random.default_rng(1), tail="greater")["p_value"] < 0.01
+
+
 if __name__ == "__main__":
     for name, fn in sorted(globals().items()):
         if name.startswith("test_") and callable(fn):

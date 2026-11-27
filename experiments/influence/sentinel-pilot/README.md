@@ -100,6 +100,30 @@ model.
 Together these replace the twin's assumed justification model with ones fit from real behaviour, and
 add the motor-timing axis that makes "the push toward an action" concretely detectable.
 
+## Statistical rigor: CIs, nulls, seed variance, detector ROCs (`run_rigor.py`)
+
+The headline claims are characterized, not point estimates (numpy only, deterministic):
+
+- **R1 — the mouse keystone, tested.** The real block-prior push at zero contrast is **0.575, 95%
+  bootstrap CI [0.36, 0.77]**, permutation **p ≈ 2e-4**. Controlling for signed contrast (so the block's
+  stimulus-side skew is accounted for), the prior-pull coefficient is **0.96 [0.69, 1.28]** — clearly
+  non-zero. *Honest limit:* the block × |contrast| interaction (the pull *shrinking* with evidence) has
+  a CI that includes 0 in this single session — the margin-concentration is visible in the per-level
+  data and implied by the large evidence coefficient, but is underpowered as a formal interaction and
+  needs more sessions. Undetermined, not refuted.
+- **R2 — closed-loop flag as a detector.** AUC **1.0 [1.0, 1.0]** separating adaptive from scripted
+  pushers — an *upper bound*, since the open-loop input is state-independent by construction; a
+  partially-observing adversary and the TREET/DINE estimator upgrade are the next test.
+- **R3 — actuation-rung detectors.** The evidence-based override detector flags injected
+  false-activations at **AUC 0.76 [0.76, 0.77]** (a real, moderate detector). The RT detector is
+  **AUC 1.0** but that is an upper bound (the injected push is below the sensorimotor floor by
+  construction; a slow, patient push would evade the RT axis).
+- **R4 — seed variance.** Rung-3 crossing across 12 seeds: undefended **0.287 ± 0.010 (SE)** vs governed
+  **0.031 ± 0.004** — no overlap, seed-robust.
+- **R5 — real-data CIs.** NARPS CV-AUC **0.886 [0.860, 0.909]** (subject bootstrap); the abstention
+  trigger is statistically supported — in-group ECE **0.030 [0.016, 0.058]** vs cross-group **0.134
+  [0.100, 0.169]**, non-overlapping CIs.
+
 ## The push, validated in mice and extrapolated to humans (`run_crossspecies.py`)
 
 The human datasets have a response OR timing but no real, causal manipulation of the action. Animal

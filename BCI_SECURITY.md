@@ -21,9 +21,13 @@ stronger than a simulation.
 1. **Influence concentrates at the margin.** A push moves a choice most where the choice is balanced —
    at the bifurcation — and its effect collapses where evidence makes the choice determined. This is no
    longer only a property of a chosen potential: in the IBL mouse 2AFC, a **real** experimental
-   manipulation (the biased-block prior) shifts choice by **0.58 at zero contrast and toward zero at
-   full contrast** **[real-manipulation]**, and human choice lability peaks at the behavioural
-   indifference region **[shown]**. The margin is where a decision system is pushable, in two species.
+   manipulation (the biased-block prior) shifts choice at zero contrast by **0.575 [95% CI 0.36–0.77],
+   permutation p ≈ 2e-4**, with a confound-controlled prior-pull coefficient of **0.96 [0.69–1.28]**
+   **[real-manipulation]**, while at strong contrast the choice follows evidence; human choice lability
+   peaks at the behavioural indifference region **[shown]**. (Honestly: the formal "pull shrinks with
+   evidence" interaction is underpowered in a single session — undetermined, not refuted — so the
+   margin claim rests on the significant zero-evidence push plus the dominant evidence term, pending more
+   sessions.) The margin is where a decision system is pushable, in two species.
 
 2. **What must be bounded is not what is cheaply measured** — the Gramian mismatch. Observability (what
    a representation or signal reveals) and controllability (what an input can drive the behaviour to)

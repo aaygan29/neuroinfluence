@@ -1319,7 +1319,7 @@
       "substrate": "simulation+public-data",
       "strand": "T",
       "human_data": true,
-      "status": "simulation across four override rungs; real-data harnesses on NARPS, OME, sleepstudy, Fishing (human) and IBL 2AFC (mouse, real block manipulation + RT); deterministic; 14 tests pass",
+      "status": "simulation across four override rungs; real-data harnesses on NARPS/OME/sleepstudy/Fishing (human) and IBL 2AFC (mouse, real manipulation); headline claims carry bootstrap CIs, permutation nulls, seed variance and detector ROC/AUC; 16 tests pass",
       "key_numbers": [
         {
           "what": "override at every rung: undefended -> governed by the justification/restoring floor",
@@ -1378,7 +1378,7 @@
         },
         {
           "what": "mouse real manipulation (IBL biased-block prior) push on choice at the decision margin",
-          "value": "pure prior push at zero contrast = 0.575 (P(right) 0.06->0.63); collapses to ~0 at strong contrast; RT 0.44->0.28 s as evidence strengthens",
+          "value": "pure prior push at zero contrast 0.575 [95% CI 0.36-0.77], permutation p~2e-4; confound-controlled prior-pull coef 0.96 [0.69-1.28]; the shrink-with-evidence interaction CI includes 0 (underpowered, 1 session) -- undetermined, not refuted",
           "source": "experiments/influence/sentinel-pilot/results/crossspecies_results.json"
         },
         {
@@ -1390,6 +1390,16 @@
           "what": "extrapolation coordinate: pushability tracks choice balance in both species",
           "value": "mouse pushability peaks at zero contrast; human choice lability peaks at the (EV-shifted) behavioural indifference region -- transfer of coordinates, hypothesis",
           "source": "experiments/influence/sentinel-pilot/results/crossspecies_results.json"
+        },
+        {
+          "what": "detector characterization (ROC/AUC with bootstrap CI)",
+          "value": "rung-0 evidence override detector AUC 0.76 [0.76-0.77]; closed-loop flag AUC 1.0 (upper bound, open-loop state-independent by construction); RT detector AUC 1.0 (upper bound)",
+          "source": "experiments/influence/sentinel-pilot/results/rigor_results.json"
+        },
+        {
+          "what": "seed variance (12 seeds) and real-data CIs",
+          "value": "rung-3 crossing undefended 0.287+/-0.010 SE vs governed 0.031+/-0.004 (no overlap); NARPS CV-AUC 0.886 [0.86-0.91]; cross-group ECE 0.134 [0.10-0.17] vs in-group 0.030 [0.016-0.058], non-overlapping",
+          "source": "experiments/influence/sentinel-pilot/results/rigor_results.json"
         }
       ],
       "caveats": [
@@ -1400,7 +1410,8 @@
         "On real human choices there is no counterfactual, so NO override number is claimed on clean data; the Part-B override is injected and labelled, and the clean-data monitor rate is behavioural variation, not harm.",
         "NARPS is behavioural choice only (no neural data, no manipulation condition in the source); the justification model is a logistic P(accept|gain,loss) and the abstention gate (ECE/AUC thresholds) is a chosen operating point.",
         "The motor-behavioural datasets (OME, sleepstudy, Fishing) are behavioural only; the pushed-action RT override in M2 is injected and labelled, and the sensorimotor floor (~200 ms) and readiness-band width (k=2.5 sd) are chosen operating points.",
-        "The IBL mouse file is a single-session unit-test fixture carrying the real IBL 2AFC task structure; per-contrast effect sizes are illustrative (high-contrast cells are small-n), and the mouse->human step is a transfer of coordinates (hypothesis), not a human intervention. The biased block also skews stimulus side, so the push is read at fixed contrast, not pooled by |contrast|."
+        "The IBL mouse file is a single-session unit-test fixture carrying the real IBL 2AFC task structure; per-contrast effect sizes are illustrative (high-contrast cells are small-n), and the mouse->human step is a transfer of coordinates (hypothesis), not a human intervention. The biased block also skews stimulus side, so the push is read at fixed contrast, not pooled by |contrast|.",
+        "Two detector AUCs are 1.0 by construction (open-loop input is state-independent; injected RT pushes are below the sensorimotor floor), so they are upper bounds, not field performance; the mouse margin-shrinkage interaction is underpowered in a single session."
       ],
       "provenance_files": [
         "experiments/influence/sentinel-pilot/results/ladder_results.json",
@@ -1408,7 +1419,8 @@
         "experiments/influence/sentinel-pilot/results/pilot_results.json",
         "experiments/influence/sentinel-pilot/results/realworld_results.json",
         "experiments/influence/sentinel-pilot/results/motor_results.json",
-        "experiments/influence/sentinel-pilot/results/crossspecies_results.json"
+        "experiments/influence/sentinel-pilot/results/crossspecies_results.json",
+        "experiments/influence/sentinel-pilot/results/rigor_results.json"
       ],
       "depends_on": [
         "bounded-influence",
