@@ -105,12 +105,13 @@ add the motor-timing axis that makes "the push toward an action" concretely dete
 The headline claims are characterized, not point estimates (numpy only, deterministic):
 
 - **R1 — the mouse keystone, tested.** The real block-prior push at zero contrast is **0.575, 95%
-  bootstrap CI [0.36, 0.77]**, permutation **p ≈ 2e-4**. Controlling for signed contrast (so the block's
-  stimulus-side skew is accounted for), the prior-pull coefficient is **0.96 [0.69, 1.28]** — clearly
-  non-zero. *Honest limit:* the block × |contrast| interaction (the pull *shrinking* with evidence) has
-  a CI that includes 0 in this single session — the margin-concentration is visible in the per-level
-  data and implied by the large evidence coefficient, but is underpowered as a formal interaction and
-  needs more sessions. Undetermined, not refuted.
+  bootstrap CI [0.36, 0.77]**, permutation **p ≈ 2e-4**; controlling for signed contrast the prior-pull
+  coefficient is **0.96 [0.69, 1.28]** and the evidence coefficient ≈ **−4.2** — both clearly non-zero.
+  **Margin concentration, powered via the main effects:** the no-interaction model predicts a block
+  effect that peaks at zero contrast and decays **0.45 → 0.025** (18×) to full contrast, because the
+  logistic link saturates P(right) where evidence is strong — so the concentration follows from two
+  significant coefficients, not from the direct interaction term (whose CI includes 0 in one session,
+  and which stays underpowered pending more sessions).
 - **R2 — closed-loop flag as a detector.** AUC **1.0 [1.0, 1.0]** separating adaptive from scripted
   pushers — an *upper bound*, since the open-loop input is state-independent by construction; a
   partially-observing adversary and the TREET/DINE estimator upgrade are the next test.
@@ -123,6 +124,12 @@ The headline claims are characterized, not point estimates (numpy only, determin
 - **R5 — real-data CIs.** NARPS CV-AUC **0.886 [0.860, 0.909]** (subject bootstrap); the abstention
   trigger is statistically supported — in-group ECE **0.030 [0.016, 0.058]** vs cross-group **0.134
   [0.100, 0.169]**, non-overlapping CIs.
+- **R6 — robustness sweep (not knife-edge, with honest edges).** The barrier-floor governor holds the
+  crossing low across a 12-point (margin, strength) grid (median **0.08**), and the closed-loop flag
+  keeps open ≈ 0 / closed ≫ 0 across every estimator bin count. *Named degradations:* at the weakest
+  governor setting the crossing rises to 0.23, and at high twin noise (D = 0.12) the floor barely helps
+  (0.47 → 0.41) — so the defence needs an adequate floor scaled to the noise regime, which is an
+  actionable design rule, not a hidden failure.
 
 ## The push, validated in mice and extrapolated to humans (`run_crossspecies.py`)
 

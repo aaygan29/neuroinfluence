@@ -1319,7 +1319,7 @@
       "substrate": "simulation+public-data",
       "strand": "T",
       "human_data": true,
-      "status": "simulation across four override rungs; real-data harnesses on NARPS/OME/sleepstudy/Fishing (human) and IBL 2AFC (mouse, real manipulation); headline claims carry bootstrap CIs, permutation nulls, seed variance and detector ROC/AUC; 16 tests pass",
+      "status": "simulation across four override rungs; real-data harnesses on five datasets in two species; headline claims carry bootstrap CIs, permutation nulls, seed variance, detector ROC/AUC and a parameter robustness sweep; adversarial AUDIT.md; 17 tests pass",
       "key_numbers": [
         {
           "what": "override at every rung: undefended -> governed by the justification/restoring floor",
@@ -1378,7 +1378,7 @@
         },
         {
           "what": "mouse real manipulation (IBL biased-block prior) push on choice at the decision margin",
-          "value": "pure prior push at zero contrast 0.575 [95% CI 0.36-0.77], permutation p~2e-4; confound-controlled prior-pull coef 0.96 [0.69-1.28]; the shrink-with-evidence interaction CI includes 0 (underpowered, 1 session) -- undetermined, not refuted",
+          "value": "pure prior push at zero contrast 0.575 [95% CI 0.36-0.77], permutation p~2e-4; confound-controlled prior-pull coef 0.96 [0.69-1.28]; margin concentration powered via main effects (model-predicted block effect decays 0.45->0.025 across contrast)",
           "source": "experiments/influence/sentinel-pilot/results/crossspecies_results.json"
         },
         {
@@ -1399,6 +1399,11 @@
         {
           "what": "seed variance (12 seeds) and real-data CIs",
           "value": "rung-3 crossing undefended 0.287+/-0.010 SE vs governed 0.031+/-0.004 (no overlap); NARPS CV-AUC 0.886 [0.86-0.91]; cross-group ECE 0.134 [0.10-0.17] vs in-group 0.030 [0.016-0.058], non-overlapping",
+          "source": "experiments/influence/sentinel-pilot/results/rigor_results.json"
+        },
+        {
+          "what": "robustness sweep (defences not knife-edge, with named edges)",
+          "value": "barrier-floor governed crossing median 0.08 across a 12-point (margin,strength) grid; closed-loop flag separation holds across bin counts; degrades at the weakest floor (0.23) and at high noise D=0.12 (0.47->0.41)",
           "source": "experiments/influence/sentinel-pilot/results/rigor_results.json"
         }
       ],

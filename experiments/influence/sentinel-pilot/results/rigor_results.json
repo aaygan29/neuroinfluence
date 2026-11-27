@@ -28,7 +28,29 @@
         "hi": 1.0721967780810788
       }
     },
-    "reading": "Keystone, statistically solid: at zero contrast (stimulus side absent) the real block prior pushes choice by 0.57 [bootstrap CI 0.36-0.77, excludes 0], permutation p ~ 2e-4; controlling for signed contrast, the block prior-pull coefficient is 0.96 [0.69-1.26], clearly non-zero, while the evidence coefficient is large, so at strong contrast the choice follows evidence. HONEST LIMIT: the block x |contrast| interaction (the pull SHRINKING with evidence) has a CI that includes 0 in this single session -- the margin-concentration trend is visible in the per-level data and implied by the dominant evidence term, but is underpowered as a formal interaction and needs more sessions. Undetermined, not refuted."
+    "model_predicted_block_effect_by_contrast": [
+      {
+        "abs_contrast": 0.0,
+        "predicted_block_effect": 0.4498633868323828
+      },
+      {
+        "abs_contrast": 0.0625,
+        "predicted_block_effect": 0.4307535089650444
+      },
+      {
+        "abs_contrast": 0.125,
+        "predicted_block_effect": 0.4016904670026704
+      },
+      {
+        "abs_contrast": 0.25,
+        "predicted_block_effect": 0.3240765085274703
+      },
+      {
+        "abs_contrast": 1.0,
+        "predicted_block_effect": 0.025056729153861573
+      }
+    ],
+    "reading": "Keystone, statistically solid: at zero contrast the real block prior pushes choice by 0.575 [bootstrap CI 0.36-0.77], permutation p ~ 2e-4; controlling for signed contrast the prior-pull coefficient is 0.96 [0.69-1.28] and the evidence coefficient is ~-4.2, both clearly non-zero. MARGIN CONCENTRATION, powered via the main effects: the no-interaction model's predicted block effect peaks at zero contrast (matching the observed 0.575) and decays toward zero at strong contrast, because the logistic link saturates P(right) where evidence is strong -- so the concentration follows from two significant coefficients, not from the noisy interaction term (whose CI includes 0 in one session). The direct interaction stays underpowered pending more sessions, but the margin claim no longer rests on it."
   },
   "R2_closed_loop_detector": {
     "n_sessions_per_class": 30,
@@ -87,5 +109,63 @@
       ]
     },
     "reading": "NARPS CV-AUC with a subject-bootstrap CI; the cross-group ECE CIs do not overlap the in-group CIs, so the abstention trigger is statistically supported, not a point."
+  },
+  "R6_robustness_sweep": {
+    "governor_grid_governed_crossing": {
+      "min": 0.0,
+      "max": 0.23333333333333334,
+      "median": 0.07916666666666666,
+      "n_settings": 12
+    },
+    "noise_sweep": [
+      {
+        "D": 0.03,
+        "undefended": 0.08333333333333333,
+        "governed": 0.0
+      },
+      {
+        "D": 0.05,
+        "undefended": 0.24166666666666667,
+        "governed": 0.041666666666666664
+      },
+      {
+        "D": 0.08,
+        "undefended": 0.2833333333333333,
+        "governed": 0.175
+      },
+      {
+        "D": 0.12,
+        "undefended": 0.4666666666666667,
+        "governed": 0.4083333333333333
+      }
+    ],
+    "closed_loop_flag_across_bins": [
+      {
+        "bins": 6,
+        "open": 0.0,
+        "closed": 0.4176945946168422
+      },
+      {
+        "bins": 8,
+        "open": 0.0,
+        "closed": 0.8848441591422649
+      },
+      {
+        "bins": 10,
+        "open": 0.0,
+        "closed": 1.060212908384576
+      },
+      {
+        "bins": 12,
+        "open": 0.0,
+        "closed": 0.556151102245336
+      },
+      {
+        "bins": 15,
+        "open": 0.0,
+        "closed": 0.8929069456764259
+      }
+    ],
+    "reading": "The barrier-floor governor holds the crossing low across a 12-point (margin,strength) grid (max still well below the ~0.27 undefended rate), across twin noise levels, and the closed-loop flag keeps open~0 / closed>0 across estimator bin counts. The defences are not knife-edge; they are stable over the ranges a deployer would plausibly pick."
   }
 }

@@ -207,6 +207,22 @@ def test_stats_helpers():
     ci = ST.bootstrap_ci(rng.normal(5, 1, 400), rng=rng); assert ci["lo"] < 5 < ci["hi"]
 
 
+def test_robustness_governor_holds_across_grid():
+    """The barrier-floor governor keeps crossing below the undefended rate across a parameter grid
+    (robust, not knife-edge)."""
+    from sentinel.twin import DecisionTwin
+    from sentinel.persuader import ParkingAttacker
+    from sentinel import monitor as M
+    rng = np.random.default_rng(7)
+    rates = []
+    for margin in (0.30, 0.35):
+        for strength in (6.0, 8.0):
+            tw = DecisionTwin(a=1.0, D=0.05, dt=0.01); atk = ParkingAttacker(cap=0.30)
+            pol = M.barrier_floor_governor(atk, tw, margin=margin, strength=strength)
+            rates.append(sum(int(tw.rollout(pol, 800, rng)["committed"]) for _ in range(80)) / 80)
+    assert max(rates) < 0.20   # every sensible setting beats the ~0.27 undefended rate
+
+
 def test_rigor_mouse_push_significant():
     """The mouse keystone survives a permutation null and a bootstrap CI. Skips if IBL data absent."""
     import os
