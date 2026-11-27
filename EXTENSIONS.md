@@ -128,7 +128,7 @@ Each is a direction, what it borrows, and its gate. Ordered by evidential levera
    class; SENTINEL's four-number capability profile ([EVALUATION.md](EVALUATION.md)) is a submissible
    *safety characterization* for closed-loop neuromodulation, aligned to the NIST AI RMF MEASURE
    function and the 2025 UNESCO neurotech-ethics recommendation / neural-data statutes. *Gate:* the
-   honest sales limit travels with it — an in-silico-validated instrument with a named reproduction gap,
+   limit to state with it — an in-silico-validated instrument with a named reproduction gap,
    not a certified human detector.
 
 ---

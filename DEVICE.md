@@ -196,7 +196,7 @@ dual-use instrument defensive.
 
 ---
 
-## 5. What is demonstrated, what is hypothesis (the device's honesty ledger)
+## 5. What is demonstrated and what is hypothesis
 
 Carried verbatim in the spirit of [RISK_FRAMEWORK.md](RISK_FRAMEWORK.md) §7 — a device that inherits
 this corpus inherits its demonstrated-vs-hypothesis discipline.
@@ -273,7 +273,7 @@ The device lands into an active 2025–26 governance surface that it is built to
   ([EVALUATION.md](EVALUATION.md) §3) deliverable as applied research (SBIR/BAA-shaped); the L1/L2
   capability eval is a contribution to a national evaluation suite (NIST/CAISI, UK AISI).
 
-**The honest sales limit travels with the device:** what ships is a measurement-and-defense instrument
+The limit to state plainly: what ships is a measurement-and-defense instrument
 with in-silico validation and a named human-reproduction gap, not a certified human-manipulation
 detector. Overstating that is the one move [EVALUATION.md](EVALUATION.md) §6 says would sink it with a
 serious evaluator.

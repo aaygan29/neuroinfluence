@@ -1,18 +1,17 @@
 # Intent override: categorizing the risk from the motor up
 
-This document reframes the whole program from its most concrete and legible point. The risk the tree
-studies — an automated agent moving a decision the user did not choose — is easiest to see, measure,
-and defend not at the level of belief, but at the level of a **movement**. An agent that mechanically
-triggers an action the user did not intend is the rung-0 case: the override is a discrete physical
-event, the ground truth ("did the user intend this?") is answerable, and the failure is one an agent
-plausibly falls into by accident. We define the category here, show it runs as code
-([`sentinel-pilot`](experiments/influence/sentinel-pilot)), and then extrapolate the same structure
-inward to the decision-influence case the rest of the tree is about.
+This document frames the risk from its most concrete point. The risk the tree studies — an automated
+agent moving a decision the user did not choose — is easiest to measure and defend at the level of a
+movement rather than a belief. An agent that mechanically triggers an action the user did not intend is
+the rung-0 case: the override is a discrete physical event, "did the user intend this?" is answerable,
+and the failure is one an agent can reach by accident. We define the category, show it runs as code
+([`sentinel-pilot`](experiments/influence/sentinel-pilot)), and extrapolate the same structure inward to
+the decision-influence case the rest of the tree is about.
 
-The organizing claim: **actuation override and decision override are the same read-then-act failure,
-differing only in how far inward the override reaches.** Rung 0 is where the monitor and governor are
-calibrated, because it has ground truth; the higher rungs inherit a defense that was validated where
-the denominator exists.
+The organizing claim is that actuation override and decision override are the same read-then-act failure,
+differing only in how far inward the override reaches. Rung 0 is where the monitor and governor are
+calibrated, because it has ground truth; the higher rungs inherit a defence validated where the
+denominator exists.
 
 ## 1. The override is accidental, which is why it is realistic
 
@@ -68,10 +67,9 @@ numbers (seed 20261126):
   cuts the override back to the aligned level (0.29 → 0.02) while preserving the hits. Same shape as the
   decision-level result: **bound proximity-to-unjustified-action, not the action count.**
 
-The defense rests on one honest assumption, stated so it travels: the governor needs its **own
-evidence-justification model, independent of the agent's gamed proxy**. That independent model is the
-rung-0 form of "watch the handle, not the mind" — and if the governor's model is itself miscalibrated
-or gamed, the floor moves. Naming that assumption is what keeps the rung honest.
+The defence rests on one assumption: the governor needs its own evidence-justification model,
+independent of the agent's gamed proxy. That independent model is the rung-0 form of watching the handle
+rather than the mind; if the governor's model is itself miscalibrated or gamed, the floor moves.
 
 ## 4. The extrapolation inward
 
@@ -86,37 +84,33 @@ why the calibration transfers:
 | intent-evidence floor (governor) | barrier-floor governor | bound proximity, not cumulative count |
 | throughput cap that fails | dose cap that fails | capping the count is the wrong quantity |
 
-Two things carry upward and one thing is lost, and the honest account names all three.
+Two things carry upward and one is lost.
 
-- **Carries up — the defense shape.** "Gate on justification near the decision point, do not cap the
-  count" holds at **all four rungs**, demonstrated as code
-  ([`sentinel-pilot`](experiments/influence/sentinel-pilot) `run_ladder.py`): undefended override
-  0.29 / 0.43 / 0.22 / 0.27 collapses to 0.02 / 0.14 / 0.00 / 0.03 under the justification floor, and
-  the one device-agnostic guardian ([GUARDIAN_SPEC.md](GUARDIAN_SPEC.md)) covers every rung across six
-  BCI device archetypes.
-- **Carries up — the accidental mechanism.** Proxy over-optimization and honeypotting produce override
-  at every rung; the agent at rung 3 that over-optimizes engagement is the same failure as the decoder
-  at rung 0 that over-optimizes throughput.
-- **Lost going up — the denominator.** At rung 0 "did the user intend this movement" is answerable, so
-  the monitor and governor can be *validated*. At rung 3 the counterfactual ("what would the user have
-  chosen") is not directly observable, so the instrument must be **calibrated at rung 0 and carried up
-  with its abstention gate intact** ([`warden`](experiments/influence/warden)). This is the discipline
-  [RED_TEAM.md](RED_TEAM.md) demands: do not report a ground-truth-referenced number where the ground
-  truth has disappeared.
+- Carries up: the defence shape. "Gate on justification near the decision point, do not cap the count"
+  holds at all four rungs ([`sentinel-pilot`](experiments/influence/sentinel-pilot) `run_ladder.py`):
+  undefended override 0.29 / 0.43 / 0.22 / 0.27 drops to 0.02 / 0.14 / 0.00 / 0.03 under the
+  justification floor, and one device-agnostic guardian ([GUARDIAN_SPEC.md](GUARDIAN_SPEC.md)) covers
+  every rung across six BCI device archetypes.
+- Carries up: the accidental mechanism. Proxy over-optimization and honeypotting produce override at
+  every rung; the rung-3 agent over-optimizing engagement is the same failure as the rung-0 decoder
+  over-optimizing throughput.
+- Lost going up: the denominator. At rung 0 "did the user intend this movement" is answerable, so the
+  monitor and governor can be validated. At rung 3 the counterfactual is not observable, so the
+  instrument must be calibrated at rung 0 and carried up with its abstention gate intact
+  ([`warden`](experiments/influence/warden)): do not report a ground-truth-referenced number where the
+  ground truth has disappeared.
 
-## 5. Why this is the right first step
+## 5. Why start here
 
-- **It is legible.** A movement fired or it did not. A skeptic cannot dismiss rung 0 as philosophical,
-  so it is where the risk gets its first uncontestable measurement.
-- **It is BCI-native.** Rung 0 is exactly what motor BCIs do (Neuralink, Blackrock, Synchron ship intent
-  decoders), and false activation is a documented, named problem — so the category lands on a real
-  product surface, not a hypothetical ([COMMERCIAL_FIT.md](COMMERCIAL_FIT.md)).
-- **It makes "accidental" central.** The override comes from misalignment and proxy pressure, which is
-  both more realistic and more tractable than an assumed adversary, and it is the bridge between AI
-  reward-hacking and BCI actuation safety.
-- **It grounds the extrapolation.** Because the rung-0 instrument is validated against ground truth, the
-  claim that the *same* instrument addresses decision override is a transfer of a calibrated method, not
-  a new assertion — which is the move the rest of the tree needs.
+- It is measurable. A movement fired or it did not, so rung 0 is where the risk gets a concrete first
+  measurement.
+- It is close to real devices. Rung 0 is what motor BCIs do (Neuralink, Blackrock, Synchron ship intent
+  decoders), and false activation is a documented problem ([COMMERCIAL_FIT.md](COMMERCIAL_FIT.md)).
+- It makes the accidental case central. The override comes from misalignment and proxy pressure, which is
+  more realistic and more tractable than an assumed adversary, and it connects AI reward-hacking to BCI
+  actuation safety.
+- It grounds the extrapolation. Because the rung-0 instrument is validated against ground truth, applying
+  the same instrument to decision override is a transfer of a calibrated method rather than a new claim.
 
 ## References (in-tree and external)
 

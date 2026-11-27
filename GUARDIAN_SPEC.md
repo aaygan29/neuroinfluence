@@ -3,7 +3,7 @@
 This is the device-agnostic specification of SENTINEL, written so that any brain-computer-interface
 stack — a motor decoder, a speech neuroprosthesis, a closed-loop stimulator, a consumer
 neuro-adaptive app — can adopt it by exposing three streams rather than building a bespoke defence.
-It also states, honestly, the angles it closes and the one residual it cannot, because "defended at
+It also states the angles it closes and the one residual it cannot, because "defended at
 every angle" has to mean *every override channel has a monitor and a governor, and the residual is
 named and bounded* — not the false claim that covert override is made impossible.
 
@@ -68,10 +68,10 @@ sparse attacker that targets only 6% of decisions:
 So the two layers fail independently: an attack that evades detection still meets a governor that
 protects every decision. This is why the guarantee is carried by the governor, not the monitor.
 
-## 5. The residual, named and bounded (the honest limit)
+## 5. The residual
 
-"Defended at every angle" is a claim about *channels*, not about impossibility. Three residuals travel
-with the spec, because hiding them is the one thing that would make it false:
+"Defended at every angle" is a claim about channels, not about impossibility. Three residuals come with
+the spec:
 
 1. **The governor trusts its own evidence-justification model.** The floor gates on `e`; if the
    device's evidence channel is miscalibrated or itself gamed, the floor moves. The defence reduces to
@@ -101,7 +101,7 @@ guardian components its exposed streams unlock. All four rungs are covered acros
 
 Adoption is: expose `u`, `e`, `b`; the guardian attaches the monitors and the floor its streams
 support; the residual for that device is reported, not hidden. That is the whole integration surface —
-no device-specific defence, and the same honesty ledger on every one.
+no device-specific defence, and the same demonstrated-vs-hypothesis labelling on every one.
 
 ## 6a. The motor-timing axis (grounded in real reaction-time data)
 

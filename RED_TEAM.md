@@ -184,7 +184,7 @@ Three **falsifiable predictions** the thesis makes, which is what turns it from 
 
 ---
 
-## 5. Real-world applicability, hardened (and honestly gated)
+## 5. Real-world applicability, with gates
 
 The brief asks for deployable safety value in BCI, influence, and AI. Here is what is actually usable
 now, what needs a gate, and what the gate is. The discipline: never let the in-silico status leak into
@@ -228,7 +228,7 @@ a deployment claim.
   directed-information reviews). So it ships as a *corroborating* flag inside a multi-signal monitor,
   never as a sole trigger, and its false-positive behavior is characterized before any field use.
 
-### The applicability honesty rule
+### The rule for applicability claims
 
 Every item above is a *measurement instrument or a design rule*, validated in silico, with a named
 human-reproduction gap. None is a certified human-manipulation detector. The one move that would sink

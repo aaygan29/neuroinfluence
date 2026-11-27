@@ -6,7 +6,7 @@ company by company and pathway by pathway. It is written to the standard of [RED
 the goal is to find where SENTINEL genuinely fits a shipping stack, and to say plainly where it does
 **not**, because an overstated commercial story is the fastest way to lose a serious device partner.
 
-## 0. The one distinction that keeps this honest
+## 0. The key distinction
 
 The BCI products shipping closed-loop *write* at scale are **therapeutic**, not decision-steering.
 Medtronic's BrainSense adaptive DBS (FDA-approved Feb 2025, which Medtronic called the largest
@@ -35,7 +35,7 @@ cognitive. Stating that boundary is what makes the rest credible.
 | **INBRAIN / graphene, Neuracle (CN, first commercial implant approval)** | Closed-loop graphene stim; commercial implantable BCI (China). | Varied; Neuracle has a commercial approval. | **Watch / international.** Confirms the read-and-act market is forming beyond the US; same assurance fit, different regulator. |
 | **Consumer / non-invasive** (Emotiv, OpenBCI, Neurable, Apple EEG-earbud patent) | EEG wearables; affect/engagement estimates; licensing to consumer wearables. | **Little regulatory oversight**; 29/30 consumer neurotech firms have unrestricted neural-data access (Neurorights Foundation, 2024). | **The real near-term product.** The behavioural-/affect-stream guardian ships here with *no neural hardware claim* — a trust-and-safety layer for neuro-adaptive content timing. This is where SENTINEL is a product, not an assurance artifact. |
 
-## 2. The two honest product shapes
+## 2. Two product shapes
 
 Reading the table, SENTINEL is not one product; it is two, aimed at two different buyers, and only one
 of them touches a surgical implant.
