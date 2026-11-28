@@ -107,18 +107,26 @@ prior is a real experimental manipulation of the mouse's choice, so it is the on
 and governor can be tested against a real intervention on real behaviour. Fitting an evidence-only choice
 model (controlling for the block, so the evidence term is the pure stimulus effect):
 
-- **The monitor detects the real push.** Among choices that disagree with the evidence, **78.7%** go
-  toward the block's prior (bootstrap CI [0.69, 0.88], excluding chance). Evidence-discordant choices are
-  pulled toward the prior — the signature the justification monitor flags, here from a real manipulation.
-- **The governor removes it.** Reverting the unjustified-toward-prior choices to the evidence prediction
-  drops the fitted prior-pull coefficient from **1.01 to 0.17 (83% reduction)** and the zero-contrast
-  push from **0.575 to −0.06** (near-eliminated, slight overcorrection).
-- **Specificity.** The block prior is fixed and state-independent (open-loop), so the closed-loop flag is
-  not expected to fire; the justification monitor is the right detector for this push. A real closed-loop
-  (adaptive) manipulation would need optogenetic data, which is not reachable here.
+Two evidence models are tested. Model A fits the evidence term controlling for the block (in-sample).
+Model B is the deployment-realistic version: the evidence model is fit on neutral (pL=0.5) blocks only,
+so it never sees the manipulation — the independent evidence model a real device needs.
 
-Caveat: the governor's evidence model is fit on the same session controlling for block, a stand-in for
-the independent evidence model a real device would need; single session.
+- **The monitor detects the real push.** Among choices that disagree with the evidence, the fraction
+  going toward the block's prior is **78.7%** under Model A (CI [0.69, 0.88]) and **84.2%** under the
+  independent Model B (CI [0.78, 0.90]) — both exclude chance. Evidence-discordant choices are pulled
+  toward the prior, the signature the justification monitor flags, here from a real manipulation and
+  detected even when the evidence model never saw it.
+- **The governor removes it.** Reverting the unjustified-toward-prior choices to the evidence prediction
+  drops the fitted prior-pull coefficient from **1.01 to 0.17 (83%)** under Model A and from **1.01 to
+  −0.35** under Model B, and the zero-contrast push from **0.575 to −0.06**. Model B removes the pull
+  entirely and overshoots slightly past zero — this governor is aggressive and a calibrated (softer)
+  version would avoid the overshoot.
+- **Specificity.** The block prior is fixed and state-independent (open-loop), so the closed-loop flag is
+  not expected to fire; the justification monitor is the right detector. A real closed-loop (adaptive)
+  manipulation would need optogenetic data, which is not reachable here.
+
+Caveat: single session; the governor is uncalibrated (Model B overshoots). The independent-model result
+(B) is the one that matches how a device would run.
 
 ## Statistical rigor: CIs, nulls, seed variance, detector ROCs (`run_rigor.py`)
 

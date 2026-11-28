@@ -1408,7 +1408,7 @@
         },
         {
           "what": "guardian tested against a REAL manipulation of real choices (IBL biased-block prior)",
-          "value": "monitor: 78.7% of evidence-discordant choices go toward the prior [CI 0.69-0.88]; governor: prior-pull coef 1.01->0.17 (83% reduction), zero-contrast push 0.575->-0.06",
+          "value": "monitor: evidence-discordant choices toward the prior 78.7% [CI 0.69-0.88] with a block-controlled evidence model, 84.2% [0.78-0.90] with an INDEPENDENT evidence model fit on neutral blocks only; governor: prior-pull 1.01->0.17 (A) / ->-0.35 (B, removed with slight overshoot); zero-contrast push 0.575->-0.06",
           "source": "experiments/influence/sentinel-pilot/results/realpush_results.json"
         }
       ],

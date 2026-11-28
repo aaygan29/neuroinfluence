@@ -45,74 +45,67 @@ def main():
     d = IBL.load_ibl()
     sc = d["signed_contrast"]; right = (d["choice"] > 0).astype(float); pL = np.round(d["prob_left"], 2)
     block_signed = np.where(pL == 0.8, 1.0, np.where(pL == 0.2, -1.0, 0.0))
-
-    # evidence-only model: P(right) ~ signed_contrast + block_signed; evidence prediction sets block=0
-    X = np.column_stack([np.ones_like(sc), sc, block_signed])
-    w = ST.logistic_mv(X, right)
-    def sig(z): return 1.0 / (1.0 + np.exp(-z))
-    p_ev = sig(w[0] + w[1] * sc)                 # evidence-only P(right)
-    ev_map_right = p_ev > 0.5                     # evidence's predicted choice
-    chose_right = right > 0.5
-    discordant = chose_right != ev_map_right      # choice disagrees with evidence
-
-    biased = block_signed != 0
-    # congruent = discordant choice goes toward the block's prior side
+    biased = block_signed != 0; neutral = ~biased
     prior_is_right = block_signed > 0
-    toward_prior = (chose_right == prior_is_right)
-    cong = discordant & biased & toward_prior
-    incong = discordant & biased & (~toward_prior)
-    n_disc_biased = int((discordant & biased).sum())
-    cong_frac = float(cong.sum() / max(n_disc_biased, 1))
-    # bootstrap CI on the congruent fraction among discordant biased trials (resample those trials)
-    disc_idx = np.flatnonzero(discordant & biased)
-    cong_flag = toward_prior[disc_idx].astype(float)
-    cong_ci = ST.bootstrap_ci(cong_flag, n_boot=3000, rng=rng)
-
-    # P1 monitor rate: unjustified-toward-prior per trial, biased vs neutral (baseline discordance)
-    mon_biased = float(cong.sum() / max(int(biased.sum()), 1))
-    neutral = ~biased
-    mon_neutral = float((discordant & neutral).sum() / max(int(neutral.sum()), 1) / 2.0)  # split evenly
-
-    # P3 governor: revert unjustified-toward-prior choices to the evidence MAP, re-fit the prior pull
-    right_gov = right.copy()
-    right_gov[cong] = ev_map_right[cong].astype(float)
-    w_before = ST.logistic_coef_ci(X, right, n_boot=1200, rng=rng)
-    w_after = ST.logistic_coef_ci(X, right_gov, n_boot=1200, rng=rng)
-    pull_before = w_before[2]; pull_after = w_after[2]   # {coef, lo, hi} with CIs
-    # zero-contrast push before/after
+    X = np.column_stack([np.ones_like(sc), sc, block_signed])  # full model, for the comparable prior-pull coef
     z = sc == 0
-    def push(y):
-        return float(y[z & (pL == 0.8)].mean() - y[z & (pL == 0.2)].mean())
+    def sig(zz): return 1.0 / (1.0 + np.exp(-zz))
+    def push(y): return float(y[z & (pL == 0.8)].mean() - y[z & (pL == 0.2)].mean())
+
+    def evaluate(p_ev, rng):
+        """Run the monitor (P1) and governor (P3) given an evidence-only P(right) prediction."""
+        ev_map_right = p_ev > 0.5
+        discordant = (right > 0.5) != ev_map_right
+        toward_prior = (right > 0.5) == prior_is_right
+        cong = discordant & biased & toward_prior
+        disc_idx = np.flatnonzero(discordant & biased)
+        cong_ci = ST.bootstrap_ci(toward_prior[disc_idx].astype(float), n_boot=3000, rng=rng)
+        right_gov = right.copy(); right_gov[cong] = ev_map_right[cong].astype(float)
+        wb = ST.logistic_coef_ci(X, right, n_boot=1000, rng=rng)[2]
+        wa = ST.logistic_coef_ci(X, right_gov, n_boot=1000, rng=rng)[2]
+        return {
+            "discordant_choices_in_biased_blocks": int(disc_idx.size),
+            "monitor_fraction_toward_prior": float(cong_ci["point"]),
+            "monitor_ci": [cong_ci["lo"], cong_ci["hi"]],
+            "governor_prior_pull_before": wb, "governor_prior_pull_after": wa,
+            "governor_pull_reduction": float(1 - wa["coef"] / wb["coef"]) if wb["coef"] else None,
+            "zero_contrast_push_before": push(right), "zero_contrast_push_after": push(right_gov),
+        }
+
+    # Model A: evidence term from the full model (block controlled, in-sample)
+    wA = ST.logistic_mv(X, right)
+    p_ev_A = sig(wA[0] + wA[1] * sc)
+    # Model B (stricter, deployment-realistic): fit P(right) ~ signed_contrast on NEUTRAL blocks only,
+    # so the evidence model never sees the manipulation -- the independent evidence model a device needs.
+    Xn = np.column_stack([np.ones(neutral.sum()), sc[neutral]])
+    wB = ST.logistic_mv(Xn, right[neutral])
+    p_ev_B = sig(wB[0] + wB[1] * sc)
+
     out = {
         "config": {"seed": SEED, "n_trials": int(len(sc)),
                    "n_biased": int(biased.sum()), "n_neutral": int(neutral.sum())},
-        "P1_monitor_detects_real_push": {
-            "discordant_choices_in_biased_blocks": n_disc_biased,
-            "fraction_toward_prior": cong_frac, "ci": [cong_ci["lo"], cong_ci["hi"]],
-            "reading": "Among choices that disagree with the evidence, the fraction going toward the "
-                       "block's prior is well above 0.5 with a CI excluding 0.5 -- the monitor sees the "
-                       "real manipulation: evidence-discordant choices are pulled toward the prior."},
-        "monitor_rate_biased_vs_neutral": {"biased": mon_biased, "neutral_baseline": mon_neutral},
-        "P3_governor_removes_real_push": {
-            "prior_pull_coef_before": pull_before, "prior_pull_coef_after": pull_after,
-            "pull_reduction_fraction": float(1 - pull_after["coef"] / pull_before["coef"]) if pull_before["coef"] else None,
-            "zero_contrast_push_before": push(right), "zero_contrast_push_after": push(right_gov),
-            "reading": "Reverting the unjustified-toward-prior choices to the evidence MAP drops the "
-                       "fitted prior-pull coefficient and the zero-contrast push toward zero -- the "
-                       "governor removes most of a real manipulation's effect on real choices."},
+        "modelA_block_controlled": evaluate(p_ev_A, np.random.default_rng(SEED)),
+        "modelB_independent_evidence_neutral_blocks_only": evaluate(p_ev_B, np.random.default_rng(SEED + 1)),
+        "reading": "Model A fits the evidence term controlling for the block (in-sample). Model B is the "
+                   "deployment-realistic test: the evidence model is fit on NEUTRAL blocks only, so it "
+                   "never sees the manipulation -- the independent evidence model a real device needs. "
+                   "The monitor (fraction of evidence-discordant choices toward the prior) and the "
+                   "governor (prior-pull reduction after reverting unjustified-toward-prior choices) are "
+                   "reported for both.",
         "P2_specificity_note": "The block prior is a fixed, state-independent (open-loop) manipulation, "
                                "so the closed-loop flag is not expected to fire here; the justification "
-                               "monitor is the right detector for this push. A real closed-loop (adaptive) "
-                               "manipulation would need optogenetic data, which is not reachable here.",
+                               "monitor is the right detector. A real closed-loop (adaptive) manipulation "
+                               "would need optogenetic data, which is not reachable here.",
     }
     os.makedirs(os.path.join(HERE, "results"), exist_ok=True)
     with open(os.path.join(HERE, "results", "realpush_results.json"), "w") as f:
         json.dump(out, f, indent=2)
-    p1 = out["P1_monitor_detects_real_push"]; p3 = out["P3_governor_removes_real_push"]
-    print("P1 fraction of evidence-discordant choices toward the prior:", round(p1["fraction_toward_prior"], 3), "CI", [round(x, 3) for x in p1["ci"]])
-    print("   monitor rate biased vs neutral:", round(out["monitor_rate_biased_vs_neutral"]["biased"], 3), "vs", round(out["monitor_rate_biased_vs_neutral"]["neutral_baseline"], 3))
-    print("P3 prior-pull coef before->after:", round(p3["prior_pull_coef_before"]["coef"], 3), "->", round(p3["prior_pull_coef_after"]["coef"], 3), "(reduction", round(p3["pull_reduction_fraction"], 2), ")")
-    print("   zero-contrast push before->after:", round(p3["zero_contrast_push_before"], 3), "->", round(p3["zero_contrast_push_after"], 3))
+    for name in ["modelA_block_controlled", "modelB_independent_evidence_neutral_blocks_only"]:
+        r = out[name]
+        print(f"{name}:")
+        print(f"   monitor fraction-toward-prior {r['monitor_fraction_toward_prior']:.3f} CI [{r['monitor_ci'][0]:.3f},{r['monitor_ci'][1]:.3f}]")
+        print(f"   governor prior-pull {r['governor_prior_pull_before']['coef']:.3f} -> {r['governor_prior_pull_after']['coef']:.3f} "
+              f"(reduction {r['governor_pull_reduction']:.2f}); zero-contrast push {r['zero_contrast_push_before']:.3f} -> {r['zero_contrast_push_after']:.3f}")
 
 
 if __name__ == "__main__":

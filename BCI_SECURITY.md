@@ -113,8 +113,9 @@ a validation path:
 1. Red-team in the animal, where the attack is real and ground-truthed: run proxy-over-optimizing and
    closed-loop pushes, measure the true override, and calibrate the guardian's monitors and floor. The
    mouse already shows the push lands at the margin [real-manipulation], and the monitor and governor
-   have been run against the block prior as a real manipulation: the monitor sees it (78.7% of
-   evidence-discordant choices go toward the prior) and the governor removes 83% of its pull [shown].
+   have been run against the block prior as a real manipulation, including with an evidence model fit on
+   neutral blocks only (never seeing the manipulation): the monitor sees it (84.2% of evidence-discordant
+   choices go toward the prior) and the governor removes the prior's pull [shown].
 2. Transfer the calibrated detector across the shared evidence→action geometry (mouse and human
    normalized slopes 1.09 vs 1.08 [shown]) to the human device, keeping the abstention gate.
 3. Deploy on the human in monitor-and-govern mode only, without running the attack.

@@ -5,34 +5,48 @@
     "n_biased": 410,
     "n_neutral": 90
   },
-  "P1_monitor_detects_real_push": {
+  "modelA_block_controlled": {
     "discordant_choices_in_biased_blocks": 75,
-    "fraction_toward_prior": 0.7866666666666666,
-    "ci": [
+    "monitor_fraction_toward_prior": 0.7866666666666666,
+    "monitor_ci": [
       0.6933333333333334,
       0.88
     ],
-    "reading": "Among choices that disagree with the evidence, the fraction going toward the block's prior is well above 0.5 with a CI excluding 0.5 -- the monitor sees the real manipulation: evidence-discordant choices are pulled toward the prior."
-  },
-  "monitor_rate_biased_vs_neutral": {
-    "biased": 0.14390243902439023,
-    "neutral_baseline": 0.1111111111111111
-  },
-  "P3_governor_removes_real_push": {
-    "prior_pull_coef_before": {
+    "governor_prior_pull_before": {
       "coef": 1.0097057221934709,
-      "lo": 0.7549691508030872,
-      "hi": 1.2845903582311564
+      "lo": 0.7612766668419662,
+      "hi": 1.287279461156931
     },
-    "prior_pull_coef_after": {
+    "governor_prior_pull_after": {
       "coef": 0.17371204905493073,
-      "lo": -0.05285573671730272,
-      "hi": 0.40639067938748424
+      "lo": -0.05587637501513885,
+      "hi": 0.41407449122929185
     },
-    "pull_reduction_fraction": 0.8279577452749688,
+    "governor_pull_reduction": 0.8279577452749688,
     "zero_contrast_push_before": 0.5745098039215686,
-    "zero_contrast_push_after": -0.058823529411764705,
-    "reading": "Reverting the unjustified-toward-prior choices to the evidence MAP drops the fitted prior-pull coefficient and the zero-contrast push toward zero -- the governor removes most of a real manipulation's effect on real choices."
+    "zero_contrast_push_after": -0.058823529411764705
   },
-  "P2_specificity_note": "The block prior is a fixed, state-independent (open-loop) manipulation, so the closed-loop flag is not expected to fire here; the justification monitor is the right detector for this push. A real closed-loop (adaptive) manipulation would need optogenetic data, which is not reachable here."
+  "modelB_independent_evidence_neutral_blocks_only": {
+    "discordant_choices_in_biased_blocks": 120,
+    "monitor_fraction_toward_prior": 0.8416666666666667,
+    "monitor_ci": [
+      0.775,
+      0.9
+    ],
+    "governor_prior_pull_before": {
+      "coef": 1.0097057221934709,
+      "lo": 0.7654077179318085,
+      "hi": 1.3147675679375348
+    },
+    "governor_prior_pull_after": {
+      "coef": -0.34904089431728463,
+      "lo": -0.5678947190407241,
+      "hi": -0.10430108921506084
+    },
+    "governor_pull_reduction": 1.3456857643225324,
+    "zero_contrast_push_before": 0.5745098039215686,
+    "zero_contrast_push_after": -0.058823529411764705
+  },
+  "reading": "Model A fits the evidence term controlling for the block (in-sample). Model B is the deployment-realistic test: the evidence model is fit on NEUTRAL blocks only, so it never sees the manipulation -- the independent evidence model a real device needs. The monitor (fraction of evidence-discordant choices toward the prior) and the governor (prior-pull reduction after reverting unjustified-toward-prior choices) are reported for both.",
+  "P2_specificity_note": "The block prior is a fixed, state-independent (open-loop) manipulation, so the closed-loop flag is not expected to fire here; the justification monitor is the right detector. A real closed-loop (adaptive) manipulation would need optogenetic data, which is not reachable here."
 }
