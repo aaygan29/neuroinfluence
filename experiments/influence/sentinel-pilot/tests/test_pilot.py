@@ -207,6 +207,29 @@ def test_stats_helpers():
     ci = ST.bootstrap_ci(rng.normal(5, 1, 400), rng=rng); assert ci["lo"] < 5 < ci["hi"]
 
 
+def test_realpush_monitor_and_governor_on_real_manipulation():
+    """Against the real IBL block manipulation: evidence-discordant choices go toward the prior
+    (monitor sees it), and reverting them drops the fitted prior-pull (governor removes it). Skips
+    if the IBL data is absent."""
+    import os
+    from sentinel import ibldata as IBL, stats as ST
+    if not os.path.exists(os.path.join(IBL.DATA, "ibl_mouse_trials.csv")):
+        print("  (skip realpush: IBL CSV not present)"); return
+    d = IBL.load_ibl()
+    sc = d["signed_contrast"]; right = (d["choice"] > 0).astype(float); pL = np.round(d["prob_left"], 2)
+    bs = np.where(pL == 0.8, 1.0, np.where(pL == 0.2, -1.0, 0.0))
+    X = np.column_stack([np.ones_like(sc), sc, bs]); w = ST.logistic_mv(X, right)
+    p_ev = 1 / (1 + np.exp(-(w[0] + w[1] * sc))); ev_map = p_ev > 0.5
+    disc = (right > 0.5) != ev_map; biased = bs != 0
+    toward_prior = (right > 0.5) == (bs > 0)
+    cong = disc & biased & toward_prior
+    frac = toward_prior[np.flatnonzero(disc & biased)].mean()
+    assert frac > 0.6                                   # discordant choices pulled toward the prior
+    rg = right.copy(); rg[cong] = ev_map[cong].astype(float)
+    pull0 = ST.logistic_mv(X, right)[2]; pull1 = ST.logistic_mv(X, rg)[2]
+    assert pull1 < 0.5 * pull0                           # governor removes most of the prior pull
+
+
 def test_robustness_governor_holds_across_grid():
     """The barrier-floor governor keeps crossing below the undefended rate across a parameter grid
     (robust, not knife-edge)."""

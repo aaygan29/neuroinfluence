@@ -1319,7 +1319,7 @@
       "substrate": "simulation+public-data",
       "strand": "T",
       "human_data": true,
-      "status": "simulation across four override rungs; real-data harnesses on five datasets in two species; headline claims carry bootstrap CIs, permutation nulls, seed variance, detector ROC/AUC and a parameter robustness sweep; adversarial AUDIT.md; 17 tests pass",
+      "status": "simulation across four override rungs; real-data harnesses on five datasets in two species; the monitor and governor tested against a REAL manipulation (IBL biased block); CIs, nulls, seed variance, detector ROC/AUC, robustness sweep; AUDIT.md; 18 tests",
       "key_numbers": [
         {
           "what": "override at every rung: undefended -> governed by the justification/restoring floor",
@@ -1405,6 +1405,11 @@
           "what": "robustness sweep (defences not knife-edge, with named edges)",
           "value": "barrier-floor governed crossing median 0.08 across a 12-point (margin,strength) grid; closed-loop flag separation holds across bin counts; degrades at the weakest floor (0.23) and at high noise D=0.12 (0.47->0.41)",
           "source": "experiments/influence/sentinel-pilot/results/rigor_results.json"
+        },
+        {
+          "what": "guardian tested against a REAL manipulation of real choices (IBL biased-block prior)",
+          "value": "monitor: 78.7% of evidence-discordant choices go toward the prior [CI 0.69-0.88]; governor: prior-pull coef 1.01->0.17 (83% reduction), zero-contrast push 0.575->-0.06",
+          "source": "experiments/influence/sentinel-pilot/results/realpush_results.json"
         }
       ],
       "caveats": [
@@ -1416,7 +1421,8 @@
         "NARPS is behavioural choice only (no neural data, no manipulation condition in the source); the justification model is a logistic P(accept|gain,loss) and the abstention gate (ECE/AUC thresholds) is a chosen operating point.",
         "The motor-behavioural datasets (OME, sleepstudy, Fishing) are behavioural only; the pushed-action RT override in M2 is injected and labelled, and the sensorimotor floor (~200 ms) and readiness-band width (k=2.5 sd) are chosen operating points.",
         "The IBL mouse file is a single-session unit-test fixture carrying the real IBL 2AFC task structure; per-contrast effect sizes are illustrative (high-contrast cells are small-n), and the mouse->human step is a transfer of coordinates (hypothesis), not a human intervention. The biased block also skews stimulus side, so the push is read at fixed contrast, not pooled by |contrast|.",
-        "Two detector AUCs are 1.0 by construction (open-loop input is state-independent; injected RT pushes are below the sensorimotor floor), so they are upper bounds, not field performance; the mouse margin-shrinkage interaction is underpowered in a single session."
+        "Two detector AUCs are 1.0 by construction (open-loop input is state-independent; injected RT pushes are below the sensorimotor floor), so they are upper bounds, not field performance; the mouse margin-shrinkage interaction is underpowered in a single session.",
+        "The real-manipulation test (run_realpush) validates the justification monitor/governor against an OPEN-LOOP real manipulation (the fixed block prior); a real closed-loop manipulation would need optogenetic data (unreachable). The governor's evidence model is fit on the same session controlling for block (stand-in for an independent model); single session."
       ],
       "provenance_files": [
         "experiments/influence/sentinel-pilot/results/ladder_results.json",
@@ -1425,7 +1431,8 @@
         "experiments/influence/sentinel-pilot/results/realworld_results.json",
         "experiments/influence/sentinel-pilot/results/motor_results.json",
         "experiments/influence/sentinel-pilot/results/crossspecies_results.json",
-        "experiments/influence/sentinel-pilot/results/rigor_results.json"
+        "experiments/influence/sentinel-pilot/results/rigor_results.json",
+        "experiments/influence/sentinel-pilot/results/realpush_results.json"
       ],
       "depends_on": [
         "bounded-influence",

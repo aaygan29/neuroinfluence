@@ -53,7 +53,9 @@ single mechanism but five combinations we have not found elsewhere:
    in real psychomotor data.
 5. Using an animal decision model — where a manipulation is real and ground-truthed — to calibrate a
    human-deployable detector, licensed by a measured shared evidence→action geometry (slopes 1.09 vs
-   1.08).
+   1.08). The monitor and governor are tested against the IBL block prior, a real experimental
+   manipulation of choice: the monitor sees it (78.7% of evidence-discordant choices go toward the
+   prior, CI excluding chance) and the governor removes 83% of its pull — not an injected override.
 
 Each component is modest alone; together they support the claim to a distinct object — an engineering
 approach to intent integrity in BCI — rather than a new method. The novelty claim is "not aware of this

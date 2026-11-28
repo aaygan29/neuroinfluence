@@ -100,6 +100,26 @@ model.
 Together these replace the twin's assumed justification model with ones fit from real behaviour, and
 add the motor-timing axis that makes "the push toward an action" concretely detectable.
 
+## The guardian against a real manipulation (`run_realpush.py`)
+
+Every other result tests the guardian against an injected or simulated override. The IBL biased-block
+prior is a real experimental manipulation of the mouse's choice, so it is the one case where the monitor
+and governor can be tested against a real intervention on real behaviour. Fitting an evidence-only choice
+model (controlling for the block, so the evidence term is the pure stimulus effect):
+
+- **The monitor detects the real push.** Among choices that disagree with the evidence, **78.7%** go
+  toward the block's prior (bootstrap CI [0.69, 0.88], excluding chance). Evidence-discordant choices are
+  pulled toward the prior — the signature the justification monitor flags, here from a real manipulation.
+- **The governor removes it.** Reverting the unjustified-toward-prior choices to the evidence prediction
+  drops the fitted prior-pull coefficient from **1.01 to 0.17 (83% reduction)** and the zero-contrast
+  push from **0.575 to −0.06** (near-eliminated, slight overcorrection).
+- **Specificity.** The block prior is fixed and state-independent (open-loop), so the closed-loop flag is
+  not expected to fire; the justification monitor is the right detector for this push. A real closed-loop
+  (adaptive) manipulation would need optogenetic data, which is not reachable here.
+
+Caveat: the governor's evidence model is fit on the same session controlling for block, a stand-in for
+the independent evidence model a real device would need; single session.
+
 ## Statistical rigor: CIs, nulls, seed variance, detector ROCs (`run_rigor.py`)
 
 The headline claims are characterized, not point estimates (numpy only, deterministic):
